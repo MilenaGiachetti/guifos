@@ -138,7 +138,7 @@ body main .misGuifos h2{
     margin-bottom: 16px;
 }
 body main .crearGuifos{
-    width: 50%;
+    width: 80%;
     margin: 50px auto ;
     background: #E6E6E6;
     box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
@@ -157,6 +157,14 @@ body main .crearGuifos .contenido{
     flex-flow: row nowrap;
     align-items: flex-start;
 }
+body main .crearGuifos .contenido video{ 
+    width: 100%;
+}
+body main .crearGuifos .contenido #btnCapturar{ 
+    margin-bottom: 30px;
+    margin-left: auto;
+}
+
 
 body main .crearGuifos img{ 
     width: 32px;

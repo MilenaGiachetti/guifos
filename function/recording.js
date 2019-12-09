@@ -40,6 +40,7 @@ var contenido = document.getElementById('contenido');
 function grabar (){
     titulo.textContent = 'Un Chequeo Antes de Empezar';
     contenido.innerHTML = '<video src="" id="video"></video><button id="btnCapturar" class="btn">Capturar</button>';
+    contenido.style.flexFlow = 'column wrap';
     getStreamAndRecord ();
 }
 
