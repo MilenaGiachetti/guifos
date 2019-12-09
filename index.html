@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gif.OS</title>
+    <link rel="stylesheet" href="estilo/estilos.css">
+</head>
+<body>
+    <header>
+        <p class="title topTitle">¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas: <span id="visitas"> 12.765.803</span></p>
+        <h1>Guifos</h1>
+        <div class="head">
+            <a href="index.html"><img src="assets/img/logo.png" id="logo" alt=""></a>
+            <nav>
+                <a id="btnCrear" href="recording.html" class="btn"><span class="texto">Crear Guifos</span></a>
+                <div class="dropdown">
+                    <button id="btnTema" class="btn">
+                        <span class="texto"> Elegir tema </span>
+                        <span class="caret" id="dropdownCaret"><img id='caret' class='close-caret' src="assets/img/dropdown.svg" alt=""></span>
+                    </button>
+                    <div class="dropdownContent hidden" id="dropdownMenu">
+                        <button id="light"><span class="subrayado">S</span>ailor Day</button>
+                        <button id="dark"><span class="subrayado">S</span>ailor Night</button>
+                    </div>
+                </div>
+                <a class="enlace" href="misguifos.html"><span class="subrayado">M</span>is Guifos</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="busqueda">
+            <div class="buscar">
+                <h2 class="title">Buscar</h2>
+                <div class="lineaBusq">
+                    <input type="text" placeholder="Busca gifs, hashtags, temas, busca lo que quieras…" id="inputBusqueda">
+                    <button type="submit" class="btnInactivo" id="btnBusqueda"><span class="texto">
+                        <img src="assets/img/lupa.svg" alt="">
+                        Buscar
+                    </span>
+                    </button>
+                </div>
+            </div>
+            <div id="sugerenciasBusq" class="hidden">
+                <div id="resultado1" class="sugBusq"><span>Resultado de búsqueda sugerido</span></div>
+                <div id="resultado2" class="sugBusq"><span>Un resultado similar de búsqueda</span></div>
+                <div id="resultado3" class="sugBusq"><span>Otro más</span></div>
+            </div>
+            <div id="tagsSugeridos" class="hidden">
+                <div class="btnSecundario"><span>#Un ejemplo</span></div>
+                <div class="btnSecundario"><span>#Un ejemplomaslargo</span></div>
+                <div class="btnSecundario"><span>#tagsrelacionados</span></div>
+            </div>
+            <h2 id="titleBusq" class="hidden">Ejemplo de búsqueda (resultados)</h2>
+            <div id="ctnBusqueda"></div>
+        </section>
+        <section class="sugerencias">
+            <h2>Hoy te sugerimos:</h2>
+            <div id="ctnSugerencias"></div>
+        </section>    
+        <section class="tendencia">
+            <h2>Tendencias:</h2>
+            <div id="ctnTrending"></div>
+        </section>
+    </main>
+    <script src="function/gif.js"></script>
+</body>
+</html>
