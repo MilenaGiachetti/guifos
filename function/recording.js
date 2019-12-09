@@ -31,3 +31,15 @@ document.addEventListener('click', function(){
     caret.classList.remove('open-caret');        
     dropdownMenu.classList.add('hidden');
 })
+function getStreamAndRecord () { 
+    navigator.mediaDevices.getUserMedia({
+    audio: false,
+    video: {
+        height: { max: 480 }
+    }
+})
+
+.then(function(stream) {
+    video.srcObject = stream;
+    video.play()    
+})};
