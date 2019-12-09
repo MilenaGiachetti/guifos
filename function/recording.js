@@ -1,4 +1,4 @@
-var light = document.getElementById('light');
+/*var light = document.getElementById('light');
 var dark = document.getElementById('dark');
 var dropdownCaret = document.getElementById('dropdownCaret');
 var dropdownMenu = document.getElementById('dropdownMenu');
@@ -30,7 +30,23 @@ function cerrarMenu (){
 document.addEventListener('click', function(){
     caret.classList.remove('open-caret');        
     dropdownMenu.classList.add('hidden');
-})
+})*/
+var btnCancelar = document.getElementById('btnCancelar');
+var btnComenzar = document.getElementById('btnComenzar');
+var titulo = document.getElementById('titulo');
+var contenido = document.getElementById('contenido');
+
+
+function grabar (){
+    titulo.textContent = 'Un Chequeo Antes de Empezar';
+    contenido.innerHTML = '<video src="" id="video"></video><button id="btnCapturar" class="btn">Capturar</button>';
+    getStreamAndRecord ();
+}
+
+
+
+btnComenzar.addEventListener('click', grabar);
+
 function getStreamAndRecord () { 
     navigator.mediaDevices.getUserMedia({
     audio: false,

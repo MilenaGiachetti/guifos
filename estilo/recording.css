@@ -119,119 +119,6 @@ body header .head {
 body header .head #logo {
     width: 100px;
 }
-body header .head nav {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-flow: row wrap;
-            flex-flow: row wrap;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    font-size: 0;
-}
-.btn {
-  background: var(--gradiente-primario);
-  border: 1px solid var(--color-fuente-oscuro);
-  -webkit-box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 var(--light-shadow);
-          box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 var(--light-shadow);
-  font-family: "chakraReg", Arial, Helvetica, sans-serif;
-  color: var(--color-fuente-nav);
-  padding: 2px;
-}
-.btn:hover, .btn:active {
-  background: var(--btn-bg-hover);
-}
-.btn .texto {
-  display: inline-block;
-  font-size: 16px;
-  padding: 8px 23px;
-  border: 1px solid #00000000;
-}
-.btn .texto:hover, .btn .texto:active {
-  border: 1px dotted var(--color-fuente-oscuro);
-}
-.btn .caret {
-  vertical-align: 0;
-  height: 34px;
-  padding: 16px 13px 21px 13px;
-  display: inline-block;
-  border: 1px solid #00000000;
-}
-.btn .caret:hover, .btn .caret:active {
-  border: 1px dotted var(--color-fuente-oscuro);
-}
-body header .head nav #btnCrear:hover, body header .head nav #btnCaret:hover, body header .head nav #btnTema:hover span {
-    background: var(--btn-bg-hover);
-    border: 1px dotted var(--color-fuente-oscuro);
-}
-body header .head nav .dropdown{
-    margin: 0 1rem;
-}
-body header .head nav .dropdown button .caret img{
-    position: relative;
-    top: -2px;
-}
-body header .head nav .dropdown .dropdownContent {
-    -webkit-box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 var(--light-shadow);
-            box-shadow: inset -2px -2px 0 0 var(--bg-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-flow: column wrap;
-            flex-flow: column wrap;
-    position: absolute;
-    width: 178px;
-    background: var(--fondo-secundario);
-    padding: 5px;
-}
-body header .head nav .dropdown .dropdownContent button {
-    padding: 8px;
-    background: var(--fondo-secundario-claro);
-    border: 1px solid #808080;
-    -webkit-box-shadow: inset -1px -1px 0 0 var(--bg-sec-shadow), inset 1px 1px 0 0 var(--light-shadow);
-            box-shadow: inset -1px -1px 0 0 var(--bg-sec-shadow), inset 1px 1px 0 0 var(--light-shadow);
-    margin: 5px;
-}
-body header .head nav .dropdown .dropdownContent button:hover {
-    background: var(--fondo-selector-tema);
-    border: 1px solid var(--borde-selector-tema);
-    color: var(--color-fuente-nav);
-    -webkit-box-shadow: inset -1px -1px 0 0 #E6DCE4, inset 1px 1px 0 0 var(--light-shadow);
-            box-shadow: inset -1px -1px 0 0 #E6DCE4, inset 1px 1px 0 0 var(--light-shadow);
-}
-body header .head nav .dropdown .dropdownContent button span {
-    display: inline-block;
-}
-body header .head nav .dropdown .dropdownContent button .subrayado {
-    text-decoration: underline;
-}
-body header .head nav .enlace {
-  font-size: 1rem;
-  padding: 6px 4px 4px 0;
-  line-height: 36px;
-  font-family: "chakraReg", Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  color: var(--color-fuente-nav);
-  border: 1px solid rgba(255, 255, 255, 0);
-}
-body header .head nav .enlace .subrayado {
-  text-decoration: underline;
-}
-body header .head nav .enlace:hover {
-  border: 1px dotted var(--color-fuente-oscuro);
-}
-body header .head nav .enlace:active {
-  color: var(--darker-shadow);
-  border: 1px solid rgba(255, 255, 255, 0);
-}
 body main {
     margin: 20px 10%;
 }
@@ -249,6 +136,72 @@ body main .misGuifos h2{
     letter-spacing: 0;
     margin-top: 64px;
     margin-bottom: 16px;
+}
+body main .crearGuifos{
+    width: 50%;
+    margin: 50px auto ;
+    background: #E6E6E6;
+    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+}
+body main .crearGuifos h2{
+    background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+    font-family: 'chakraBold';
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    padding: 3px;
+}
+body main .crearGuifos .contenido{ 
+    margin: 24px 32px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+}
+
+body main .crearGuifos img{ 
+    width: 32px;
+    margin-right: 16px;
+}
+body main .crearGuifos h4{ 
+    font-family: 'chakraBold';
+    font-size: 16px;
+    color: #110038;
+    letter-spacing: 0;
+    line-height: 22px;
+    margin:0 0 12px 0;
+
+}
+body main .crearGuifos p{ 
+    font-family: 'chakraReg';
+    font-size: 14px;
+    color: #110038;
+    letter-spacing: 0;
+    line-height: 20px;
+}
+body main .crearGuifos p .bold{ 
+    font-family: 'chakraBold';
+}
+body main .crearGuifos p .tilted{ 
+    font-style: italic;
+}
+body main .crearGuifos p .enter{ 
+    display: block;
+    padding:4px 0;
+}
+.ctnBtn{
+    text-align: right;
+}
+button{
+    padding: 8px 40px;
+    background: #F7C9F3;
+    border: 1px solid #110038;
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+    margin: 36px 0;
+}
+button:hover{
+    background: #FFF4FD;
+    border: 1px solid #110038;
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
 }
 /*body main .misGuifos div{
     display: -webkit-box;
