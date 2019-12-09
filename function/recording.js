@@ -41,5 +41,6 @@ function getStreamAndRecord () {
 
 .then(function(stream) {
     video.srcObject = stream;
+    console.log('succes');
     video.play()    
 })};
