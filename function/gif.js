@@ -8,7 +8,7 @@
 //hacer un array con tags(coding, cats,typing, aww, dance,etc -10/15) para buscar un gif random
 //1-fetch data de la api, endpoint: ?????(tag sugerencia) -- variable valor del input
 
-
+/*'https://api.giphy.com/v1/gifs/random?api_key='+apiKey+'&tag=adventure+time&fmt=html'*/
 
 
 
@@ -110,21 +110,22 @@ function close (){
     this.ctnTotal.remove();
 }
 //sugerencias
-async function giphySugerencias(){
-    let url = "https://api.giphy.com/v1/gifs/random?api_key=" + apiKey + "&rating=PG";
+let tagsSugerir = ['cat', 'dancing', 'typing', 'pig'];
+async function giphySugerencias(sugerencia){
+    let url = "https://api.giphy.com/v1/gifs/random?api_key=" + apiKey + "&tag="+ sugerencia +"&rating=PG";
     const resp = await fetch(url);
     const sugerenciasDatos = await resp.json();
     return sugerenciasDatos;
 }
-function sugerir(){
-    sugerenciasDatos = giphySugerencias();
+function sugerir(sugerencia){
+    sugerenciasDatos = giphySugerencias(sugerencia);
     sugerenciasDatos.then(function(respuesta){
         var ctnTotal = document.createElement('div');
         ctnTotal.setAttribute('class', 'ctnTotal');
         var title = document.createElement('div');
         title.setAttribute('class', 'title');
         var content = document.createElement('p');
-        content.textContent = '#tag'/*respuesta.data.title*/;
+        content.textContent = '#'+sugerencia/*respuesta.data.title*/;
         var close = document.createElement('img');
         close.setAttribute('src', 'assets/img/close.svg');
         //funcion de cerrar
@@ -152,7 +153,8 @@ function sugerir(){
     });
 }
 for (let i = 0; i < 4; i++) {
-    sugerir();
+    let index = Math.floor(Math.random() * (tagsSugerir.length - 0)) + 0;
+    sugerir(tagsSugerir[index]);
 }
 //trending
 async function giphyTrending(){
