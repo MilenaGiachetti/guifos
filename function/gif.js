@@ -110,7 +110,7 @@ function close (){
     this.ctnTotal.remove();
 }
 //sugerencias
-let tagsSugerir = ['cat', 'dancing', 'typing', 'pig'];
+let tagsSugerir = ['cat', 'dancing', 'typing', 'pig','funny','animation','movies','anime','unicorn','werk'];
 async function giphySugerencias(sugerencia){
     let url = "https://api.giphy.com/v1/gifs/random?api_key=" + apiKey + "&tag="+ sugerencia +"&rating=PG";
     const resp = await fetch(url);
@@ -131,7 +131,8 @@ function sugerir(sugerencia){
         //funcion de cerrar
         close.addEventListener('click',function(){
             ctnTotal.remove();
-            sugerir();
+            let index = Math.floor(Math.random() * (tagsSugerir.length - 0)) + 0;
+            sugerir(tagsSugerir[index]);
         });    
         title.appendChild(content);
         title.appendChild(close);
