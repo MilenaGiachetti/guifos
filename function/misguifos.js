@@ -5,6 +5,13 @@ var dropdownMenu = document.getElementById('dropdownMenu');
 var logo = document.getElementById('logo');
 var caret = document.getElementById('caret');
 
+if(localStorage.getItem('theme') === 'theme-dark'){
+    setTheme('theme-dark');
+}else{
+    setTheme('theme-light');
+}
+
+
 function setTheme(themeName) {
     localStorage.setItem('theme', themeName);
     document.documentElement.className = themeName;

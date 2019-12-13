@@ -36,6 +36,11 @@ var btnComenzar = document.getElementById('btnComenzar');
 var titulo = document.getElementById('titulo');
 var contenido = document.getElementById('contenido');
 
+if(localStorage.getItem('theme') === 'theme-dark'){
+    setTheme('theme-dark');
+}else{
+    setTheme('theme-light');
+}
 
 function grabar (){
     titulo.textContent = 'Un Chequeo Antes de Empezar';
