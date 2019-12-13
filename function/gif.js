@@ -28,6 +28,15 @@ var dropdownMenu = document.getElementById('dropdownMenu');
 var logo = document.getElementById('logo');
 var caret = document.getElementById('caret');
 
+setTheme
+
+if(localStorage.getItem('theme') === 'theme-dark'){
+    setTheme('theme-dark');
+}else{
+    setTheme('theme-light');
+}
+
+
 function setTheme(themeName) {
     localStorage.setItem('theme', themeName);
     document.documentElement.className = themeName;
@@ -110,7 +119,7 @@ function close (){
     this.ctnTotal.remove();
 }
 //sugerencias
-let tagsSugerir = ['cat', 'dancing', 'typing', 'pig','funny','animation','movies','anime','unicorn','werk'];
+let tagsSugerir = ['cat', 'dancing', 'typing', 'game','weird', 'pig','funny','animation','movies','anime','unicorn','werk'];
 async function giphySugerencias(sugerencia){
     let url = "https://api.giphy.com/v1/gifs/random?api_key=" + apiKey + "&tag="+ sugerencia +"&rating=PG";
     const resp = await fetch(url);
