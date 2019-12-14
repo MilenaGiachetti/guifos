@@ -41,7 +41,10 @@ if(localStorage.getItem('theme') === 'theme-dark'){
 }else{
     setTheme('theme-light');
 }
-
+function setTheme(themeName) {
+    localStorage.setItem('theme', themeName);
+    document.documentElement.className = themeName;
+}
 function grabar (){
     titulo.textContent = 'Un Chequeo Antes de Empezar';
     contenido.innerHTML = '<video src="" id="video"></video><button id="btnCapturar" class="btn">Capturar</button>';
@@ -52,7 +55,7 @@ function grabar (){
 
 
 btnComenzar.addEventListener('click', grabar);
-
+/*
 function getStreamAndRecord () { 
     navigator.mediaDevices.getUserMedia({
     audio: false,
@@ -77,5 +80,5 @@ recorder = RecordRTC(stream, {
     onGifRecordingStarted: function() {
      console.log('started')
    },
-}); 
+}); */
 //metodos start recording y stop recording

@@ -123,7 +123,7 @@ body main {
     margin: 20px 10%;
 }
 body main .misGuifos h2{
-    background: #FFFAFE;
+    background: #fff4fd;
     border: 1px solid var(--border-second-h);
     -webkit-box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 var(--shadow-second-h);
             box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 var(--shadow-second-h);
@@ -140,11 +140,11 @@ body main .misGuifos h2{
 body main .crearGuifos{
     width: 80%;
     margin: 50px auto ;
-    background: #E6E6E6;
-    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+    background: var(--fondo-secundario);
+    box-shadow: inset -2px -2px 0 0 var(--darker-shadow), inset 2px 2px 0 0 #FFFFFF;
 }
 body main .crearGuifos h2{
-    background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+    background-image: linear-gradient(270deg, var(--gradiente-primario) 0%, var(--gradiente-secundario)  100%);
     font-family: 'chakraBold';
     font-size: 14px;
     color: #FFFFFF;
@@ -173,7 +173,7 @@ body main .crearGuifos img{
 body main .crearGuifos h4{ 
     font-family: 'chakraBold';
     font-size: 16px;
-    color: #110038;
+    color: var(--color-fuente-oscuro);
     letter-spacing: 0;
     line-height: 22px;
     margin:0 0 12px 0;
@@ -182,7 +182,7 @@ body main .crearGuifos h4{
 body main .crearGuifos p{ 
     font-family: 'chakraReg';
     font-size: 14px;
-    color: #110038;
+    color: var(--color-fuente-oscuro);
     letter-spacing: 0;
     line-height: 20px;
 }
@@ -201,15 +201,15 @@ body main .crearGuifos p .enter{
 }
 button{
     padding: 8px 40px;
-    background: #F7C9F3;
-    border: 1px solid #110038;
-    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+    background: var(--fondo);
+    border: 1px solid var(--color-fuente-oscuro);
+    box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 #FFFFFF;
     margin: 36px 0;
 }
 button:hover{
-    background: #FFF4FD;
-    border: 1px solid #110038;
-    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+    background: var(--fondo);
+    border: 1px solid var(--color-fuente-oscuro);
+    box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 #FFFFFF;
 }
 /*body main .misGuifos div{
     display: -webkit-box;
