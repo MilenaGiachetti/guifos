@@ -201,13 +201,14 @@ body main .crearGuifos p .enter{
 }
 button{
     padding: 8px 40px;
-    background: var(--fondo);
+    background: var(--gradiente-primario);
     border: 1px solid var(--color-fuente-oscuro);
     box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 #FFFFFF;
     margin: 36px 0;
+    color: var(--color-fuente-nav);
 }
 button:hover{
-    background: var(--fondo);
+    background: var(--btn-bg-hover);
     border: 1px solid var(--color-fuente-oscuro);
     box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 #FFFFFF;
 }

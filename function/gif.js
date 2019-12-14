@@ -28,14 +28,13 @@ var dropdownMenu = document.getElementById('dropdownMenu');
 var logo = document.getElementById('logo');
 var caret = document.getElementById('caret');
 
-setTheme
-
 if(localStorage.getItem('theme') === 'theme-dark'){
     setTheme('theme-dark');
+    logo.setAttribute('src',"assets/img/logodark.png");
 }else{
     setTheme('theme-light');
+    logo.setAttribute('src',"assets/img/logo.png");
 }
-
 
 function setTheme(themeName) {
     localStorage.setItem('theme', themeName);
