@@ -38,6 +38,8 @@ function getStreamAndRecord () {
 btnComenzar.addEventListener('click',function(){
     if( btnComenzar.textContent =='capturar'){
         record();
+    }else if(btnComenzar.textContent =='parar'){
+        parar();
     }else{
         grabar();
     }
@@ -57,4 +59,11 @@ recorder = RecordRTC(stream, {
 //metodos start recording y stop recording
 function record(){
     recorder.startRecording();
+    btnComenzar.textContent='parar';
+    console.log('grabar');
+}
+function record(){
+    recorder.stopRecording();
+    console.log('parada');
+    btnComenzar.textContent='parado';
 }
