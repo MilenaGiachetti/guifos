@@ -57,7 +57,7 @@ function grabar (){
 
 
 btnComenzar.addEventListener('click', grabar);
-/*
+
 function getStreamAndRecord () { 
     navigator.mediaDevices.getUserMedia({
     audio: false,
@@ -82,5 +82,5 @@ recorder = RecordRTC(stream, {
     onGifRecordingStarted: function() {
      console.log('started')
    },
-}); */
+}); 
 //metodos start recording y stop recording
