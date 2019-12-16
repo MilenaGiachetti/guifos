@@ -28,7 +28,11 @@ var dropdownMenu = document.getElementById('dropdownMenu');
 var logo = document.getElementById('logo');
 var caret = document.getElementById('caret');
 var imgLupa = document.getElementById('imgLupa');
+var sugerencia1 = document.getElementById('resultado1');
+var sugerencia2 = document.getElementById('resultado2');
+var sugerencia3 = document.getElementById('resultado3');
 
+var Qsuggest = ['hola','morty','rick','alabama','dark','star wars','planet','love','planetario','planometria', 'Abadejo','Abadía','Abano','Abasto','Abdomen','Abecedario','Abedul','Abeja','Abejilla','Abertura','Abeto','Abismo','Ambiente','Abogada','Abogado','Abono','Abrazo','Abrelatas','Abrigo','Academia','Acceso','Accesorio','Acebiño','Acebo','Acedía','Aceite','Aceituna','Acelga','Acelgas','Acento','Acentor','plata','palta'];
 if(localStorage.getItem('theme') === 'theme-dark'){
     setTheme('theme-dark');
     logo.setAttribute('src',"assets/img/logodark.png");
@@ -76,7 +80,7 @@ document.addEventListener('click', function(){
     dropdownMenu.classList.add('hidden');
 })
 
-//busqueda
+//busqueda Qsuggest
 
 function busqueda(){
     sugerenciasBusq.classList.add('hidden')
@@ -121,7 +125,7 @@ function busqueda(){
     });
 }
 btnBusqueda.addEventListener('click', busqueda);
-inputBusqueda.addEventListener('keydown', function(){
+inputBusqueda.addEventListener('keyup', function(){
     sugerenciasBusq.classList.remove('hidden');
     btnBusqueda.classList.add('btn');
     btnBusqueda.classList.add('btnBuscar');
@@ -135,7 +139,7 @@ inputBusqueda.addEventListener('keydown', function(){
     if (event.which === 13|| event.keyCode == 13) {
         busqueda();
     }else if (event.which === 8|| event.keyCode == 8){
-        if(inputBusqueda.value === ''||inputBusqueda.value.length <= 1){
+        if(inputBusqueda.value === ''||inputBusqueda.value.length < 1){
             sugerenciasBusq.classList.add('hidden');
             btnBusqueda.classList.remove('btnBuscar');
             btnBusqueda.classList.remove('btn');
@@ -147,6 +151,25 @@ inputBusqueda.addEventListener('keydown', function(){
             }
 
         }
+    }else{
+        Qsuggest.forEach(function(suggestion1){
+            if(suggestion1.toLowerCase().includes(inputBusqueda.value.toLowerCase()) && suggestion1 !== sugerencia2.textContent  && suggestion1 !== sugerencia3.textContent){
+                sugerencia1.textContent = suggestion1;
+                console.log(suggestion1);
+            }
+        });
+        Qsuggest.forEach(function(suggestion2){
+            if(suggestion2.toLowerCase().includes(inputBusqueda.value.toLowerCase()) && suggestion2 !== sugerencia1.textContent  && suggestion2 !== sugerencia3.textContent){
+                sugerencia2.textContent = suggestion2;
+                console.log(suggestion2);
+            }
+        });               
+        Qsuggest.forEach(function(suggestion3){
+            if(suggestion3.toLowerCase().includes(inputBusqueda.value.toLowerCase()) && suggestion3 !== sugerencia1.textContent && suggestion3 !== sugerencia2.textContent){
+                sugerencia3.textContent = suggestion3;
+                console.log(suggestion3);
+            }
+        });
     }
 })
 //funcion cerrar sugerencias
