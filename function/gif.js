@@ -118,7 +118,7 @@ function close (){
     this.ctnTotal.remove();
 }
 //sugerencias
-let tagsSugerir = ['cat', 'dancing', 'typing', 'game','weird', 'pig','funny','animation','movies','anime','unicorn','werk'];
+let tagsSugerir = ['Cat', 'Dancing', 'Typing', 'Game','Weird', 'Pig','Funny','Animation','Movies','Anime','Unicorn','Werk', 'AdventureTime', 'GravityFalls', 'SpongeBob'];
 async function giphySugerencias(sugerencia){
     let url = "https://api.giphy.com/v1/gifs/random?api_key=" + apiKey + "&tag="+ sugerencia +"&rating=PG";
     const resp = await fetch(url);
@@ -173,8 +173,9 @@ async function giphyTrending(){
     return trendingDatos;
 }
 trendingDatos = giphyTrending();
+
 trendingDatos.then(function(respuesta){
-    for (let i = 0; i < respuesta.data.length; i++) {
+    for (let i = 0; i <= respuesta.data.length; i++) {
         var ctnTotal = document.createElement('div');
         ctnTotal.setAttribute('class', 'ctnTotal');
         var ctnImg = document.createElement('div');
@@ -182,7 +183,26 @@ trendingDatos.then(function(respuesta){
         var img = document.createElement('div');
         img.setAttribute('class', 'img');
         img.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center';
-        img.style.backgroundSize = 'cover';
+        img.style.backgroundSize = 'auto 100%';
+        if(respuesta.data[i].images.fixed_height.width >= '360'){
+            ctnTotal.classList.add('largeTotal');
+            ctnImg.classList.add('largeImg');
+        }
+        //mover img
+        img.addEventListener('mouseenter', function(){
+            this.style.background = 'url('+respuesta.data[i].images.fixed_height.url+') center center'
+            this.style.backgroundSize = 'auto 100%';
+        });
+        //pausar img
+        img.addEventListener('mouseleave', function(){
+            this.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center'
+            this.style.backgroundSize = 'auto 100%';
+
+        });
+        //url al clickear
+        img.addEventListener('click', function(){
+            window.open(respuesta.data[i].url,'_blank');
+        });
         var content = document.createElement('p');
         content.setAttribute('class', 'title');
         content.textContent = '#cat #grumpy #cute #aww';
