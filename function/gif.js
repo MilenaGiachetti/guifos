@@ -68,9 +68,8 @@ document.addEventListener('click', function(){
 function busqueda(){
     sugerenciasBusq.classList.add('hidden')
     ctnBusqueda.innerHTML = '';
-    titleBusq.classList.remove('hidden');
-    titleBusq.textContent = "Resultados de: '" + inputBusqueda.value+"'";
-    tagsSugeridos.classList.remove('hidden');
+    titleBusq.classList.add('hidden');
+    tagsSugeridos.classList.add('hidden');
     async function giphyBusqueda(busqueda){
         let url = "https://api.giphy.com/v1/gifs/search?q=" + busqueda + "&api_key=" + apiKey + "&limit=4&rating=PG";
         const resp = await fetch(url);
@@ -79,22 +78,28 @@ function busqueda(){
     }
     datos = giphyBusqueda(inputBusqueda.value);
     datos.then(function(respuesta){
-        for (let i = 0; i < respuesta.data.length; i++) {
-            var ctnTotal = document.createElement('div');
-            ctnTotal.setAttribute('class', 'ctnTotal');
-            var ctnImg = document.createElement('div');
-            ctnImg.setAttribute('class', 'ctnImg');
-            ctnImg.style.background = 'url('+respuesta.data[i].images.fixed_height/*_still*/.url+') center center';
-            /*background-size: auto 100%;*/
-            ctnImg.style.backgroundSize = 'cover';
-
-            ctnTotal.appendChild(ctnImg);
-            ctnBusqueda.appendChild(ctnTotal);
+        if(respuesta.data.length === 0){
+            ctnBusqueda.innerHTML = "<p class='error'>OOPS! No se encontraron Gifs de ' "+inputBusqueda.value+"'.</p>";
+        }else{
+            titleBusq.classList.remove('hidden');
+            tagsSugeridos.classList.remove('hidden');
+            titleBusq.textContent = "Resultados de: '" + inputBusqueda.value+"'";
+            for (let i = 0; i < respuesta.data.length; i++) {
+                var ctnTotal = document.createElement('div');
+                ctnTotal.setAttribute('class', 'ctnTotal');
+                var ctnImg = document.createElement('div');
+                ctnImg.setAttribute('class', 'ctnImg');
+                ctnImg.style.background = 'url('+respuesta.data[i].images.fixed_height/*_still*/.url+') center center';
+                /*background-size: auto 100%;*/
+                ctnImg.style.backgroundSize = 'cover';
+                ctnTotal.appendChild(ctnImg);
+                ctnBusqueda.appendChild(ctnTotal);
+            }
         }
         btnBusqueda.classList.remove('btn');
         btnBusqueda.classList.add('btnInactivo');
+        inputBusqueda.value = '';
     });
-    inputBusqueda.value = '';
 }
 btnBusqueda.addEventListener('click', busqueda);
 inputBusqueda.addEventListener('keydown', function(){
@@ -175,7 +180,7 @@ async function giphyTrending(){
 trendingDatos = giphyTrending();
 
 trendingDatos.then(function(respuesta){
-    for (let i = 0; i <= respuesta.data.length; i++) {
+    for (let i = 0; i < respuesta.data.length; i++) {
         var ctnTotal = document.createElement('div');
         ctnTotal.setAttribute('class', 'ctnTotal');
         var ctnImg = document.createElement('div');
