@@ -16,34 +16,89 @@ function setTheme(themeName) {
 }
 function grabar (){
     titulo.textContent = 'Un Chequeo Antes de Empezar';
-    contenido.innerHTML = '<video src="" id="video"></video><button id="btnCapturar" class="btn">Capturar</button>';
+    video.classList.remove('hidden');
+    instrucciones.classList.add('hidden');
     contenido.style.flexFlow = 'column wrap';
     getStreamAndRecord ();
 }
 function getStreamAndRecord () { 
-    navigator.mediaDevices.getUserMedia({
+    let stream = navigator.mediaDevices.getUserMedia({
+    audio: false,
+    video: {
+        height: { max: 480 }
+    }
+    })
+    .then(function(stream) {
+        video.srcObject = stream;
+        console.log('success');
+        video.play();
+        btnComenzar.classList.add('hidden');
+        btnCapturar.classList.remove('hidden');
+        recorder = RecordRTC(stream, {
+            type: 'gif',
+            frameRate: 1,
+            quality: 10,
+            width: 360,
+            hidden: 240,
+            onGifRecordingStarted: function() {
+             console.log('started')
+           },
+        }); 
+        btnCapturar.addEventListener('click', function(){
+            recorder.startRecording();
+            btnCapturar.classList.add('hidden');
+            btnListo.classList.remove('hidden');
+            console.log('grabar');
+        });
+        btnListo.addEventListener('click', function(){
+            recorder.stopRecording();
+            console.log('parada');
+            btnComenzar.textContent='parado';
+        });
+    })};
+    
+    btnComenzar.addEventListener('click',grabar);
+
+
+//metodos start recording y stop recording
+function record(recorder){
+    recorder.startRecording();
+    btnCapturar.classList.add('hidden');
+    btnListo.classList.remove('hidden');
+    console.log('grabar');
+}
+function record(){
+    recorder.stopRecording();
+    console.log('parada');
+    btnComenzar.textContent='parado';
+}
+
+/*let stream =  navigator.mediaDevices.getUserMedia({
     audio: false,
     video: {
         height: { max: 480 }
     }
 })
-.then(function(stream) {
-    video.srcObject = stream;
-    console.log('success');
-    video.play();
-    btnComenzar.textContent='capturar'
-})};
+function grabar (stream){
+    titulo.textContent = 'Un Chequeo Antes de Empezar';
+    video.classList.remove('hidden');
+    instrucciones.classList.add('hidden');
+    contenido.style.flexFlow = 'column wrap';
+    view(stream);
+}
+        function view (stream) {
+            video.srcObject = stream;
+            console.log('success');
+            video.play();
+            btnComenzar.classList.add('hidden');
+            btnCapturar.classList.remove('hidden');
+        }
 
 
-btnComenzar.addEventListener('click',function(){
-    if( btnComenzar.textContent =='capturar'){
-        record();
-    }else if(btnComenzar.textContent =='parar'){
-        parar();
-    }else{
-        grabar();
-    }
-} );
+
+
+btnComenzar.addEventListener('click', grabar());
+btnCapturar.addEventListener('click', record);
 
 
 recorder = RecordRTC(stream, {
@@ -59,11 +114,14 @@ recorder = RecordRTC(stream, {
 //metodos start recording y stop recording
 function record(){
     recorder.startRecording();
-    btnComenzar.textContent='parar';
     console.log('grabar');
+    btnCapturar.classList.add('hidden');
+    btnListo.classList.remove('hidden');
+
 }
 function record(){
     recorder.stopRecording();
     console.log('parada');
-    btnComenzar.textContent='parado';
-}
+    btnListo.classList.add('hidden');
+
+}*/
