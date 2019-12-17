@@ -88,7 +88,7 @@ function busqueda(){
     titleBusq.classList.add('hidden');
     tagsSugeridos.classList.add('hidden');
     async function giphyBusqueda(busqueda){
-        let url = "https://api.giphy.com/v1/gifs/search?q=" + busqueda + "&api_key=" + apiKey + "&limit=4&rating=PG";
+        let url = "https://api.giphy.com/v1/gifs/search?q=" + busqueda + "&api_key=" + apiKey + "&limit=20&rating=PG";
         const resp = await fetch(url);
         const datos = await resp.json();
         return datos;
@@ -106,9 +106,26 @@ function busqueda(){
                 ctnTotal.setAttribute('class', 'ctnTotal');
                 var ctnImg = document.createElement('div');
                 ctnImg.setAttribute('class', 'ctnImg');
-                ctnImg.style.background = 'url('+respuesta.data[i].images.fixed_height/*_still*/.url+') center center';
-                /*background-size: auto 100%;*/
-                ctnImg.style.backgroundSize = 'cover';
+                ctnImg.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center';
+                ctnImg.style.backgroundSize = 'auto 100%';
+                if(respuesta.data[i].images.fixed_height.width >= '360'){
+                    ctnTotal.classList.add('largeTotal');
+                    ctnImg.classList.add('largeImg');
+                }
+                //mover img
+                ctnImg.addEventListener('mouseenter', function(){
+                    this.style.background = 'url('+respuesta.data[i].images.fixed_height.url+') center center'
+                    this.style.backgroundSize = 'auto 100%';
+                });
+                //pausar img
+                ctnImg.addEventListener('mouseleave', function(){
+                    this.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center'
+                    this.style.backgroundSize = 'auto 100%';
+                });
+                //url al clickear
+                ctnImg.addEventListener('click', function(){
+                    window.open(respuesta.data[i].url,'_blank');
+                });
                 ctnTotal.appendChild(ctnImg);
                 ctnBusqueda.appendChild(ctnTotal);
             }
@@ -256,7 +273,6 @@ trendingDatos.then(function(respuesta){
         img.addEventListener('mouseleave', function(){
             this.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center'
             this.style.backgroundSize = 'auto 100%';
-
         });
         //url al clickear
         img.addEventListener('click', function(){
