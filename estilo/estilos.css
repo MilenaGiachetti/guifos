@@ -102,7 +102,8 @@ h2 {
   color:var(--color-fuente-nav);
   margin: 50px auto 0px auto;
   font-size: 24px;
-  font-family: "chakraReg", Arial, Helvetica, sans-serif;;
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  grid-column-end: span 4;
 }
 .title {
   background-image: -webkit-gradient(linear, right top, left top, from(  var(--gradiente-primario)), to(var(--gradiente-secundario)));
@@ -406,8 +407,48 @@ body main .busqueda #ctnBusqueda {
   grid-auto-flow: dense;
 }
 body main .busqueda #ctnBusqueda .ctnTotal {
+  background: var(--fondo-secundario);
+  -webkit-box-shadow: inset -2px -2px 0 0 var(--bg-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
+          box-shadow: inset -2px -2px 0 0 var(--bg-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+body main .busqueda #ctnBusqueda .largeTotal {
+  grid-column-end: span 2;
+  grid-row-end: span 1;
+}
+body main .busqueda #ctnBusqueda .ctnTotal:hover {
+  padding: 4px;
+}
+body main .busqueda #ctnBusqueda .ctnTotal .ctnImg {
   position: relative;
-  height: 0;
+  width: 100%;
+  padding-bottom: 100%;
+  overflow: hidden;
+}
+body main .busqueda #ctnBusqueda .ctnTotal .largeImg{
+  padding-bottom: calc(47% + 4px);
+}
+body main .busqueda #ctnBusqueda .ctnTotal:hover .largeImg{
+  padding-bottom: calc(47%);
+}
+body main .busqueda #ctnBusqueda .ctnTotal .ctnImg .img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-size: cover;
+  border: 1px solid #00000000;
+}
+
+body main .busqueda #ctnBusqueda .ctnTotal:hover .ctnImg .img {
+  border: 1px dotted var(--color-fuente-oscuro);
+}
+/*
+body main .busqueda #ctnBusqueda .ctnTotal {
+  position: relative;
   width: 100%;
   padding-bottom: 100%;
   overflow: hidden;
@@ -430,6 +471,13 @@ body main .busqueda #ctnBusqueda .ctnTotal .largeImg{
 body main .busqueda #ctnBusqueda .ctnTotal:hover .largeImg{
   padding-bottom: calc(47%);
 }
+body main .tendencia #ctnTrending .ctnTotal .ctnImg .img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}*/
 body main .sugerencias #ctnSugerencias {
   display: -webkit-box;
   display: -ms-flexbox;
