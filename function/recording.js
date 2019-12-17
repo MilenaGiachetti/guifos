@@ -53,7 +53,6 @@ function getStreamAndRecord () {
         btnListo.addEventListener('click', function(){
             recorder.stopRecording();
             console.log('parada');
-            btnComenzar.textContent='parado';
         });
     })};
     
