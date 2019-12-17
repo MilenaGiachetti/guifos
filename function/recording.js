@@ -2,6 +2,8 @@ var btnCancelar = document.getElementById('btnCancelar');
 var btnComenzar = document.getElementById('btnComenzar');
 var titulo = document.getElementById('titulo');
 var contenido = document.getElementById('contenido');
+var video = document.getElementById('video');
+var recorder;
 
 if(localStorage.getItem('theme') === 'theme-dark'){
     setTheme('theme-dark');
@@ -14,6 +16,7 @@ function setTheme(themeName) {
     localStorage.setItem('theme', themeName);
     document.documentElement.className = themeName;
 }
+var stream;
 function grabar (){
     titulo.textContent = 'Un Chequeo Antes de Empezar';
     video.classList.remove('hidden');
@@ -21,8 +24,9 @@ function grabar (){
     contenido.style.flexFlow = 'column wrap';
     getStreamAndRecord ();
 }
+
 function getStreamAndRecord () { 
-    let stream = navigator.mediaDevices.getUserMedia({
+    stream = navigator.mediaDevices.getUserMedia({
     audio: false,
     video: {
         height: { max: 480 }
@@ -45,32 +49,34 @@ function getStreamAndRecord () {
            },
         }); 
         btnCapturar.addEventListener('click', function(){
+            video.srcObject = stream;
             recorder.startRecording();
+            recorder.camera = stream;
             btnCapturar.classList.add('hidden');
             btnListo.classList.remove('hidden');
             console.log('grabar');
         });
+        function vistaPrevia(){
+            btnListo.textContent = 'fin'
+            video.src = video.srcObject = null;
+            video.src = URL.createObjectURL(recorder.blob);
+            recorder.camera.stop();
+            recorder = null;
+        }
         btnListo.addEventListener('click', function(){
-            recorder.stopRecording();
+            recorder.stopRecording(vistaPrevia);
             console.log('parada');
         });
-    })};
+    })
+    .catch(function(error) {
+        alert('Error, no se ha encontrado una camara');
+    });
+};
     
     btnComenzar.addEventListener('click',grabar);
 
-
 //metodos start recording y stop recording
-function record(recorder){
-    recorder.startRecording();
-    btnCapturar.classList.add('hidden');
-    btnListo.classList.remove('hidden');
-    console.log('grabar');
-}
-function record(){
-    recorder.stopRecording();
-    console.log('parada');
-    btnComenzar.textContent='parado';
-}
+
 
 /*let stream =  navigator.mediaDevices.getUserMedia({
     audio: false,
