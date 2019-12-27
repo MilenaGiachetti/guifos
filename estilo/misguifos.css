@@ -77,11 +77,12 @@
 .hidden {
     display: none!important;
 }
-  
+html{
+    font-size: 16px;
+}
 body {
     background: var(--fondo);
     font-family: "chakraReg", Arial, Helvetica, sans-serif;
-    font-size: 16px;
     color: var(--color-fuente-oscuro);
 }
 body header .topTitle {
@@ -92,7 +93,7 @@ body header .topTitle {
     font-family: "chakraReg", Arial, Helvetica, sans-serif;
     -webkit-box-shadow: 0 1px 0 0 var(--color-fuente-oscuro);
             box-shadow: 0 1px 0 0 var(--color-fuente-oscuro);
-    padding: 4px 8px;
+    padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
     line-height: 1rem;
 }
@@ -117,7 +118,7 @@ body header .head {
             align-items: center;
 }
 body header .head #logo {
-    width: 100px;
+    width: 6.25rem;
 }
 body header .head nav {
     display: -webkit-box;
@@ -149,8 +150,8 @@ body header .head nav {
 }
 .btn .texto {
   display: inline-block;
-  font-size: 16px;
-  padding: 8px 23px;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
   border: 1px solid #00000000;
 }
 .btn .texto:hover, .btn .texto:active {
@@ -218,7 +219,7 @@ body header .head nav .enlace {
   padding: 6px 4px 4px 0;
   line-height: 36px;
   font-family: "chakraReg", Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--color-fuente-nav);
   border: 1px solid rgba(255, 255, 255, 0);
 }
@@ -241,7 +242,7 @@ body main .misGuifos h2{
     -webkit-box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 var(--shadow-second-h);
             box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 var(--shadow-second-h);
     font-family: "chakraReg", Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--color-fuente-oscuro);
     letter-spacing: 0;
     font-weight: normal;
