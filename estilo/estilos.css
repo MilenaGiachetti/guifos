@@ -259,7 +259,7 @@ body header .head nav .dropdown .dropdownContent {
       -ms-flex-flow: column wrap;
           flex-flow: column wrap;
   position: absolute;
-  width: 178px;
+  width: 180px;
   background: var(--fondo-secundario);
   padding: 5px;
 }
@@ -575,7 +575,7 @@ body main .busqueda .buscar .lineaBusq .btnBuscar .texto{
   color: var(--color-fuente-nav);
 }
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1400px){
   body main .busqueda #ctnBusqueda {
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1rem;
