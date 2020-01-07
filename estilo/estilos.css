@@ -431,10 +431,10 @@ body main .busqueda #ctnBusqueda .ctnTotal .ctnImg {
   overflow: hidden;
 }
 body main .busqueda #ctnBusqueda .ctnTotal .largeImg{
-  padding-bottom: calc(47% + 4px);
+  padding-bottom: calc(50% - (1.5rem/2));
 }
 body main .busqueda #ctnBusqueda .ctnTotal:hover .largeImg{
-  padding-bottom: calc(47%);
+  padding-bottom: calc(50% - (1.5rem/2) - 4px);
 }
 body main .busqueda #ctnBusqueda .ctnTotal .ctnImg .img {
   position: absolute;
@@ -542,10 +542,10 @@ body main .tendencia #ctnTrending .ctnTotal .ctnImg {
   overflow: hidden;
 }
 body main .tendencia #ctnTrending .ctnTotal .largeImg{
-  padding-bottom: calc(48% + 4px);
+  padding-bottom: calc(50% - (1.5rem/2));
 }
 body main .tendencia #ctnTrending .ctnTotal:hover .largeImg{
-  padding-bottom: calc(48%);
+  padding-bottom: calc(50% - (1.5rem/2) - 4px);
 }
 body main .tendencia #ctnTrending .ctnTotal .ctnImg .img {
   position: absolute;
@@ -581,16 +581,23 @@ body main .busqueda .buscar .lineaBusq .btnBuscar .texto{
     grid-gap: 1rem;
   }
   body main .busqueda #ctnBusqueda .ctnTotal .largeImg{
-    padding-bottom: calc(48% + 4px);
+    padding-bottom: calc(50% - (1rem/2));
   }
   body main .busqueda #ctnBusqueda .ctnTotal:hover .largeImg{
-    padding-bottom: calc(48%);
+    padding-bottom: calc(50% - (1rem/2) - 4px);
   }
   body main .sugerencias #ctnSugerencias .ctnTotal {
     width: 24%;
   }
   body main .tendencia #ctnTrending{
     grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+  }
+  body main .tendencia #ctnTrending .ctnTotal .largeImg{
+    padding-bottom: calc(50% - (1rem/2));
+  }
+  body main .tendencia #ctnTrending .ctnTotal:hover .largeImg{
+    padding-bottom: calc(50% - (1rem/2) - 4px);
   }
 }
 @media screen and (max-width: 900px){
@@ -601,17 +608,20 @@ body main .busqueda .buscar .lineaBusq .btnBuscar .texto{
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1rem;
   }
-  body main .busqueda #ctnBusqueda .ctnTotal .largeImg{
-    padding-bottom: calc(48% + 4px);
-  }
-  body main .busqueda #ctnBusqueda .ctnTotal:hover .largeImg{
-    padding-bottom: calc(48%);
-  }
   body main .sugerencias #ctnSugerencias .ctnTotal {
     width: 49%;
   }
   body main .tendencia #ctnTrending{
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    grid-auto-flow: dense;
+  }
+  body main .tendencia #ctnTrending .ctnTotal .largeImg{
+    padding-bottom: calc(50% - (1rem/2));
+  }
+  body main .tendencia #ctnTrending .ctnTotal:hover .largeImg{
+    padding-bottom: calc(50% - (1rem/2) - 4px);
   }
 }
 
@@ -623,16 +633,24 @@ body main .busqueda .buscar .lineaBusq .btnBuscar .texto{
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 1rem;
   }
-  body main .busqueda #ctnBusqueda .ctnTotal .largeImg{
+  body main .busqueda #ctnBusqueda .largeTotal {
+    grid-column-end: span 1;
+    grid-row-end: span 1;
+  }
+  /*body main .busqueda #ctnBusqueda .ctnTotal .largeImg{
     padding-bottom: 100%;
   }
   body main .busqueda #ctnBusqueda .ctnTotal:hover .largeImg{
     padding-bottom: 100%;
-  }
+  }*/
   body main .sugerencias #ctnSugerencias .ctnTotal {
     width: 100%;
   }
   body main .tendencia #ctnTrending{
     grid-template-columns: repeat(1, 1fr);
+  }
+  body main .tendencia #ctnTrending .largeTotal {
+    grid-column-end: span 1;
+    grid-row-end: span 1;
   }
 }
