@@ -286,20 +286,25 @@ trendingDatos.then(function(respuesta){
         });
         var content = document.createElement('p');
         content.setAttribute('class', 'title');
-        content.textContent = '#cat #grumpy #cute #aww';
-        img.appendChild(content);
-        ctnImg.appendChild(img);
-        ctnTotal.appendChild(ctnImg);
-        
+
+        //str = respuesta.data[i].title.substring(str.indexOf("G") + 1); 
+        let titleStr = respuesta.data[i].title.charAt(0).toUpperCase() + respuesta.data[i].title.substring(1); 
+        content.textContent = titleStr.slice(0, titleStr.indexOf("GIF")); 
+        if(content.textContent === ''){ 
+            content.textContent = 'No title'; 
+        }
         /*if(respuesta.data[i].images.fixed_height_still.width >= 345){
             div.classList.add('gifRectangulo');
         }else{
             div.classList.add('gifCuadrado');
         }*/
+        img.appendChild(content);
+        ctnImg.appendChild(img);
+        ctnTotal.appendChild(ctnImg);
         ctnTrending.appendChild(ctnTotal);
-        ctnTotal.addEventListener('mouseenter', function(){
+        /*ctnTotal.addEventListener('mouseenter', function(){
             ctnTotal.classList.add('hidden');
-        })
+        })*/
     }
 });
 
