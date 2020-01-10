@@ -374,7 +374,7 @@ body main .busqueda #sugerenciasBusq {
   position: absolute;
   z-index: 2;
   width: 80%;
-  padding: 1rem  0  0.75rem  1rem;
+  padding: 1rem  0  0  1rem;
   background: var(--fondo-secundario);
   -webkit-box-shadow: inset -2px -2px 0 0  var(--darker-shadow), inset 2px 2px 0 0 var(--light-shadow);
           box-shadow: inset -2px -2px 0 0  var(--darker-shadow), inset 2px 2px 0 0 var(--light-shadow);
