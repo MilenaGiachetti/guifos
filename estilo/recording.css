@@ -144,13 +144,23 @@ body main .crearGuifos{
     background: var(--fondo-secundario);
     box-shadow: inset -2px -2px 0 0 var(--darker-shadow), inset 2px 2px 0 0 #FFFFFF;
 }
-body main .crearGuifos h2{
+body main .crearGuifos .title{
+    margin: 3px;
     background-image: linear-gradient(270deg, var(--gradiente-primario) 0%, var(--gradiente-secundario)  100%);
+    padding: 3px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+body main .crearGuifos .title h2{
     font-family: 'chakraBold';
     font-size: 0.875rem;
     color: #FFFFFF;
     letter-spacing: 0;
-    padding: 3px;
+}
+body main .crearGuifos .title img{
+    width: 16px;
+    margin: 0;
 }
 body main .crearGuifos .contenido{ 
     margin: 1.5rem 2rem;
@@ -199,6 +209,7 @@ body main .crearGuifos p .enter{
 }
 .ctnBtn{
     text-align: right;
+    float: right;
 }
 button{
     padding: 8px 40px;
@@ -212,6 +223,39 @@ button:hover{
     background: var(--btn-bg-hover);
     border: 1px solid var(--color-fuente-oscuro);
     box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 #FFFFFF;
+}
+#imgCapturar {
+    padding: 8px;
+    text-align: center;
+    float: left;
+    clear: none;
+
+}
+#imgCapturar img{
+    width: 15px;
+    padding: 0;
+    margin: 0;
+}
+#btnCapturar{
+    margin-right: 0;
+    float: left;
+    clear: none;
+}
+#imgListo{
+    padding: 8px;
+    text-align: center;
+    float: left;
+    clear: none;
+}
+#imgListo img{
+    width: 15px;
+    padding: 0;
+    margin: 0;
+}
+#btnListo{
+    margin-right: 0;
+    float: left;
+    clear: none;
 }
 /*body main .misGuifos div{
     display: -webkit-box;
