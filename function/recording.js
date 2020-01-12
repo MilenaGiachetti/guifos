@@ -1,15 +1,22 @@
-let btnCancelar = document.getElementById('btnCancelar');
-let btnComenzar = document.getElementById('btnComenzar');
+const apiKey = 'HxeqWZObT2555n5inNEcjXprIyTed8Iq';
+
 let title = document.getElementById('title');
-let instrucciones = document.getElementById('instrucciones');
 let wimdowImg = document.getElementById('windowImg');
 let secondaryTitle = document.getElementById('secondaryTitle');
+let imgGIF = document.getElementById('imgGIF');
+let instrucciones = document.getElementById('instrucciones');
 let ctnBtnPrincipal = document.getElementById('ctnBtnPrincipal');
+let btnCancelar = document.getElementById('btnCancelar');
+let btnComenzar = document.getElementById('btnComenzar');
 let ctnBtnInitialPreview = document.getElementById('ctnBtnInitialPreview');
 let ctnBtnCaptura = document.getElementById('ctnBtnCaptura');
 let ctnBtnLastPreview = document.getElementById('ctnBtnLastPreview');
-let imgGIF = document.getElementById('imgGIF');
-
+let btnRepeat = document.getElementById('btnRepeat');
+let btnUpload = document.getElementById('btnUpload');
+let ctnBtnFinal = document.getElementById('ctnBtnFinal');
+let btnURL = document.getElementById('btnURL');
+let btnDownload = document.getElementById('btnDownload');
+let btnToStart = document.getElementById('btnToStart');
 
 
 if(localStorage.getItem('theme') === 'theme-dark'){
@@ -79,21 +86,47 @@ ctnBtnInitialPreview.addEventListener('click', () => {
 let blob;
 ctnBtnCaptura.addEventListener('click', () => {
     recorder.stop((blob) => {
+        blob = blob;
         video.classList.add('hidden');
         imgGIF.classList.remove('hidden');    
         console.log(blob);
         let blobURL = URL.createObjectURL(blob);
         imgGIF.src = blobURL;
+        btnUpload.addEventListener('click', () => {  
+            let form = new FormData();
+            form.append('file', recorder.blob, 'myGuifo.gif');
+            console.log(form.get('file'));
+            upload(form.get('file'))
+        })
+        btnDownload.addEventListener('click', () => {
+            invokeSaveAsDialog(blob);
+        })
     });
     ctnBtnCaptura.classList.add('hidden');
     ctnBtnLastPreview.classList.remove('hidden');
     
 })
 
+
+function upload(gif){
+    async function giphyUpload(gif){
+        let url = "https://upload.giphy.com/v1/gifs&api_key=" + apiKey;
+        const resp = await fetch(url);
+        const datos = await resp.json();
+        return datos;
+    }
+    datos = giphyUpload(gif);
+    datos.then(function(respuesta){
+        console.log(respuesta);
+    });
+}
+
+
+
+//api.giphy.com/v1/gifs gif by id endpoint
 /*para guardar gifs en la compu creo q se puede agregar nombre del archivo como segundo parametro: blob, 'miGuifo.(extension de gif)'
         invokeSaveAsDialog(blob, 'miGuifo');
 
-invokeSaveAsDialog(blob);*/
 /*let stream;
 function grabar (){
     titulo.textContent = 'Un Chequeo Antes de Empezar';
