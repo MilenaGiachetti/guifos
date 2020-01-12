@@ -127,7 +127,7 @@ function uploadToGiphy(){
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'image/gif'
         }
     })
     .then((response) => {
