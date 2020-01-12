@@ -171,6 +171,9 @@ body main .crearGuifos .contenido{
 body main .crearGuifos .contenido video{ 
     width: 100%;
 }
+#imgGIF{
+    width: 100%;
+}
 body main .crearGuifos .contenido #btnCapturar{ 
     margin-bottom: 2rem;
     margin-left: auto;
@@ -285,4 +288,3 @@ body main .misGuifos div .ctnTotal .ctnImg {
   background-size: cover;
 }*/
 
-  

@@ -8,6 +8,8 @@ let ctnBtnPrincipal = document.getElementById('ctnBtnPrincipal');
 let ctnBtnInitialPreview = document.getElementById('ctnBtnInitialPreview');
 let ctnBtnCaptura = document.getElementById('ctnBtnCaptura');
 let ctnBtnLastPreview = document.getElementById('ctnBtnLastPreview');
+let imgGIF = document.getElementById('imgGIF');
+
 
 
 if(localStorage.getItem('theme') === 'theme-dark'){
@@ -47,13 +49,12 @@ function grabar(){
         video.srcObject = stream;
         video.play();
         console.log('Got strem')
-        recorder = RecordRTC (stream, {
+        recorder = new GifRecorder (stream, {
             type: 'gif',
             frameRate: 1,
             quality: 10,
             width: 360,
             hidden: 240,
-        
             onGifRecordingStarted: () => {
                 console.log('started')
             },
@@ -71,18 +72,28 @@ function grabar(){
 }
 
 ctnBtnInitialPreview.addEventListener('click', () => {
-    recorder.startRecording();
+    recorder.record();
     ctnBtnInitialPreview.classList.add('hidden');
     ctnBtnCaptura.classList.remove('hidden');
 })
-
+let blob;
 ctnBtnCaptura.addEventListener('click', () => {
-    recorder.stopRecording();
+    recorder.stop((blob) => {
+        video.classList.add('hidden');
+        imgGIF.classList.remove('hidden');    
+        console.log(blob);
+        let blobURL = URL.createObjectURL(blob);
+        imgGIF.src = blobURL;
+    });
     ctnBtnCaptura.classList.add('hidden');
     ctnBtnLastPreview.classList.remove('hidden');
-
+    
 })
 
+/*para guardar gifs en la compu creo q se puede agregar nombre del archivo como segundo parametro: blob, 'miGuifo.(extension de gif)'
+        invokeSaveAsDialog(blob, 'miGuifo');
+
+invokeSaveAsDialog(blob);*/
 /*let stream;
 function grabar (){
     titulo.textContent = 'Un Chequeo Antes de Empezar';
