@@ -1,9 +1,12 @@
-var btnCancelar = document.getElementById('btnCancelar');
-var btnComenzar = document.getElementById('btnComenzar');
-var titulo = document.getElementById('titulo');
-var contenido = document.getElementById('contenido');
-var video = document.getElementById('video');
-var recorder;
+let btnCancelar = document.getElementById('btnCancelar');
+let btnComenzar = document.getElementById('btnComenzar');
+let title = document.getElementById('title');
+let instrucciones = document.getElementById('instrucciones');
+let wimdowImg = document.getElementById('windowImg');
+let secondaryTitle = document.getElementById('secondaryTitle');
+let ctnBtnPrincipal = document.getElementById('ctnBtnPrincipal');
+let ctnBtnInitialPreview = document.getElementById('ctnBtnInitialPreview');
+
 
 if(localStorage.getItem('theme') === 'theme-dark'){
     setTheme('theme-dark');
@@ -16,12 +19,53 @@ function setTheme(themeName) {
     localStorage.setItem('theme', themeName);
     document.documentElement.className = themeName;
 }
-var stream;
+let video = document.querySelector('video');
+let recorder;
+
+btnComenzar.addEventListener('click', () => {
+    title.textContent = 'Un Chequeo Antes de Empezar';
+    windowImg.classList.add('hidden');
+    secondaryTitle.classList.add('hidden');
+    instrucciones.classList.add('hidden');
+    ctnBtnPrincipal.classList.add('hidden');
+    video.classList.remove('hidden');
+    ctnBtnInitialPreview.classList.remove('hidden');
+    grabar();
+})
+
+let constraints = window.constraints = {
+    audio: false,
+    video: {
+        height: { max: 480 }
+    }
+};
+function grabar(){
+    navigator.mediaDevices.getUserMedia(constraints)
+    .then((stream) => {
+        video.srcObject = stream;
+        video.play();
+        console.log('Got strem')
+    })
+    .catch((error) => {
+        if(error.name === 'ConstraintNotSatisfiedError'){
+            alert('Error: Su dispositivo no tiene la resolución requerida')
+        }else if (error.name === 'PermissionDeniedError'){
+            alert('Error: No se ha dado permiso para usar la cámara, permita el acceso para poder usar esta funcionalidad.')
+        }else{
+            alert('Error.')
+        }
+    })
+}
+
+
+
+/*let stream;
 function grabar (){
     titulo.textContent = 'Un Chequeo Antes de Empezar';
-    video.classList.remove('hidden');
+    wimdowImg.classList.add('hidden');
+    secondaryTitle.classList.add('hidden');
     instrucciones.classList.add('hidden');
-    contenido.style.flexFlow = 'column wrap';
+    video.classList.remove('hidden');
     getStreamAndRecord ();
 }
 
@@ -32,7 +76,7 @@ function getStreamAndRecord () {
         height: { max: 480 }
     }
     })
-    .then(function(stream) {
+    .then((stream) => {
         video.srcObject = stream;
         console.log('success');
         video.play();
@@ -44,11 +88,11 @@ function getStreamAndRecord () {
             quality: 10,
             width: 360,
             hidden: 240,
-            onGifRecordingStarted: function() {
+            onGifRecordingStarted:()=> {
              console.log('started')
            },
         }); 
-        btnCapturar.addEventListener('click', function(){
+        btnCapturar.addEventListener('click', () => {
             video.srcObject = stream;
             recorder.startRecording();
             recorder.camera = stream;
@@ -63,18 +107,18 @@ function getStreamAndRecord () {
             recorder.camera.stop();
             recorder = null;
         }
-        btnListo.addEventListener('click', function(){
+        btnListo.addEventListener('click', () => {
             recorder.stopRecording(vistaPrevia);
             console.log('parada');
         });
     })
-    .catch(function(error) {
+    .catch((error) => {
         alert('Error, no se ha encontrado una camara');
     });
 };
     
-    btnComenzar.addEventListener('click',grabar);
-
+    btnComenzar.addEventListener('click', grabar);
+*/
 //metodos start recording y stop recording
 
 

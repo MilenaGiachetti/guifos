@@ -141,11 +141,11 @@ body main .misGuifos h2{
 body main .crearGuifos{
     width: 80%;
     margin: 50px auto ;
+    padding: 3px;
     background: var(--fondo-secundario);
     box-shadow: inset -2px -2px 0 0 var(--darker-shadow), inset 2px 2px 0 0 #FFFFFF;
 }
 body main .crearGuifos .title{
-    margin: 3px;
     background-image: linear-gradient(270deg, var(--gradiente-primario) 0%, var(--gradiente-secundario)  100%);
     padding: 3px;
     display: flex;
