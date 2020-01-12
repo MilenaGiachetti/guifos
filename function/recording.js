@@ -84,6 +84,7 @@ ctnBtnInitialPreview.addEventListener('click', () => {
     ctnBtnCaptura.classList.remove('hidden');
 })
 let blob;
+let data;
 ctnBtnCaptura.addEventListener('click', () => {
     recorder.stop((blob) => {
         blob = blob;
@@ -93,11 +94,22 @@ ctnBtnCaptura.addEventListener('click', () => {
         let blobURL = URL.createObjectURL(blob);
         imgGIF.src = blobURL;
         btnUpload.addEventListener('click', () => {  
-            let form = new FormData();
+            /*let form = new FormData();
             form.append('file', recorder.blob, 'myGuifo.gif');
             console.log(form.get('file'));
-            upload(form.get('file'))
-        })
+            upload(form.get('file'))*/
+            /*upload(postData).then((gifUrl) => {
+                console.log('Posted to' + gifUrl);*/
+                console.log('hola');
+                data = {
+                    api_key : 'HxeqWZObT2555n5inNEcjXprIyTed8Iq',
+                    file: {
+                        value: recorder.blob,
+                        contentType: 'myGuifo.gif'
+                    }
+                }
+                uploadToGiphy();
+        });
         btnDownload.addEventListener('click', () => {
             invokeSaveAsDialog(blob);
         })
@@ -108,10 +120,52 @@ ctnBtnCaptura.addEventListener('click', () => {
 })
 
 
-function upload(gif){
-    async function giphyUpload(gif){
+
+
+function uploadToGiphy(){
+    fetch('https://upload.giphy.com/v1/gifs&api_key=;HxeqWZObT2555n5inNEcjXprIyTed8Iq',{
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then((response) => {
+        if (response.ok) {
+            console.log(response);
+            return response.json();
+        }else{
+            console.log('Problema subiendo el GIF');
+        }
+    })
+    .catch((error) => {
+        console.log('error al ejecutar Fetch' + error);
+    })
+}
+
+/*function upload(postData){
+    let options = {
+        url: 'https://upload.giphy.com/v1/gifs&api_key=;'+ postData.api_key,
+        formData: {
+            api_key = 'HxeqWZObT2555n5inNEcjXprIyTed8Iq',
+            file: {
+                value: recorder.blob,
+                contentType: 'myGuifo.gif'
+            }
+        },
+        json: true
+    };
+    console.log('Uploading via '+ options.url);
+    const promise = new Promise((resolve, reject) => {
+        request.post(options, function(e, resp, body){
+            if(e  || resp.statusCode !== 200) console.log('giphy upload failed: ' + e);
+            resolve('https://media.giphy.com/media/'+body.data.id+'/giphy.gif')
+        });
+    });
+    return p
+    /*async function giphyUpload(gif){
         let url = "https://upload.giphy.com/v1/gifs&api_key=" + apiKey;
-        const resp = await fetch(url);
+        const resp = await post(url);
         const datos = await resp.json();
         return datos;
     }
@@ -119,7 +173,7 @@ function upload(gif){
     datos.then(function(respuesta){
         console.log(respuesta);
     });
-}
+}*/
 
 
 
