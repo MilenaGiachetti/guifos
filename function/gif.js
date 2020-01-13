@@ -35,10 +35,12 @@ if(localStorage.getItem('theme') === 'theme-dark'){
     setTheme('theme-dark');
     logo.setAttribute('src',"assets/img/logodark.png");
     imgLupa.setAttribute('src', 'assets/img/lupamiddlegray.svg')
+    caret.classList.add('whiteCaret');
 }else{
     setTheme('theme-light');
     logo.setAttribute('src',"assets/img/logo.png");
-    imgLupa.setAttribute('src', 'assets/img/lupainactive.svg')
+    imgLupa.setAttribute('src', 'assets/img/lupainactive.svg');
+    caret.classList.remove('whiteCaret');
 }
 
 function setTheme(themeName) {
@@ -48,6 +50,7 @@ function setTheme(themeName) {
 dark.addEventListener('click',()=>{
     setTheme('theme-dark');
     logo.setAttribute('src',"assets/img/logodark.png");
+    caret.classList.add('whiteCaret');
     if(sugerenciasBusq.classList == 'hidden'){
         imgLupa.setAttribute('src', 'assets/img/lupamiddlegray.svg');
     }else{
@@ -59,6 +62,7 @@ dark.addEventListener('click',()=>{
 light.addEventListener('click',()=>{
     setTheme('theme-light');
     logo.setAttribute('src',"assets/img/logo.png");
+    caret.classList.remove('whiteCaret');
     if(sugerenciasBusq.classList == 'hidden'){
         imgLupa.setAttribute('src', 'assets/img/lupainactive.svg')
     }else{
@@ -77,6 +81,8 @@ document.addEventListener('click', ()=>{
     caret.classList.remove('open-caret');        
     dropdownMenu.classList.add('hidden');
 })
+//now the page when you go back
+localStorage.setItem('currentPage', 'index');
 
 //busqueda 
 let sugerencia1 = document.getElementById('resultado1');

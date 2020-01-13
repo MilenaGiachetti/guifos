@@ -8,9 +8,11 @@ var caret = document.getElementById('caret');
 if(localStorage.getItem('theme') === 'theme-dark'){
     setTheme('theme-dark');
     logo.setAttribute('src',"assets/img/logodark.png");
+    caret.classList.add('whiteCaret');
 }else{
     setTheme('theme-light');
     logo.setAttribute('src',"assets/img/logo.png");
+    caret.classList.remove('whiteCaret');
 }
 
 
@@ -21,12 +23,14 @@ function setTheme(themeName) {
 dark.addEventListener('click',function(){
     setTheme('theme-dark');
     logo.setAttribute('src',"assets/img/logodark.png");
+    caret.classList.add('whiteCaret');
     cerrarMenu();
     event.stopPropagation();
 });
 light.addEventListener('click',function(){
     setTheme('theme-light');
     logo.setAttribute('src',"assets/img/logo.png");
+    caret.classList.remove('whiteCaret');
     cerrarMenu();
     event.stopPropagation();
 });
@@ -40,3 +44,6 @@ document.addEventListener('click', function(){
     caret.classList.remove('open-caret');        
     dropdownMenu.classList.add('hidden');
 })
+
+localStorage.setItem('currentPage', 'misGuifos');
+

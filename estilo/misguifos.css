@@ -26,6 +26,9 @@
     transform: rotate(180deg);
     transition: all .25s ease-out;
 }
+.whiteCaret{
+    filter: invert(100%);
+}
 .theme-dark{
     --fondo: #110038;
     --fondo-secundario: #B4B4B4;
@@ -137,48 +140,86 @@ body header .head nav {
     font-size: 0;
 }
 .btn {
-  background: var(--gradiente-primario);
-  border: 1px solid var(--color-fuente-oscuro);
-  -webkit-box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 var(--light-shadow);
-          box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 var(--light-shadow);
-  font-family: "chakraReg", Arial, Helvetica, sans-serif;
-  color: var(--color-fuente-nav);
-  padding: 2px;
-}
-.btn:hover, .btn:active {
-  background: var(--btn-bg-hover);
-}
-.btn .texto {
-  display: inline-block;
-  font-size: 1rem;
-  padding: 0.5rem 1.5rem;
-  border: 1px solid #00000000;
-}
-.btn .texto:hover, .btn .texto:active {
-  border: 1px dotted var(--color-fuente-oscuro);
-}
-.btn .caret {
-  vertical-align: 0;
-  height: 34px;
-  padding: 16px 13px 21px 13px;
-  display: inline-block;
-  border: 1px solid #00000000;
-}
-.btn .caret:hover, .btn .caret:active {
-  border: 1px dotted var(--color-fuente-oscuro);
-}
-body header .head nav #btnCrear:hover, body header .head nav #btnCaret:hover, body header .head nav #btnTema:hover span {
+    height: 36px;
+    background: var(--gradiente-primario);
+    border: 1px solid var(--color-fuente-oscuro);
+    -webkit-box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 var(--light-shadow);
+            box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 var(--light-shadow);
+    font-family: "chakraReg", Arial, Helvetica, sans-serif;
+    color: var(--color-fuente-nav);
+    padding: 2px;
+  }
+  .btn:hover, .btn:active {
+    background: var(--btn-bg-hover);
+  }
+  .btn .texto {
+    line-height: 28px;
+    width: 131px;
+    display: inline-block;
+    font-size: 1rem;
+    border: 1px solid #00000000;
+  }
+  .btn .texto:hover, .btn .texto:active {
+    border: 1px dotted var(--color-fuente-oscuro);
+  }
+  .btn .caret {
+    vertical-align: 0;
+    line-height: 18px;
+    padding-top: 10px;
+    display: inline-block;
+    border: 1px solid #00000000;
+  }
+  .btn .caret:hover, .btn .caret:active {
+    border: 1px dotted var(--color-fuente-oscuro);
+  }
+  #btnCrear .texto{
+    text-align: center;
+  }
+  
+  .btnSecundario {
+    display: inline-block;
+    font-family: "chakraReg", Arial, Helvetica, sans-serif;
+    font-size: 0.875rem;
+    color: var(--light-shadow);
+    letter-spacing: 0;
+    line-height: 34px;
+    background: var(--gradiente-secundario);
+    border: 1px solid #4C2F99;
+    -webkit-box-shadow: inset -2px -2px 0 0 var(--btn-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
+            box-shadow: inset -2px -2px 0 0 var(--btn-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
+  }
+  .btnSecundario:hover {
+    background: var(--btn-sec-bg-hover);
+  }
+  .btnSecundario span, .btnSecundario a {
+    text-decoration: none;
+    color: var(--light-shadow);
+    padding: 0.25rem;
+    display: inline-block;
+    border: 1px solid #00000000;
+  }
+  .btnSecundario span:hover, .btnSecundario a:hover {
+    border: 1px dotted var(--color-fuente-oscuro);
+  }
+  body header .head nav #btnCrear:hover, body header .head nav #btnCaret:hover, body header .head nav #btnTema:hover span {
     background: var(--btn-bg-hover);
     border: 1px dotted var(--color-fuente-oscuro);
-}
-body header .head nav .dropdown{
+  }
+  body header .head nav .dropdown{
     margin: 0 1rem;
-}
-body header .head nav .dropdown button .caret img{
-    position: relative;
-    top: -2px;
-}
-body header .head nav .dropdown .dropdownContent {
+  }
+  body header .head nav .dropdown button .texto{
+    display: inline-block;
+  }
+  
+  body header .head nav .dropdown button .caret{
+    width: 36px;
+    display: inline-block;
+  }
+  body header .head nav .dropdown button .caret .whiteCaret{
+    filter: invert(100%);
+  }
+  body header .head nav .dropdown .dropdownContent {
     -webkit-box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 var(--light-shadow);
             box-shadow: inset -2px -2px 0 0 var(--bg-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
     display: -webkit-box;
@@ -189,50 +230,51 @@ body header .head nav .dropdown .dropdownContent {
         -ms-flex-flow: column wrap;
             flex-flow: column wrap;
     position: absolute;
-    width: 178px;
+    width: 180px;
     background: var(--fondo-secundario);
     padding: 5px;
-}
-body header .head nav .dropdown .dropdownContent button {
-    padding: 8px;
+  }
+  body header .head nav .dropdown .dropdownContent button {
+    padding: 0.5rem;
     background: var(--fondo-secundario-claro);
     border: 1px solid #808080;
     -webkit-box-shadow: inset -1px -1px 0 0 var(--bg-sec-shadow), inset 1px 1px 0 0 var(--light-shadow);
             box-shadow: inset -1px -1px 0 0 var(--bg-sec-shadow), inset 1px 1px 0 0 var(--light-shadow);
-    margin: 5px;
-}
-body header .head nav .dropdown .dropdownContent button:hover {
+    margin: 0.25rem;
+  }
+  body header .head nav .dropdown .dropdownContent button:hover {
     background: var(--fondo-selector-tema);
     border: 1px solid var(--borde-selector-tema);
     color: var(--color-fuente-nav);
     -webkit-box-shadow: inset -1px -1px 0 0 #E6DCE4, inset 1px 1px 0 0 var(--light-shadow);
             box-shadow: inset -1px -1px 0 0 #E6DCE4, inset 1px 1px 0 0 var(--light-shadow);
-}
-body header .head nav .dropdown .dropdownContent button span {
+  }
+  body header .head nav .dropdown .dropdownContent button span {
     display: inline-block;
-}
-body header .head nav .dropdown .dropdownContent button .subrayado {
+  }
+  body header .head nav .dropdown .dropdownContent button .subrayado {
     text-decoration: underline;
-}
-body header .head nav .enlace {
-  font-size: 1rem;
-  padding: 6px 4px 4px 0;
-  line-height: 36px;
-  font-family: "chakraReg", Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-  color: var(--color-fuente-nav);
-  border: 1px solid rgba(255, 255, 255, 0);
-}
-body header .head nav .enlace .subrayado {
-  text-decoration: underline;
-}
-body header .head nav .enlace:hover {
-  border: 1px dotted var(--color-fuente-oscuro);
-}
-body header .head nav .enlace:active {
-  color: var(--darker-shadow);
-  border: 1px solid rgba(255, 255, 255, 0);
-}
+  }
+  body header .head nav .enlace {
+    font-size: 1rem;
+    padding: 6px 4px 4px 0;
+    line-height: 2.25rem;
+    font-family: "chakraReg", Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    color: var(--color-fuente-nav);
+    border: 1px solid rgba(255, 255, 255, 0);
+  }
+  body header .head nav .enlace .subrayado {
+    text-decoration: underline;
+  }
+  body header .head nav .enlace:hover {
+    border: 1px dotted var(--color-fuente-oscuro);
+  }
+  body header .head nav .enlace:active {
+    color: var(--darker-shadow);
+    border: 1px solid rgba(255, 255, 255, 0);
+  }
+
 body main {
     margin: 20px 10%;
 }

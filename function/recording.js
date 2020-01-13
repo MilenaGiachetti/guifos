@@ -18,7 +18,6 @@ let btnURL = document.getElementById('btnURL');
 let btnDownload = document.getElementById('btnDownload');
 let btnToStart = document.getElementById('btnToStart');
 
-
 if(localStorage.getItem('theme') === 'theme-dark'){
     setTheme('theme-dark');
     logo.setAttribute('src',"assets/img/logodark.png");
@@ -30,8 +29,18 @@ function setTheme(themeName) {
     localStorage.setItem('theme', themeName);
     document.documentElement.className = themeName;
 }
+
 let video = document.querySelector('video');
 let recorder;
+let ctnCreador = document.getElementById('ctnCreador');
+let previousPage = document.getElementById('previousPage');
+previousPage.addEventListener('click', () => {
+    if(localStorage.getItem('currentPage') === 'index'){
+        previousPage.setAttribute('href',"index.html");
+    }else{
+        previousPage.setAttribute('href',"misguifos.html");
+    }
+})
 
 btnComenzar.addEventListener('click', () => {
     title.textContent = 'Un Chequeo Antes de Empezar';
@@ -39,6 +48,7 @@ btnComenzar.addEventListener('click', () => {
     secondaryTitle.classList.add('hidden');
     instrucciones.classList.add('hidden');
     ctnBtnPrincipal.classList.add('hidden');
+    videoWindowClose.classList.remove('hidden');
     video.classList.remove('hidden');
     ctnBtnInitialPreview.classList.remove('hidden');
     grabar();
@@ -66,6 +76,11 @@ function grabar(){
                 console.log('started')
             },
         });
+        videoWindowClose.addEventListener('click', () => {
+            ctnCreador.classList.add('hidden');
+            video.pause();
+            stream.stop();
+        })
     })
     .catch((error) => {
         if(error.name === 'ConstraintNotSatisfiedError'){
@@ -86,28 +101,53 @@ ctnBtnInitialPreview.addEventListener('click', () => {
 let blob;
 let data;
 let form ;
+let newId;
+
+async function randomId(){
+    let url = 'https://api.giphy.com/v1/randomid?api_key=' + apiKey;
+    let resp = await fetch(url);
+    let random = await resp.json();
+    newId = random.data.random_id
+    return newId;
+}          
+let base64data;
+
 ctnBtnCaptura.addEventListener('click', () => {
     recorder.stop((blob) => {
+        newId = randomId();
+        console.log(newId);
         blob = blob;
         video.classList.add('hidden');
         imgGIF.classList.remove('hidden');    
         console.log(blob);
         let blobURL = URL.createObjectURL(blob);
         imgGIF.src = blobURL;
-        btnUpload.addEventListener('click', () => {  
-            form = new FormData();
-            form.append('file', recorder.blob, 'myGuifo.gif');
+        btnUpload.addEventListener('click', () => {   
+            let form = new FormData();
+            form.append('file', recorder.blob, 'miGuifo.gif');
             console.log(form.get('file'));
-            /*upload(postData).then((gifUrl) => {
-                console.log('Posted to' + gifUrl);*/
-                /*data = {
-                    api_key : 'HxeqWZObT2555n5inNEcjXprIyTed8Iq',
-                    file: {
-                        value: recorder.blob,
-                        contentType: 'image/gif'
-                    }
-                }*/
-                uploadToGiphy();
+            fetch('https://upload.giphy.com/v1/gifs?api_key=' + apiKey, {
+                method: 'POST',
+                body: form,
+                headers: {
+                    'API-Key': apiKey,
+                    'Content-Type': 'multipart/form-data',
+                },
+                mode: 'no-cors',
+            })
+            .then((response) => {
+                if (response.ok) {
+                    let json = response.json();
+                    console.log(json);
+                    return json;
+                }else{
+                    console.log('Problema subiendo el GIF');
+                }
+            })
+            .catch((error) => {
+                console.log('Error al ejecutar Fetch' + error);
+            })
+
         });
         btnDownload.addEventListener('click', () => {
             invokeSaveAsDialog(blob);
@@ -119,33 +159,77 @@ ctnBtnCaptura.addEventListener('click', () => {
 })
 
 
+btnRepeat.addEventListener('click', () => {
+    imgGIF.classList.add('hidden');   
+    ctnBtnLastPreview.classList.add('hidden'); 
+    video.classList.remove('hidden');
+    ctnBtnInitialPreview.classList.remove('hidden');
+    grabar();
+})
 
 
-function uploadToGiphy(){
-    fetch('https://upload.giphy.com/v1/gifs&api_key=HxeqWZObT2555n5inNEcjXprIyTed8Iq',{
-        method: 'POST',
-        headers: {
-            'api_key' : 'HxeqWZObT2555n5inNEcjXprIyTed8Iq',
-            'username' : 'Milenaag',
-            'Content-Type': 'multipart/form-data',
-        },
-        mode: 'no-cors',
-        body: form,
-    })
-    .then((response) => {
-        if (response.ok) {
-            let json = response.json();
-            console.log(json);
-            return json;
-        }else{
-            console.log('Problema subiendo el GIF');
-        }
-    })
-    .catch((error) => {
-        console.log('Error al ejecutar Fetch' + error);
-    })
-}
+/*            form = new FormData();
+            form.append('file', recorder.blob, 'myGuifo.gif');
+            form.append('api_key', 'HxeqWZObT2555n5inNEcjXprIyTed8Iq');
+            form.append('gif_id', base64data);
 
+            let reader = new FileReader();
+            reader.readAsDataURL(recorder.blob); 
+            reader.onload = function(){
+                base64data = reader.result;                
+                console.log(base64data);
+                function uploadToGiphy(){
+                    console.log(base64data);
+                    fetch('https://upload.giphy.com/v1/gifs?api_key=HxeqWZObT2555n5inNEcjXprIyTed8Iq',{
+                        method: 'POST',
+                        headers: {
+                            'api_key' : 'HxeqWZObT2555n5inNEcjXprIyTed8Iq',
+                            'username' : 'Milenaag',
+                            'Content-Type': 'multipart/form-data',
+                            //'gif_id' : base64data
+                        },
+                        data : {
+                            api_key : 'HxeqWZObT2555n5inNEcjXprIyTed8Iq',
+                            file: {
+                                value: base64data,
+                                contentType: 'image/gif'
+                            },
+                        },
+                        mode: 'no-cors',
+                        body: form,
+                    })
+                    .then((response) => {
+                        if (response.ok) {
+                            let json = response.json();
+                            console.log(json);
+                            return json;
+                        }else{
+                            console.log('Problema subiendo el GIF');
+                        }
+                    })
+                    .catch((error) => {
+                        console.log('Error al ejecutar Fetch' + error);
+                    })
+                }
+                uploadToGiphy();
+            }
+        form = new FormData();
+            form.append('file', base64data, 'myGuifo.gif');
+            form.append('api_key', 'HxeqWZObT2555n5inNEcjXprIyTed8Iq');
+        form.append('username', 'Milenaag');;
+        form.append('gif_id', newId);
+
+
+            console.log(form.get('file'));
+            upload(postData).then((gifUrl) => {
+                console.log('Posted to' + gifUrl);
+                data = {
+                    api_key : 'HxeqWZObT2555n5inNEcjXprIyTed8Iq',
+                    file: {
+                        value: recorder.blob,
+                        contentType: 'image/gif'
+                    }
+                }*/
 /*function upload(postData){
     let options = {
         url: 'https://upload.giphy.com/v1/gifs&api_key=;'+ postData.api_key,
@@ -183,119 +267,4 @@ function uploadToGiphy(){
 //api.giphy.com/v1/gifs gif by id endpoint
 /*para guardar gifs en la compu creo q se puede agregar nombre del archivo como segundo parametro: blob, 'miGuifo.(extension de gif)'
         invokeSaveAsDialog(blob, 'miGuifo');
-
-/*let stream;
-function grabar (){
-    titulo.textContent = 'Un Chequeo Antes de Empezar';
-    wimdowImg.classList.add('hidden');
-    secondaryTitle.classList.add('hidden');
-    instrucciones.classList.add('hidden');
-    video.classList.remove('hidden');
-    getStreamAndRecord ();
-}
-
-function getStreamAndRecord () { 
-    stream = navigator.mediaDevices.getUserMedia({
-    audio: false,
-    video: {
-        height: { max: 480 }
-    }
-    })
-    .then((stream) => {
-        video.srcObject = stream;
-        console.log('success');
-        video.play();
-        btnComenzar.classList.add('hidden');
-        btnCapturar.classList.remove('hidden');
-        recorder = RecordRTC(stream, {
-            type: 'gif',
-            frameRate: 1,
-            quality: 10,
-            width: 360,
-            hidden: 240,
-            onGifRecordingStarted:()=> {
-             console.log('started')
-           },
-        }); 
-        btnCapturar.addEventListener('click', () => {
-            video.srcObject = stream;
-            recorder.startRecording();
-            recorder.camera = stream;
-            btnCapturar.classList.add('hidden');
-            btnListo.classList.remove('hidden');
-            console.log('grabar');
-        });
-        function vistaPrevia(){
-            btnListo.textContent = 'fin'
-            video.src = video.srcObject = null;
-            video.src = URL.createObjectURL(recorder.blob);
-            recorder.camera.stop();
-            recorder = null;
-        }
-        btnListo.addEventListener('click', () => {
-            recorder.stopRecording(vistaPrevia);
-            console.log('parada');
-        });
-    })
-    .catch((error) => {
-        alert('Error, no se ha encontrado una camara');
-    });
-};
-    
-    btnComenzar.addEventListener('click', grabar);
 */
-//metodos start recording y stop recording
-
-
-/*let stream =  navigator.mediaDevices.getUserMedia({
-    audio: false,
-    video: {
-        height: { max: 480 }
-    }
-})
-function grabar (stream){
-    titulo.textContent = 'Un Chequeo Antes de Empezar';
-    video.classList.remove('hidden');
-    instrucciones.classList.add('hidden');
-    contenido.style.flexFlow = 'column wrap';
-    view(stream);
-}
-        function view (stream) {
-            video.srcObject = stream;
-            console.log('success');
-            video.play();
-            btnComenzar.classList.add('hidden');
-            btnCapturar.classList.remove('hidden');
-        }
-
-
-
-
-btnComenzar.addEventListener('click', grabar());
-btnCapturar.addEventListener('click', record);
-
-
-recorder = RecordRTC(stream, {
-    type: 'gif',
-    frameRate: 1,
-    quality: 10,
-    width: 360,
-    hidden: 240,
-    onGifRecordingStarted: function() {
-     console.log('started')
-   },
-}); 
-//metodos start recording y stop recording
-function record(){
-    recorder.startRecording();
-    console.log('grabar');
-    btnCapturar.classList.add('hidden');
-    btnListo.classList.remove('hidden');
-
-}
-function record(){
-    recorder.stopRecording();
-    console.log('parada');
-    btnListo.classList.add('hidden');
-
-}*/

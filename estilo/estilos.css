@@ -120,64 +120,7 @@ h2 {
           box-shadow: none;
 }
 
-.btn {
-  background: var(--gradiente-primario);
-  border: 1px solid var(--color-fuente-oscuro);
-  -webkit-box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 var(--light-shadow);
-          box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 var(--light-shadow);
-  font-family: "chakraReg", Arial, Helvetica, sans-serif;
-  color: var(--color-fuente-nav);
-  padding: 2px;
-}
-.btn:hover, .btn:active {
-  background: var(--btn-bg-hover);
-}
-.btn .texto {
-  display: inline-block;
-  font-size: 1rem;
-  padding: 0.5rem 1.5rem;
-  border: 1px solid #00000000;
-}
-.btn .texto:hover, .btn .texto:active {
-  border: 1px dotted var(--color-fuente-oscuro);
-}
-.btn .caret {
-  vertical-align: 0;
-  height: 34px;
-  padding: 1rem 0.875rem 1.3125rem 0.875rem;
-  display: inline-block;
-  border: 1px solid #00000000;
-}
-.btn .caret:hover, .btn .caret:active {
-  border: 1px dotted var(--color-fuente-oscuro);
-}
 
-.btnSecundario {
-  display: inline-block;
-  font-family: "chakraReg", Arial, Helvetica, sans-serif;
-  font-size: 0.875rem;
-  color: var(--light-shadow);
-  letter-spacing: 0;
-  line-height: 1.125rem;
-  background: var(--gradiente-secundario);
-  border: 1px solid #4C2F99;
-  -webkit-box-shadow: inset -2px -2px 0 0 var(--btn-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
-          box-shadow: inset -2px -2px 0 0 var(--btn-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
-  padding: 3px;
-}
-.btnSecundario:hover {
-  background: var(--btn-sec-bg-hover);
-}
-.btnSecundario span, .btnSecundario a {
-  text-decoration: none;
-  color: var(--light-shadow);
-  padding: 0.25rem;
-  display: inline-block;
-  border: 1px solid #00000000;
-}
-.btnSecundario span:hover, .btnSecundario a:hover {
-  border: 1px dotted var(--color-fuente-oscuro);
-}
 
 .hidden {
   display: none!important;
@@ -241,12 +184,89 @@ body header .head nav #btnCrear:hover, body header .head nav #btnCaret:hover, bo
   background: var(--btn-bg-hover);
   border: 1px dotted var(--color-fuente-oscuro);
 }
+.btn {
+  height: 36px;
+  background: var(--gradiente-primario);
+  border: 1px solid var(--color-fuente-oscuro);
+  -webkit-box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 var(--light-shadow);
+          box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 var(--light-shadow);
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  color: var(--color-fuente-nav);
+  padding: 2px;
+}
+.btn:hover, .btn:active {
+  background: var(--btn-bg-hover);
+}
+.btn .texto {
+  line-height: 28px;
+  width: 131px;
+  display: inline-block;
+  font-size: 1rem;
+  border: 1px solid #00000000;
+}
+.btn .texto:hover, .btn .texto:active {
+  border: 1px dotted var(--color-fuente-oscuro);
+}
+.btn .caret {
+  vertical-align: 0;
+  line-height: 18px;
+  padding-top: 10px;
+  display: inline-block;
+  border: 1px solid #00000000;
+}
+.btn .caret:hover, .btn .caret:active {
+  border: 1px dotted var(--color-fuente-oscuro);
+}
+#btnCrear .texto{
+  text-align: center;
+}
+.btnSecundario {
+  display: inline-block;
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  font-size: 0.875rem;
+  color: var(--light-shadow);
+  letter-spacing: 0;
+  line-height: 34px;
+  background: var(--gradiente-secundario);
+  border: 1px solid #4C2F99;
+  -webkit-box-shadow: inset -2px -2px 0 0 var(--btn-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
+          box-shadow: inset -2px -2px 0 0 var(--btn-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
+}
+.btnSecundario:hover {
+  background: var(--btn-sec-bg-hover);
+}
+.btnSecundario span, .btnSecundario a {
+  text-decoration: none;
+  color: var(--light-shadow);
+  padding: 0.25rem;
+  display: inline-block;
+  border: 1px solid #00000000;
+}
+.btnSecundario span:hover, .btnSecundario a:hover {
+  border: 1px dotted var(--color-fuente-oscuro);
+}
 body header .head nav .dropdown{
   margin: 0 1rem;
 }
-body header .head nav .dropdown button .caret img{
-  position: relative;
-  top: -2px;
+body header .head nav .dropdown .dropdownBtn:hover button{
+  background: var(--btn-bg-hover);
+}
+body header .head nav .dropdown .dropdownBtn:hover button .caret{
+  border: 1px dotted var(--color-fuente-oscuro);
+}
+body header .head nav .dropdown .dropdownBtn:hover #btnTexto{
+  background: var(--btn-bg-hover);
+}
+body header .head nav .dropdown .dropdownBtn:hover  #btnTexto .texto{
+  border: 1px dotted var(--color-fuente-oscuro);
+}
+
+body header .head nav .dropdown button .caret{
+  width: 36px;
+  display: inline-block;
+}
+body header .head nav .dropdown button .caret .whiteCaret{
+  filter: invert(100%);
 }
 body header .head nav .dropdown .dropdownContent {
   -webkit-box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 var(--light-shadow);
@@ -287,7 +307,7 @@ body header .head nav .dropdown .dropdownContent button .subrayado {
 body header .head nav .enlace {
   font-size: 1rem;
   padding: 6px 4px 4px 0;
-  line-height: 2.25rem;
+  line-height: 22px;
   font-family: "chakraReg", Arial, Helvetica, sans-serif;
   font-size: 1rem;
   color: var(--color-fuente-nav);
@@ -334,13 +354,15 @@ body main .busqueda .buscar .lineaBusq input {
   display: inline-block;
   width: 78%;
   color: #b4b4b4;
-  padding: 1rem 0.8125rem;
+  padding: 1rem 1.2rem;
   margin: 0 0 1rem 0;
   border: 1px solid #979797;
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;s
   -webkit-box-shadow: inset -2px -2px 0 0 var(--fondo-secundario), inset 2px 2px 0 0 var(--color-fuente-oscuro);
           box-shadow: inset -2px -2px 0 0 var(--fondo-secundario), inset 2px 2px 0 0 var(--color-fuente-oscuro);
 }
 body main .busqueda .buscar .lineaBusq button {
+  height: 36px;
   width: 16%;
   margin: 0 0 1rem 0;
   padding: 2px;
@@ -350,19 +372,18 @@ body main .busqueda .buscar .lineaBusq button .texto {
   font-family: 'chakraReg', Arial, Helvetica, sans-serif;
   display: inline-block;
   color:  var(--bg-sec-shadow);
+  line-height: 28px;
   width: 100%;
   height: 100%;
-  padding: 0.5rem 1.5rem;
   border: 1px solid #00000000;
-  line-height: 1.125rem;
 }
 body main .busqueda .buscar .lineaBusq button .texto:hover {
   border: 1px dotted var(--color-fuente-oscuro);
 }
 body main .busqueda .buscar .lineaBusq button .texto img {
-  margin-right: 0.75rem;
   position: relative;
-  top: 1px;
+  margin-right: 8px;
+  top: 5px;
 }
 body main .busqueda .buscar .lineaBusq .btnInactivo {
   background: var(--fondo-secundario);
@@ -381,7 +402,7 @@ body main .busqueda #sugerenciasBusq {
 }
 body main .busqueda #sugerenciasBusq .sugBusq {
   display: block;
-  width: 78%;
+  width: 79%;
   margin-bottom: 1rem;
   border: 1px solid #979797;
   -webkit-box-shadow: inset -1px -1px 0 0 var(--darker-shadow), inset 1px 1px 0 0 var(--light-shadow);
@@ -391,8 +412,8 @@ body main .busqueda #sugerenciasBusq .sugBusq {
 }
 body main .busqueda #sugerenciasBusq .sugBusq span {
   display: block;
-  padding: 0.875rem 0.25rem;
-  border: 1px solid #00000000;
+  padding: 6px 15px;
+  border: 1px solid #8b868600;
 }
 body main .busqueda #sugerenciasBusq .sugBusq span:hover {
   border: 1px dotted var(--color-fuente-oscuro);
