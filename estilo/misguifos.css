@@ -211,7 +211,18 @@ body header .head nav {
   body header .head nav .dropdown button .texto{
     display: inline-block;
   }
-  
+  body header .head nav .dropdown .dropdownBtn:hover button{
+    background: var(--btn-bg-hover);
+  }
+  body header .head nav .dropdown .dropdownBtn:hover button .caret{
+    border: 1px dotted var(--color-fuente-oscuro);
+  }
+  body header .head nav .dropdown .dropdownBtn:hover #btnTexto{
+    background: var(--btn-bg-hover);
+  }
+  body header .head nav .dropdown .dropdownBtn:hover  #btnTexto .texto{
+    border: 1px dotted var(--color-fuente-oscuro);
+  }
   body header .head nav .dropdown button .caret{
     width: 36px;
     display: inline-block;
@@ -258,7 +269,7 @@ body header .head nav {
   body header .head nav .enlace {
     font-size: 1rem;
     padding: 6px 4px 4px 0;
-    line-height: 2.25rem;
+    line-height: 22px;
     font-family: "chakraReg", Arial, Helvetica, sans-serif;
     font-size: 1rem;
     color: var(--color-fuente-nav);
