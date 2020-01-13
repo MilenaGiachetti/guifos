@@ -140,6 +140,7 @@ function busqueda(){
                 ctnPageBtn.appendChild(button);
             }
             let buttons = document.querySelectorAll('#ctnPageBtn button');
+            buttons[currentPage-1].classList.add('currentPageHighlight');
             for(let i = 0; i < buttons.length; i++){
                 buttons[i].addEventListener('click', () => {
                     if(buttons[i].textContent !== currentPage){
@@ -197,8 +198,11 @@ function loadContent(respuesta){
         /*background-size: auto 100%;*/
         img.style.backgroundSize = 'auto 100%';
         if(respuesta.data[i].images.fixed_height.width >= '360'){
-            ctnTotal.classList.add('largeTotal');
-            ctnImg.classList.add('largeImg');
+            if(i !== (24*currentPage-1)||i !== (24*currentPage-1)){
+                ctnTotal.classList.add('largeTotal');
+                ctnImg.classList.add('largeImg');
+            }
+            i++;
         }
         //mover img
         img.addEventListener('mouseenter', function(){
@@ -394,6 +398,7 @@ trendingDatos.then((respuesta)=>{
         ctnPageBtnTrend.appendChild(button);
     }
     let buttonsTrend = document.querySelectorAll('#ctnPageBtnTrend button');
+    buttonsTrend[currentTrendingPage-1].classList.add('currentTrendPageHighlight');
     for(let i = 0; i < buttonsTrend.length; i++){
         buttonsTrend[i].addEventListener('click', () => {
             if(buttonsTrend[i].textContent !== currentTrendingPage){
@@ -434,8 +439,12 @@ function loadTrendingPage(respuesta){
         img.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center';
         img.style.backgroundSize = 'auto 100%';
         if(respuesta.data[i].images.fixed_height.width >= '360'){
-            ctnTotal.classList.add('largeTotal');
-            ctnImg.classList.add('largeImg');
+            if(i !== (24*currentTrendingPage-1)||i !== (24*currentTrendingPage-1)){
+                ctnTotal.classList.add('largeTotal');
+                ctnImg.classList.add('largeImg');
+                console.log(i);
+            }
+            i++;
         }
         //mover img
         img.addEventListener('mouseenter', function(){
