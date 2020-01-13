@@ -471,6 +471,23 @@ body main .busqueda #ctnBusqueda .ctnTotal .ctnImg .img {
 body main .busqueda #ctnBusqueda .ctnTotal:hover .ctnImg .img {
   border: 1px dotted var(--color-fuente-oscuro);
 }
+#ctnBusquedaPages{
+  text-align: center;
+  margin: 1rem;
+  height: 2.5rem;
+}
+#ctnBusquedaPages img{
+  height: 100%;
+  width: 2rem;
+}
+#ctnBusquedaPages button{
+  background: var(--fondo-secundario);
+  -webkit-box-shadow: inset -2px -2px 0 0 var(--bg-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
+          box-shadow: inset -2px -2px 0 0 var(--bg-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
+          height: 100%;
+  padding: 0rem 1rem;
+  font-family: "chakraBold", Arial, Helvetica, sans-serif;
+}
 body main .sugerencias #ctnSugerencias {
   display: -webkit-box;
   display: -ms-flexbox;
