@@ -55,7 +55,7 @@ function grabar(){
     .then((stream) => {
         video.srcObject = stream;
         video.play();
-        console.log('Got strem')
+        console.log('Got stream')
         recorder = new GifRecorder (stream, {
             type: 'gif',
             frameRate: 1,
@@ -85,6 +85,7 @@ ctnBtnInitialPreview.addEventListener('click', () => {
 })
 let blob;
 let data;
+let form ;
 ctnBtnCaptura.addEventListener('click', () => {
     recorder.stop((blob) => {
         blob = blob;
@@ -94,20 +95,18 @@ ctnBtnCaptura.addEventListener('click', () => {
         let blobURL = URL.createObjectURL(blob);
         imgGIF.src = blobURL;
         btnUpload.addEventListener('click', () => {  
-            /*let form = new FormData();
+            form = new FormData();
             form.append('file', recorder.blob, 'myGuifo.gif');
             console.log(form.get('file'));
-            upload(form.get('file'))*/
             /*upload(postData).then((gifUrl) => {
                 console.log('Posted to' + gifUrl);*/
-                console.log('hola');
-                data = {
+                /*data = {
                     api_key : 'HxeqWZObT2555n5inNEcjXprIyTed8Iq',
                     file: {
                         value: recorder.blob,
-                        contentType: 'myGuifo.gif'
+                        contentType: 'image/gif'
                     }
-                }
+                }*/
                 uploadToGiphy();
         });
         btnDownload.addEventListener('click', () => {
@@ -123,23 +122,27 @@ ctnBtnCaptura.addEventListener('click', () => {
 
 
 function uploadToGiphy(){
-    fetch('https://upload.giphy.com/v1/gifs&api_key=;HxeqWZObT2555n5inNEcjXprIyTed8Iq',{
+    fetch('https://upload.giphy.com/v1/gifs&api_key=HxeqWZObT2555n5inNEcjXprIyTed8Iq',{
         method: 'POST',
-        body: JSON.stringify(data),
         headers: {
-            'Content-Type': 'image/gif'
-        }
+            'api_key' : 'HxeqWZObT2555n5inNEcjXprIyTed8Iq',
+            'username' : 'Milenaag',
+            'Content-Type': 'multipart/form-data',
+        },
+        mode: 'no-cors',
+        body: form,
     })
     .then((response) => {
         if (response.ok) {
-            console.log(response);
-            return response.json();
+            let json = response.json();
+            console.log(json);
+            return json;
         }else{
             console.log('Problema subiendo el GIF');
         }
     })
     .catch((error) => {
-        console.log('error al ejecutar Fetch' + error);
+        console.log('Error al ejecutar Fetch' + error);
     })
 }
 
