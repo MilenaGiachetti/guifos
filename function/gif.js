@@ -13,6 +13,10 @@ let dropdownCaret = document.getElementById('dropdownCaret');
 let dropdownMenu = document.getElementById('dropdownMenu');
 let logo = document.getElementById('logo');
 let caret = document.getElementById('caret');
+let pageLeft = document.getElementById('pageLeft');
+let pageRight = document.getElementById('pageRight');
+let pageLeftTrend = document.getElementById('pageLeftTrend');
+let pageRightTrend = document.getElementById('pageRightTrend');
 let imgLupa = document.getElementById('imgLupa');
 
 let suggestItems = ['Morty','Rick','Dark','Star Wars','Planet','Death Note', 'Love','Baby Yoda', 'Yoda','Cat', 'Juego', 'Dancing', 'Typing', 'Game','Weird', 'Pig','Funny','Animation','Movies','Anime','Unicorn','Werk', 'Adventure Time', 'Gravity Falls', 'SpongeBob', 'Avocado', 'Vaca', 'Disney', 'Joker','Japón', 'Corea', 'Strange', 'Ñoño', 'Hola', 'Area 51', 'Comida', 'Baby Shark', 'Quiero', 'Queso', '1984', 'Queen', 'X-Men', 'Zorro'];
@@ -24,11 +28,19 @@ if(localStorage.getItem('theme') === 'theme-dark'){
     logo.setAttribute('src',"assets/img/logodark.png");
     imgLupa.setAttribute('src', 'assets/img/lupamiddlegray.svg')
     caret.classList.add('whiteCaret');
+    pageLeft.classList.add('whiteCaret');
+    pageRight.classList.add('whiteCaret');
+    pageLeftTrend.classList.add('whiteCaret');
+    pageRightTrend.classList.add('whiteCaret');
 }else{
     setTheme('theme-light');
     logo.setAttribute('src',"assets/img/logo.png");
     imgLupa.setAttribute('src', 'assets/img/lupainactive.svg');
     caret.classList.remove('whiteCaret');
+    pageLeft.classList.remove('whiteCaret');
+    pageRight.classList.remove('whiteCaret');
+    pageLeftTrend.classList.remove('whiteCaret');
+    pageRightTrend.classList.remove('whiteCaret');
 }
 
 function setTheme(themeName) {
@@ -39,6 +51,10 @@ dark.addEventListener('click',()=>{
     setTheme('theme-dark');
     logo.setAttribute('src',"assets/img/logodark.png");
     caret.classList.add('whiteCaret');
+    pageLeft.classList.add('whiteCaret');
+    pageRight.classList.add('whiteCaret');
+    pageLeftTrend.classList.add('whiteCaret');
+    pageRightTrend.classList.add('whiteCaret');
     if(sugerenciasBusq.classList == 'hidden'){
         imgLupa.setAttribute('src', 'assets/img/lupamiddlegray.svg');
     }else{
@@ -51,6 +67,10 @@ light.addEventListener('click',()=>{
     setTheme('theme-light');
     logo.setAttribute('src',"assets/img/logo.png");
     caret.classList.remove('whiteCaret');
+    pageLeft.classList.remove('whiteCaret');
+    pageRight.classList.remove('whiteCaret');
+    pageLeftTrend.classList.remove('whiteCaret');
+    pageRightTrend.classList.remove('whiteCaret');
     if(sugerenciasBusq.classList == 'hidden'){
         imgLupa.setAttribute('src', 'assets/img/lupainactive.svg')
     }else{
@@ -80,8 +100,6 @@ let cuadroSug1 = document.getElementById('cuadroSug1');
 let cuadroSug2 = document.getElementById('cuadroSug2');
 let cuadroSug3 = document.getElementById('cuadroSug3');
 let noResults = false;
-let pageLeft = document.getElementById('pageLeft');
-let pageRight = document.getElementById('pageRight');
 let ctnPageBtn = document.getElementById('ctnPageBtn');
 let ctnBusquedaPages = document.getElementById('ctnBusquedaPages');
 let currentPage = 1;
@@ -365,9 +383,7 @@ async function giphyTrending(){
 trendingDatos = giphyTrending();
 
 let ctnTrendingPages = document.getElementById('ctnTrendingPages');
-let pageLeftTrend = document.getElementById('pageLeftTrend');
 let ctnPageBtnTrend = document.getElementById('ctnPageBtnTrend');
-let pageRightTrend = document.getElementById('pageRightTrend');
 let currentTrendingPage = 1;
 let maxPageTrending;
 trendingDatos.then((respuesta)=>{

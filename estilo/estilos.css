@@ -265,7 +265,7 @@ body header .head nav .dropdown button .caret{
   width: 36px;
   display: inline-block;
 }
-body header .head nav .dropdown button .caret .whiteCaret{
+.whiteCaret{
   filter: invert(100%);
 }
 body header .head nav .dropdown .dropdownContent {
