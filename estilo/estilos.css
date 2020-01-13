@@ -337,6 +337,7 @@ body main .busqueda .buscar h2 {
   margin-top: 0;
 }
 body main .busqueda .buscar .lineaBusq {
+  padding: 0  1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -352,7 +353,7 @@ body main .busqueda .buscar .lineaBusq {
 }
 body main .busqueda .buscar .lineaBusq input {
   display: inline-block;
-  width: 78%;
+  width: calc(98% - 100px);
   color: #b4b4b4;
   padding: 1rem 1.2rem;
   margin: 0 0 1rem 0;
@@ -363,7 +364,7 @@ body main .busqueda .buscar .lineaBusq input {
 }
 body main .busqueda .buscar .lineaBusq button {
   height: 36px;
-  width: 16%;
+  width: 105px;
   margin: 0 0 1rem 0;
   padding: 2px;
 }
@@ -395,15 +396,15 @@ body main .busqueda #sugerenciasBusq {
   position: absolute;
   z-index: 2;
   width: 80%;
-  padding: 1rem  0  0  1rem;
+  padding: 1rem  0  0  1.5rem;
   background: var(--fondo-secundario);
   -webkit-box-shadow: inset -2px -2px 0 0  var(--darker-shadow), inset 2px 2px 0 0 var(--light-shadow);
           box-shadow: inset -2px -2px 0 0  var(--darker-shadow), inset 2px 2px 0 0 var(--light-shadow);
 }
 body main .busqueda #sugerenciasBusq .sugBusq {
   display: block;
-  width: 79%;
   margin-bottom: 1rem;
+  width: calc(96.5% - 100px);
   border: 1px solid #979797;
   -webkit-box-shadow: inset -1px -1px 0 0 var(--darker-shadow), inset 1px 1px 0 0 var(--light-shadow);
           box-shadow: inset -1px -1px 0 0 var(--darker-shadow), inset 1px 1px 0 0 var(--light-shadow);
@@ -625,10 +626,19 @@ body main .busqueda .buscar .lineaBusq .btnBuscar .texto{
   html{
     font-size: 14px;
   }
+  body main .busqueda #sugerenciasBusq {
+    width: 80%;
+    padding: 1rem  0  1rem  0;
+  }
+  body main .busqueda #sugerenciasBusq .sugBusq {
+    width: 95%;
+    margin: 0 auto 0.5rem auto;
+  }
   body main .busqueda #ctnBusqueda {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1rem;
   }
+
   body main .sugerencias #ctnSugerencias .ctnTotal {
     width: 49%;
   }
@@ -650,6 +660,9 @@ body main .busqueda .buscar .lineaBusq .btnBuscar .texto{
   html{
     font-size: 12px;
   }
+  body main .busqueda .buscar .lineaBusq {
+    padding: 0;
+  }
   body main .busqueda .buscar .lineaBusq input {
     width: 90%;
     margin: 0 0 0.5rem 0;
@@ -659,23 +672,12 @@ body main .busqueda .buscar .lineaBusq .btnBuscar .texto{
     width: 90%;
   }
   body main .busqueda #sugerenciasBusq {
-  position: absolute;
-  z-index: 2;
   width: 80%;
   padding: 1rem  0  1rem  0;
-  background: var(--fondo-secundario);
-  -webkit-box-shadow: inset -2px -2px 0 0  var(--darker-shadow), inset 2px 2px 0 0 var(--light-shadow);
-          box-shadow: inset -2px -2px 0 0  var(--darker-shadow), inset 2px 2px 0 0 var(--light-shadow);
 }
 body main .busqueda #sugerenciasBusq .sugBusq {
-  display: block;
   width: 90%;
   margin: 0 auto 0.5rem auto;
-  border: 1px solid #979797;
-  -webkit-box-shadow: inset -1px -1px 0 0 var(--darker-shadow), inset 1px 1px 0 0 var(--light-shadow);
-          box-shadow: inset -1px -1px 0 0 var(--darker-shadow), inset 1px 1px 0 0 var(--light-shadow);
-  padding: 2px;
-  background: var(--fondo-secundario-claro);
 }
   body main .busqueda #ctnBusqueda {
     grid-template-columns: repeat(1, 1fr);
