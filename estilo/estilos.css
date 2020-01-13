@@ -427,8 +427,8 @@ body main .busqueda #tagsSugeridos {
 }
 body main .busqueda #ctnBusqueda {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 1.5rem;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 1rem;
   grid-auto-flow: dense;
 }
 body main .busqueda #ctnBusqueda .ctnTotal {
@@ -453,10 +453,10 @@ body main .busqueda #ctnBusqueda .ctnTotal .ctnImg {
   overflow: hidden;
 }
 body main .busqueda #ctnBusqueda .ctnTotal .largeImg{
-  padding-bottom: calc(50% - (1.5rem/2));
+  padding-bottom: calc(50% - (1rem/2));
 }
 body main .busqueda #ctnBusqueda .ctnTotal:hover .largeImg{
-  padding-bottom: calc(50% - (1.5rem/2) - 4px);
+  padding-bottom: calc(50% - (1rem/2) - 4px);
 }
 body main .busqueda #ctnBusqueda .ctnTotal .ctnImg .img {
   position: absolute;
@@ -537,8 +537,8 @@ body main .sugerencias #ctnSugerencias .ctnTotal .title {
 
 body main .tendencia #ctnTrending{
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 1.5rem;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 1rem;
   grid-auto-flow: dense;
 }
 
@@ -564,10 +564,10 @@ body main .tendencia #ctnTrending .ctnTotal .ctnImg {
   overflow: hidden;
 }
 body main .tendencia #ctnTrending .ctnTotal .largeImg{
-  padding-bottom: calc(50% - (1.5rem/2));
+  padding-bottom: calc(50% - (1rem/2));
 }
 body main .tendencia #ctnTrending .ctnTotal:hover .largeImg{
-  padding-bottom: calc(50% - (1.5rem/2) - 4px);
+  padding-bottom: calc(50% - (1rem/2) - 4px);
 }
 body main .tendencia #ctnTrending .ctnTotal .ctnImg .img {
   position: absolute;
