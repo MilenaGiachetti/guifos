@@ -1,15 +1,3 @@
-//get Giphy API Key
-//---------------busqueda---------------
-//...............funcionBusqueda...............
-//1-fetch data de la api, endpoint: https://api.giphy.com/v1/gifs/search?q=(input busqueda) -- variable valor del input
-//2-agarrar el value del input y pasarlo a la funcion al tocar enter (keydown) o al clickear boton 'buscar'
-//3-debe agregarse al html los resultados de la busqueda en una grid
-//---------------sugerencias---------------
-//hacer un array con tags(coding, cats,typing, aww, dance,etc -10/15) para buscar un gif random
-//1-fetch data de la api, endpoint: ?????(tag sugerencia) -- variable valor del input
-
-/*'https://api.giphy.com/v1/gifs/random?api_key='+apiKey+'&tag=adventure+time&fmt=html'*/
-
 const apiKey = 'HxeqWZObT2555n5inNEcjXprIyTed8Iq';
 let ctnBusqueda = document.getElementById('ctnBusqueda');
 let ctnTrending = document.getElementById('ctnTrending');
@@ -92,59 +80,83 @@ let cuadroSug1 = document.getElementById('cuadroSug1');
 let cuadroSug2 = document.getElementById('cuadroSug2');
 let cuadroSug3 = document.getElementById('cuadroSug3');
 let noResults = false;
+let pageLeft = document.getElementById('pageLeft');
+let pageRight = document.getElementById('pageRight');
+let ctnPageBtn = document.getElementById('ctnPageBtn');
+let ctnBusquedaPages = document.getElementById('ctnBusquedaPages');
+let currentPage = 1;
+let biggerPage;
 function busqueda(){
-    sugerenciasBusq.classList.add('hidden')
+    currentPage = 1;
+    ctnBusquedaPages.classList.add('hidden');
+    sugerenciasBusq.classList.add('hidden');
+    ctnPageBtn.innerHTML = '';
     ctnBusqueda.innerHTML = '';
     titleBusq.classList.add('hidden');
     tagsSugeridos.classList.add('hidden');
     async function giphyBusqueda(busqueda){
-        let url = "https://api.giphy.com/v1/gifs/search?q=" + busqueda + "&api_key=" + apiKey + "&limit=20&rating=PG";
+        let url = "https://api.giphy.com/v1/gifs/search?q=" + busqueda + "&api_key=" + apiKey + "&limit=150&rating=PG";
         const resp = await fetch(url);
         const datos = await resp.json();
         return datos;
     }
     datos = giphyBusqueda(inputBusqueda.value);
-    datos.then(function(respuesta){
+    datos.then((respuesta) => {
         if(respuesta.data.length === 0){
             ctnBusqueda.innerHTML = "<p class='error'>OOPS! No se encontraron Gifs de ' "+inputBusqueda.value+"'.</p>";
             noResults = true;
-        }else{
+        }else if(respuesta.data.length <= 24){
             titleBusq.classList.remove('hidden');
             tagsSugeridos.classList.remove('hidden');
             titleBusq.textContent = "Resultados de: '" + inputBusqueda.value+"'";
-            for (let i = 0; i < respuesta.data.length; i++) {
-                let ctnTotal = document.createElement('div');
-                ctnTotal.setAttribute('class', 'ctnTotal');
-                let ctnImg = document.createElement('div');
-                ctnImg.setAttribute('class', 'ctnImg');
-                let img = document.createElement('div');
-                img.setAttribute('class', 'img');  
-                img.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center';
-                /*background-size: auto 100%;*/
-                img.style.backgroundSize = 'auto 100%';
-                if(respuesta.data[i].images.fixed_height.width >= '360'){
-                    ctnTotal.classList.add('largeTotal');
-                    ctnImg.classList.add('largeImg');
-                }
-                //mover img
-                img.addEventListener('mouseenter', function(){
-                    this.style.background = 'url('+respuesta.data[i].images.fixed_height.url+') center center'
-                    this.style.backgroundSize = 'auto 100%';
-                });
-                //pausar img
-                img.addEventListener('mouseleave', function(){
-                    this.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center'
-                    this.style.backgroundSize = 'auto 100%';
-        
-                });
-                //url al clickear
-                img.addEventListener('click', function(){
-                    window.open(respuesta.data[i].url,'_blank');
-                });
-                ctnImg.appendChild(img);
-                ctnTotal.appendChild(ctnImg);
-                ctnBusqueda.appendChild(ctnTotal);
+            loadContent(respuesta);
+        }else{
+            ctnBusquedaPages.classList.remove('hidden');
+            titleBusq.classList.remove('hidden');
+            tagsSugeridos.classList.remove('hidden');
+            titleBusq.textContent = "Resultados de: '" + inputBusqueda.value+"'";
+            biggerPage = Math.ceil(respuesta.data.length/24);
+            for(let i = 1; i <= biggerPage; i++){
+                let button = document.createElement('button');
+                button.textContent = i;
+                ctnPageBtn.appendChild(button);
             }
+            let buttons = document.querySelectorAll('#ctnPageBtn button');
+            console.log(buttons);
+            console.log(buttons[1]);
+            console.log(buttons[1].textContent);
+            for(let i = 0; i < buttons.length; i++){
+                buttons[i].addEventListener('click', () => {
+                    if(buttons[i].textContent !== currentPage){
+                        buttons[currentPage-1].classList.remove('currentPageHighlight');
+                        console.log(buttons[i].textContent);
+                        currentPage = buttons[i].textContent;
+                        buttons[i].classList.add('currentPageHighlight');
+                        loadContent(respuesta);
+                    }
+                    console.log(currentPage);
+                })
+            }
+            pageLeft.addEventListener('click',() => {
+                if(currentPage !== 1){
+                    buttons[currentPage-1].classList.remove('currentPageHighlight');
+                    currentPage--;
+                    buttons[currentPage-1].classList.add('currentPageHighlight');
+                    loadContent(respuesta)
+                }
+                console.log(currentPage);
+            
+            })
+            pageRight.addEventListener('click',() => {
+                if(currentPage < biggerPage){
+                    buttons[currentPage-1].classList.remove('currentPageHighlight');
+                    currentPage++;
+                    buttons[currentPage-1].classList.add('currentPageHighlight');
+                    loadContent(respuesta)
+                }
+                console.log(currentPage);
+            })
+            loadContent(respuesta);
         }
         btnBusqueda.classList.remove('btnBuscar');
         btnBusqueda.classList.remove('btn');
@@ -157,6 +169,46 @@ function busqueda(){
         saveSug();
         inputBusqueda.value = '';
     });
+}
+
+
+
+function loadContent(respuesta){
+    ctnBusqueda.innerHTML = '';
+    console.log(respuesta.data.length);
+    for (let i = (24*(currentPage-1)); i < (24*currentPage); i++) {
+        let ctnTotal = document.createElement('div');
+        ctnTotal.setAttribute('class', 'ctnTotal');
+        let ctnImg = document.createElement('div');
+        ctnImg.setAttribute('class', 'ctnImg');
+        let img = document.createElement('div');
+        img.setAttribute('class', 'img');  
+        img.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center';
+        /*background-size: auto 100%;*/
+        img.style.backgroundSize = 'auto 100%';
+        if(respuesta.data[i].images.fixed_height.width >= '360'){
+            ctnTotal.classList.add('largeTotal');
+            ctnImg.classList.add('largeImg');
+        }
+        //mover img
+        img.addEventListener('mouseenter', function(){
+            this.style.background = 'url('+respuesta.data[i].images.fixed_height.url+') center center'
+            this.style.backgroundSize = 'auto 100%';
+        });
+        //pausar img
+        img.addEventListener('mouseleave', function(){
+            this.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center'
+            this.style.backgroundSize = 'auto 100%';
+
+        });
+        //url al clickear
+        img.addEventListener('click', function(){
+            window.open(respuesta.data[i].url,'_blank');
+        });
+        ctnImg.appendChild(img);
+        ctnTotal.appendChild(ctnImg);
+        ctnBusqueda.appendChild(ctnTotal);
+    }
 }
 function saveSug(){
     let storageActual = JSON.parse(localStorage.suggestions);

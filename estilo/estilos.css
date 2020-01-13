@@ -473,20 +473,28 @@ body main .busqueda #ctnBusqueda .ctnTotal:hover .ctnImg .img {
 }
 #ctnBusquedaPages{
   text-align: center;
-  margin: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   height: 2.5rem;
 }
 #ctnBusquedaPages img{
   height: 100%;
   width: 2rem;
 }
-#ctnBusquedaPages button{
+#ctnBusquedaPages #ctnPageBtn{
+  display: inline;
+}
+#ctnBusquedaPages #ctnPageBtn button{
   background: var(--fondo-secundario);
   -webkit-box-shadow: inset -2px -2px 0 0 var(--bg-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
           box-shadow: inset -2px -2px 0 0 var(--bg-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
           height: 100%;
   padding: 0rem 1rem;
+  margin: 2px;
   font-family: "chakraBold", Arial, Helvetica, sans-serif;
+}
+#ctnBusquedaPages #ctnPageBtn .currentPageHighlight{
+  background: var(--gradiente-primario);
 }
 body main .sugerencias #ctnSugerencias {
   display: -webkit-box;
