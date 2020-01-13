@@ -6,7 +6,6 @@ let secondaryTitle = document.getElementById('secondaryTitle');
 let imgGIF = document.getElementById('imgGIF');
 let instrucciones = document.getElementById('instrucciones');
 let ctnBtnPrincipal = document.getElementById('ctnBtnPrincipal');
-let btnCancelar = document.getElementById('btnCancelar');
 let cancelLink = document.getElementById('cancelLink');
 let btnComenzar = document.getElementById('btnComenzar');
 let ctnBtnInitialPreview = document.getElementById('ctnBtnInitialPreview');
@@ -14,14 +13,21 @@ let ctnBtnCaptura = document.getElementById('ctnBtnCaptura');
 let ctnBtnLastPreview = document.getElementById('ctnBtnLastPreview');
 let btnRepeat = document.getElementById('btnRepeat');
 let btnUpload = document.getElementById('btnUpload');
+let contenidoUploading = document.getElementById('contenidoUploading');
+let ctnBtnUploading = document.getElementById('ctnBtnUploading');
 let ctnBtnFinal = document.getElementById('ctnBtnFinal');
 let btnURL = document.getElementById('btnURL');
 let btnDownload = document.getElementById('btnDownload');
 let btnToStart = document.getElementById('btnToStart');
+let svgCamera = document.getElementById('svgCamera');
+let svgArrow = document.getElementById('svgArrow');
+
 
 if(localStorage.getItem('theme') === 'theme-dark'){
     setTheme('theme-dark');
     logo.setAttribute('src',"assets/img/logodark.png");
+    svgCamera.classList.add('white');
+    svgArrow.classList.add('white');
 }else{
     setTheme('theme-light');
     logo.setAttribute('src',"assets/img/logo.png");
@@ -42,7 +48,7 @@ previousPage.addEventListener('click', () => {
         previousPage.setAttribute('href',"misguifos.html");
     }
 })
-btnCancelar.addEventListener('click', () => {
+cancelLink.addEventListener('click', () => {
     if(localStorage.getItem('currentPage') === 'index'){
         cancelLink.setAttribute('href',"index.html");
     }else{
@@ -154,6 +160,10 @@ ctnBtnCaptura.addEventListener('click', () => {
             .catch((error) => {
                 console.log('Error al ejecutar Fetch' + error);
             })
+            imgGIF.classList.add('hidden');    
+            ctnBtnLastPreview.classList.add('hidden');
+            contenidoUploading.classList.remove('hidden');
+            ctnBtnUploading.classList.remove('hidden');
 
         });
         btnDownload.addEventListener('click', () => {

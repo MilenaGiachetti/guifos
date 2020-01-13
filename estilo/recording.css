@@ -73,7 +73,9 @@
     outline: none;
     vertical-align: top;
 }
-
+.white{
+    filter: invert(100%);
+}
 .hidden {
     display: none!important;
 }
@@ -165,14 +167,26 @@ body main .crearGuifos .contenido{
     margin: 1rem;
     display: flex;
     flex-flow: row nowrap;
+    justify-content: center;
     align-items: flex-start;
 }
+#gifContainer{
+    width: 100%;
+    margin: auto;
+    background: #FFFFFF;
+    border: 1px solid #979797;
+    padding: 2px;
+    box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+}
 body main .crearGuifos .contenido video{ 
+    margin: 4px;
     width: 100%;
 }
 #imgGIF{
+    margin: 0;
     width: 100%;
 }
+
 body main .crearGuifos .contenido #btnCapturar{ 
     margin-left: auto;
 }
@@ -210,40 +224,66 @@ body main .crearGuifos p .enter{
     display: block;
     padding:4px 0;
 }
+.tachado{
+    text-decoration: line-through;
+}
 .ctnBtn{
     text-align: right;
     float: right;
 }
 .btn{
+    font-family: 'chakraReg';
+
+    font-size: 1rem;
     padding: 8px 40px;
     background: var(--gradiente-primario);
     border: 1px solid var(--color-fuente-oscuro);
     box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 #FFFFFF;
     color: var(--color-fuente-nav);
+    margin-top: 1rem;
 }
 .btn:hover{
     background: var(--btn-bg-hover);
 }
+#cancelLink{
+    display: inline-block;
+    font-size: 1rem;
+}
 .btnSecundario{
+    font-size: 1rem;
+    font-family: 'chakraReg';
     padding: 2px;
     background: var(--fondo);
     border: 1px solid var(--color-fuente-oscuro);
     box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 #FFFFFF;
     color: var(--color-fuente-nav);
+    margin-top: 1rem;
 }
-.btnSecundario span, .btnSecundario a{
+.btnSecundario span{
     display: inline-block;
     border: 1px solid rgba(0, 0, 0, 0);
     padding: 5px 36px;
 }
-.btnSecundario span:hover, .btnSecundario a:hover{
+.btnSecundario span:hover{
     border: 1px dotted var(--color-fuente-nav);
     background: var(--bg-sec-shadow);
 }
 #ctnBtnPrincipal{
     margin-bottom: 1rem;
 }
+#imgListo, #btnListo{
+    background: #FF6161;
+    color: #fff;
+    border: 1px solid #110038;
+    box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
+}
+#imgListo img{
+    position: relative;
+    top: 3px;
+
+}
 #imgCapturar {
+
     padding: 8px;
     text-align: center;
     float: left;
@@ -251,6 +291,8 @@ body main .crearGuifos p .enter{
 
 }
 #imgCapturar img{
+    position: relative;
+    top: 3px;
     width: 15px;
     padding: 0;
     margin: 0;
