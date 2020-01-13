@@ -122,19 +122,14 @@ function busqueda(){
                 ctnPageBtn.appendChild(button);
             }
             let buttons = document.querySelectorAll('#ctnPageBtn button');
-            console.log(buttons);
-            console.log(buttons[1]);
-            console.log(buttons[1].textContent);
             for(let i = 0; i < buttons.length; i++){
                 buttons[i].addEventListener('click', () => {
                     if(buttons[i].textContent !== currentPage){
                         buttons[currentPage-1].classList.remove('currentPageHighlight');
-                        console.log(buttons[i].textContent);
                         currentPage = buttons[i].textContent;
                         buttons[i].classList.add('currentPageHighlight');
                         loadContent(respuesta);
                     }
-                    console.log(currentPage);
                 })
             }
             pageLeft.addEventListener('click',() => {
@@ -144,8 +139,6 @@ function busqueda(){
                     buttons[currentPage-1].classList.add('currentPageHighlight');
                     loadContent(respuesta)
                 }
-                console.log(currentPage);
-            
             })
             pageRight.addEventListener('click',() => {
                 if(currentPage < biggerPage){
@@ -154,7 +147,6 @@ function busqueda(){
                     buttons[currentPage-1].classList.add('currentPageHighlight');
                     loadContent(respuesta)
                 }
-                console.log(currentPage);
             })
             loadContent(respuesta);
         }
@@ -365,15 +357,58 @@ for (let i = 0; i < 4; i++) {
 }
 //trending
 async function giphyTrending(){
-    let url = "https://api.giphy.com/v1/gifs/trending?api_key=" + apiKey + "&limit=20&rating=PG";
+    let url = "https://api.giphy.com/v1/gifs/trending?api_key=" + apiKey + "&limit=150&rating=PG";
     const resp = await fetch(url);
     const trendingDatos = await resp.json();
     return trendingDatos;
 }
 trendingDatos = giphyTrending();
 
+let ctnTrendingPages = document.getElementById('ctnTrendingPages');
+let pageLeftTrend = document.getElementById('pageLeftTrend');
+let ctnPageBtnTrend = document.getElementById('ctnPageBtnTrend');
+let pageRightTrend = document.getElementById('pageRightTrend');
+let currentTrendingPage = 1;
+let maxPageTrending;
 trendingDatos.then((respuesta)=>{
-    for (let i = 0; i < respuesta.data.length; i++) {
+    maxPageTrending = Math.ceil(respuesta.data.length/24);
+    for(let i = 1; i <= maxPageTrending; i++){
+        let button = document.createElement('button');
+        button.textContent = i;
+        ctnPageBtnTrend.appendChild(button);
+    }
+    let buttonsTrend = document.querySelectorAll('#ctnPageBtnTrend button');
+    for(let i = 0; i < buttonsTrend.length; i++){
+        buttonsTrend[i].addEventListener('click', () => {
+            if(buttonsTrend[i].textContent !== currentTrendingPage){
+                buttonsTrend[currentTrendingPage-1].classList.remove('currentTrendPageHighlight');
+                currentTrendingPage = buttonsTrend[i].textContent;
+                buttonsTrend[i].classList.add('currentTrendPageHighlight');
+                loadTrendingPage(respuesta);
+            }
+        })
+    }
+    pageLeftTrend.addEventListener('click',() => {
+        if(currentTrendingPage !== 1){
+            buttonsTrend[currentTrendingPage-1].classList.remove('currentTrendPageHighlight');
+            currentTrendingPage--;
+            buttonsTrend[currentTrendingPage-1].classList.add('currentTrendPageHighlight');
+            loadTrendingPage(respuesta);
+        }
+    })
+    pageRightTrend.addEventListener('click',() => {
+        if(currentTrendingPage < maxPageTrending){
+            buttonsTrend[currentTrendingPage-1].classList.remove('currentTrendPageHighlight');
+            currentTrendingPage++;
+            buttonsTrend[currentTrendingPage-1].classList.add('currentTrendPageHighlight');
+            loadTrendingPage(respuesta);
+        }
+    })
+    loadTrendingPage(respuesta);
+});
+function loadTrendingPage(respuesta){
+    ctnTrending.innerHTML = '';
+    for (let i = (24*(currentTrendingPage-1)); i < (24*currentTrendingPage); i++) {
         let ctnTotal = document.createElement('div');
         ctnTotal.setAttribute('class', 'ctnTotal');
         let ctnImg = document.createElement('div');
@@ -412,6 +447,5 @@ trendingDatos.then((respuesta)=>{
         ctnTotal.appendChild(ctnImg);
         ctnTrending.appendChild(ctnTotal);
     }
-});
-
+}
 

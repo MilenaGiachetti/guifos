@@ -617,7 +617,31 @@ body main .tendencia #ctnTrending .ctnTotal .ctnImg .img .title {
   width: 100%;
   display: none;
 }
-
+#ctnTrendingPages{
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  height: 2.5rem;
+}
+#ctnTrendingPages img{
+  height: 100%;
+  width: 2rem;
+}
+#ctnTrendingPages #ctnPageBtnTrend{
+  display: inline;
+}
+#ctnTrendingPages #ctnPageBtnTrend button{
+  background: var(--fondo-secundario);
+  -webkit-box-shadow: inset -2px -2px 0 0 var(--bg-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
+          box-shadow: inset -2px -2px 0 0 var(--bg-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
+          height: 100%;
+  padding: 0rem 1rem;
+  margin: 2px;
+  font-family: "chakraBold", Arial, Helvetica, sans-serif;
+}
+#ctnTrendingPages #ctnPageBtnTrend .currentTrendPageHighlight{
+  background: var(--gradiente-primario);
+}
 body main .busqueda .buscar .lineaBusq .btnBuscar .texto{
   color: var(--color-fuente-nav);
 }
