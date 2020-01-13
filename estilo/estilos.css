@@ -306,7 +306,7 @@ body header .head nav .dropdown .dropdownContent button .subrayado {
 }
 body header .head nav .enlace {
   font-size: 1rem;
-  padding: 6px 4px 4px 0;
+  padding: 6px 16px 4px 0;
   line-height: 22px;
   font-family: "chakraReg", Arial, Helvetica, sans-serif;
   font-size: 1rem;
@@ -317,7 +317,7 @@ body header .head nav .enlace .subrayado {
   text-decoration: underline;
 }
 body header .head nav .enlace:hover {
-  border: 1px dotted var(--color-fuente-oscuro);
+  border: 1px dotted var(--color-fuente-nav);
 }
 body header .head nav .enlace:active {
   color: var(--darker-shadow);
