@@ -7,6 +7,7 @@ let imgGIF = document.getElementById('imgGIF');
 let instrucciones = document.getElementById('instrucciones');
 let ctnBtnPrincipal = document.getElementById('ctnBtnPrincipal');
 let btnCancelar = document.getElementById('btnCancelar');
+let cancelLink = document.getElementById('cancelLink');
 let btnComenzar = document.getElementById('btnComenzar');
 let ctnBtnInitialPreview = document.getElementById('ctnBtnInitialPreview');
 let ctnBtnCaptura = document.getElementById('ctnBtnCaptura');
@@ -41,7 +42,13 @@ previousPage.addEventListener('click', () => {
         previousPage.setAttribute('href',"misguifos.html");
     }
 })
-
+btnCancelar.addEventListener('click', () => {
+    if(localStorage.getItem('currentPage') === 'index'){
+        cancelLink.setAttribute('href',"index.html");
+    }else{
+        cancelLink.setAttribute('href',"misguifos.html");
+    }
+})
 btnComenzar.addEventListener('click', () => {
     title.textContent = 'Un Chequeo Antes de Empezar';
     windowImg.classList.add('hidden');
