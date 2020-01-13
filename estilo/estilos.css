@@ -354,7 +354,7 @@ body main .busqueda .buscar .lineaBusq {
 body main .busqueda .buscar .lineaBusq input {
   display: inline-block;
   width: calc(98% - 100px);
-  color: #b4b4b4;
+  color: var(--color-fuente-oscuro);
   padding: 1rem 1.2rem;
   margin: 0 0 1rem 0;
   border: 1px solid #979797;
@@ -628,7 +628,7 @@ body main .busqueda .buscar .lineaBusq .btnBuscar .texto{
   }
   body main .busqueda #sugerenciasBusq {
     width: 80%;
-    padding: 1rem  0  1rem  0;
+    padding: 1rem  0  0.5rem  0;
   }
   body main .busqueda #sugerenciasBusq .sugBusq {
     width: 95%;
@@ -671,14 +671,10 @@ body main .busqueda .buscar .lineaBusq .btnBuscar .texto{
     height: 36px;
     width: 90%;
   }
-  body main .busqueda #sugerenciasBusq {
-  width: 80%;
-  padding: 1rem  0  1rem  0;
-}
-body main .busqueda #sugerenciasBusq .sugBusq {
-  width: 90%;
-  margin: 0 auto 0.5rem auto;
-}
+  body main .busqueda #sugerenciasBusq .sugBusq {
+    width: 90%;
+    margin: 0 auto 0.5rem auto;
+  }
   body main .busqueda #ctnBusqueda {
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 1rem;
@@ -687,12 +683,7 @@ body main .busqueda #sugerenciasBusq .sugBusq {
     grid-column-end: span 1;
     grid-row-end: span 1;
   }
-  /*body main .busqueda #ctnBusqueda .ctnTotal .largeImg{
-    padding-bottom: 100%;
-  }
-  body main .busqueda #ctnBusqueda .ctnTotal:hover .largeImg{
-    padding-bottom: 100%;
-  }*/
+
   body main .sugerencias #ctnSugerencias .ctnTotal {
     width: 100%;
   }
