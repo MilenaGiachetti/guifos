@@ -85,6 +85,7 @@ function grabar(){
             quality: 10,
             width: 360,
             hidden: 240,
+            timeSlice: 1000,
             onGifRecordingStarted: () => {
                 console.log('started')
             },
@@ -93,6 +94,20 @@ function grabar(){
             ctnCreador.classList.add('hidden');
             video.pause();
             stream.stop();
+        })
+        ctnBtnInitialPreview.addEventListener('click', () => {
+            recorder.record();
+            dateStarted = new Date().getTime();
+            (function looper() {
+                if(!recorder) {
+                    return;
+                }
+                console.log('Recording Duration: ' + calculateTimeDuration((new Date().getTime() - dateStarted) / 1000));
+                setTimeout(looper, 1000);
+            })();
+            recorder.stream = stream;
+            ctnBtnInitialPreview.classList.add('hidden');
+            ctnBtnCaptura.classList.remove('hidden');
         })
     })
     .catch((error) => {
@@ -106,11 +121,7 @@ function grabar(){
     })
 }
 
-ctnBtnInitialPreview.addEventListener('click', () => {
-    recorder.record();
-    ctnBtnInitialPreview.classList.add('hidden');
-    ctnBtnCaptura.classList.remove('hidden');
-})
+
 let blob;
 let data;
 let form ;
@@ -123,13 +134,14 @@ async function randomId(){
     newId = random.data.random_id
     return newId;
 }          
-let base64data;
 
 ctnBtnCaptura.addEventListener('click', () => {
     recorder.stop((blob) => {
         newId = randomId();
         console.log(newId);
         blob = blob;
+        video.srcObject = null;
+        recorder= null;
         video.classList.add('hidden');
         imgGIF.classList.remove('hidden');    
         console.log(blob);
@@ -174,6 +186,25 @@ ctnBtnCaptura.addEventListener('click', () => {
     ctnBtnLastPreview.classList.remove('hidden');
     
 })
+function calculateTimeDuration(secs) {
+    var hr = Math.floor(secs / 3600);
+    var min = Math.floor((secs - (hr * 3600)) / 60);
+    var sec = Math.floor(secs - (hr * 3600) - (min * 60));
+
+    if (min < 10) {
+        min = "0" + min;
+    }
+
+    if (sec < 10) {
+        sec = "0" + sec;
+    }
+
+    if(hr <= 0) {
+        return min + ':' + sec;
+    }
+
+    return hr + ':' + min + ':' + sec;
+}
 
 
 btnRepeat.addEventListener('click', () => {
