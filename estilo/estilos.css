@@ -478,8 +478,11 @@ body main .busqueda #ctnBusqueda .ctnTotal:hover .ctnImg .img {
 }
 #ctnBusquedaPages{
   text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
   margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
   height: 2.5rem;
 }
 #ctnBusquedaPages img{
@@ -630,8 +633,11 @@ body main .tendencia #ctnTrending .ctnTotal .ctnImg .img .title {
 }
 #ctnTrendingPages{
   text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
   margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
   height: 2.5rem;
 }
 #ctnTrendingPages img{
@@ -644,6 +650,7 @@ body main .tendencia #ctnTrending .ctnTotal .ctnImg .img .title {
 #ctnTrendingPages #ctnPageBtnTrend{
   display: inline;
 }
+
 #ctnTrendingPages #ctnPageBtnTrend button{
   background: var(--fondo-secundario);
   -webkit-box-shadow: inset -2px -2px 0 0 var(--bg-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
