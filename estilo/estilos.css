@@ -723,6 +723,9 @@ body main .busqueda .buscar .lineaBusq .btnBuscar .texto{
     width: 180px;
     padding: 6px 0;
   }
+  body header .head nav .dropdown .dropdownContent {
+    width: 186px;
+  }
   #btnOpenMenu{
     display: flex;
     flex-flow: row wrap;
@@ -810,6 +813,9 @@ body main .busqueda .buscar .lineaBusq .btnBuscar .texto{
     height: 160px;
     background: var(--fondo-secundario);
     padding: 5px;
+  }
+  body header .head nav .dropdown .dropdownContent {
+    width: 122px;
   }
   body header .head nav #btnTexto .texto{
     width: 74px;
