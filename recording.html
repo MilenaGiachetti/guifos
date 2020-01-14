@@ -25,65 +25,90 @@
                 <img src="assets/img/close.svg" class="hidden" id="videoWindowClose" alt="">
             </div>
             <div id="contenido" class="contenido">
-                <img src="assets/img/window.png" id="windowImg" alt="">
-                <div>
-                    <h4 id="secondaryTitle">Aquí podrás crear tus propios guifos</h4>
-                    <div class="gifContainer">
-                        <img alt="" id="imgGIF" class="hidden">
-                        <video class="hidden"></video>
+                <div class="gifContainer hidden" id="gifContainer">
+                    <img alt="" id="imgGIF" class="hidden">
+                    <video class="hidden"></video>
+                </div>
+                <div class="startingPage" id="startingPage">
+                    <img src="assets/img/window.png" id="windowImg" alt="">
+                    <div class="startingPageText">
+                        <h4 id="secondaryTitle">Aquí podrás crear tus propios guifos</h4>
+                        <p id="instrucciones">
+                            <span class="enter">Crear tu <span class="bold tilted">guifo</span> es muy fácil, graba cualquier imagen con tu cámara y obtén guifos personalizados. Los pasos para crear tu guifo son:
+                            </span>
+                            <span class="enter">
+                                <span class="bold">1)</span> Dar permisos de acceso a la cámara (sólo por el tiempo de uso)
+                            </span>
+                            <span class="enter">
+                                <span class="bold">2)</span> Capturar tu momento guifo
+                            </span>
+                            <span class="enter">       
+                                <span class="bold">3)</span> Revisar el momento
+                            </span>
+                            <span class="enter">
+                                <span class="bold">4)</span> Listo para subir y compartir!
+                            </span>
+                            <span class="enter">
+                                ¿Quieres comenzar a crear tu <span class="bold tilted">guifo</span> ahora?
+                            </span>
+                        </p>
                     </div>
-                    <p id="instrucciones">
-                        <span class="enter">Crear tu <span class="bold tilted">guifo</span> es muy fácil, graba cualquier imagen con tu cámara y obtén guifos personalizados. Los pasos para crear tu guifo son:
-                        </span>
-                        <span class="enter">
-                            <span class="bold">1)</span> Dar permisos de acceso a la cámara (sólo por el tiempo de uso)
-                        </span>
-                        <span class="enter">
-                            <span class="bold">2)</span> Capturar tu momento guifo
-                        </span>
-                        <span class="enter">       
-                            <span class="bold">3)</span> Revisar el momento
-                        </span>
-                        <span class="enter">
-                            <span class="bold">4)</span> Listo para subir y compartir!
-                        </span>
-                        <span class="enter">
-                            ¿Quieres comenzar a crear tu <span class="bold tilted">guifo</span> ahora?
-                        </span>
-                    </p>
-                    <div class="ctnBtn" id="ctnBtnPrincipal">
-                        <a id='cancelLink' class='btnSecundario' href=""><span>Cancelar</span></a>
-                        <button id="btnComenzar" class="btn">Comenzar</button>
+                </div>
+                <div class="ctnBtn" id="ctnBtnPrincipal">
+                    <a id='cancelLink' class='btnSecundario' href=""><span>Cancelar</span></a>
+                    <button id="btnComenzar" class="btn">Comenzar</button>
+                </div>
+                <div class="ctnBtn hidden" id="ctnBtnInitialPreview">
+                    <button id="imgCapturar" class="btn"><img src="assets/img/camera.svg" id="svgCamera" alt=""></button>
+                    <button id="btnCapturar" class="btn">Capturar</button>
+                </div>
+                <div class="ctnBtn hidden" id="ctnBtnCaptura">
+                    <p id="captureTimer" class="timer">00:00:00:00</p>
+                    <button id="imgListo" class="btn"><img src="assets/img/recording.svg" alt=""></button>
+                    <button id="btnListo" class="btn">Listo</button>
+                </div>
+                <div class="ctnBtn hidden" id="ctnBtnLastPreview">
+                    <p id="previewTimer" class="timer">00:00:00:00</p>
+                    <div class="controlCtn">
+                        <div id="previewControls">
+                            <img src="assets/img/pause.svg" id="previewControlsImg" alt="">
+                        </div>
+                        <div id="visualTimer">
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                        </div>
                     </div>
-                    <div class="ctnBtn hidden" id="ctnBtnInitialPreview">
-                        <button id="imgCapturar" class="btn"><img src="assets/img/camera.svg" id="svgCamera" alt=""></button>
-                        <button id="btnCapturar" class="btn">Capturar</button>
-                    </div>
-                    <div class="ctnBtn hidden" id="ctnBtnCaptura">
-                        <p id="captureTimer" class="timer">00:00:00:00</p>
-                        <button id="imgListo" class="btn"><img src="assets/img/recording.svg" alt=""></button>
-                        <button id="btnListo" class="btn">Listo</button>
-                    </div>
-                    <div class="ctnBtn hidden" id="ctnBtnLastPreview">
-                        <p id="previewTimer" class="timer">00:00:00:00</p>
-                        <div><img src="assets/img/pause.svg" alt=""></div>
+                    <div>
                         <button class="btnSecundario" id="btnRepeat"><span>Repetir Captura</span></button>
                         <button class="btn" id="btnUpload">Subir Guifo</button>
                     </div>
-                    <div id="contenidoUploading" class="hidden">
-                        <img src="assets/img/globe.png" alt="">
-                        <h4>Estamos subiendo tu guifo…</h4>
-                        <p>Tiempo restante: <span class="tachado">38 años</span> algunos minutos</p>
-                    </div>
-                    <div class="ctnBtn hidden" id="ctnBtnUploading">
-                        <button class="btnSecundario" id="btnCancelUpload"><span>Cancelar</span></button>
-                    </div>
-                    <div class="ctnBtn hidden" id="ctnBtnFinal">
-                        <h4>Guifo creado con éxito</h4>
-                        <button class="btnSecundario" id="btnURL"><span>Copiar Enlace Guifo</span></button>
-                        <button class="btnSecundario" id="btnDownload"><span>Descargar Guifo</span></button>
-                        <button class="btn" id="btnToStart">Listo</button>
-                    </div>
+                </div>
+                <div id="contenidoUploading" class="hidden">
+                    <img src="assets/img/globe.png" alt="">
+                    <h4>Estamos subiendo tu guifo…</h4>
+                    <p>Tiempo restante: <span class="tachado">38 años</span> algunos minutos</p>
+                </div>
+                <div class="ctnBtn hidden" id="ctnBtnUploading">
+                    <button class="btnSecundario" id="btnCancelUpload"><span>Cancelar</span></button>
+                </div>
+                <div class="ctnBtn hidden" id="ctnBtnFinal">
+                    <h4>Guifo creado con éxito</h4>
+                    <button class="btnSecundario" id="btnURL"><span>Copiar Enlace Guifo</span></button>
+                    <button class="btnSecundario" id="btnDownload"><span>Descargar Guifo</span></button>
+                    <button class="btn" id="btnToStart">Listo</button>
                 </div>
             </div>
         </section>

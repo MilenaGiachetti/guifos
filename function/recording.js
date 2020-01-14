@@ -1,10 +1,7 @@
 const apiKey = 'HxeqWZObT2555n5inNEcjXprIyTed8Iq';
 
 let title = document.getElementById('title');
-let wimdowImg = document.getElementById('windowImg');
-let secondaryTitle = document.getElementById('secondaryTitle');
 let imgGIF = document.getElementById('imgGIF');
-let instrucciones = document.getElementById('instrucciones');
 let ctnBtnPrincipal = document.getElementById('ctnBtnPrincipal');
 let cancelLink = document.getElementById('cancelLink');
 let btnComenzar = document.getElementById('btnComenzar');
@@ -21,6 +18,8 @@ let btnDownload = document.getElementById('btnDownload');
 let btnToStart = document.getElementById('btnToStart');
 let svgCamera = document.getElementById('svgCamera');
 let svgArrow = document.getElementById('svgArrow');
+let gifContainer = document.getElementById('gifContainer');
+let startingPage = document.getElementById('startingPage');
 
 
 if(localStorage.getItem('theme') === 'theme-dark'){
@@ -58,11 +57,10 @@ cancelLink.addEventListener('click', () => {
 })
 btnComenzar.addEventListener('click', () => {
     title.textContent = 'Un Chequeo Antes de Empezar';
-    windowImg.classList.add('hidden');
-    secondaryTitle.classList.add('hidden');
-    instrucciones.classList.add('hidden');
+    startingPage.classList.add('hidden');
     ctnBtnPrincipal.classList.add('hidden');
     videoWindowClose.classList.remove('hidden');
+    gifContainer.classList.remove('hidden');
     video.classList.remove('hidden');
     ctnBtnInitialPreview.classList.remove('hidden');
     grabar();
@@ -132,7 +130,6 @@ ctnBtnCaptura.addEventListener('click', () => {
     recorder.stop((blob) => {
         console.log('Time is:'+hr + ':' + min + ':' + sec + ':' + msec);
         previewTimer.textContent = hr + ':' + min + ':' + sec + ':' + msec;
-
         blob = blob;
         video.srcObject = null;
         video.classList.add('hidden');
@@ -166,6 +163,7 @@ ctnBtnCaptura.addEventListener('click', () => {
                 console.log('Error al ejecutar Fetch' + error);
             })
             imgGIF.classList.add('hidden');    
+            gifContainer.classList.add('hidden');
             ctnBtnLastPreview.classList.add('hidden');
             contenidoUploading.classList.remove('hidden');
             ctnBtnUploading.classList.remove('hidden');
@@ -196,7 +194,6 @@ function calculateTimeDuration(secs) {
     if (min < 10) {
         min = "0" + min;
     }
-
     if (sec < 10) {
         sec = "0" + sec;
     }
