@@ -321,6 +321,20 @@ body main .crearGuifos p .enter{
     float: left;
     clear: none;
 }
+.timer{
+    padding: 5px;
+    width: 160px;
+    text-align: center;
+    background: #FFFFFF;
+    border: 1px solid #979797;
+    box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+    font-family: "chakraReg", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #110038;
+    line-height: 22px;
+    float: left;
+    letter-spacing: 3px;
+}
 /*body main .misGuifos div{
     display: -webkit-box;
   display: -ms-flexbox;

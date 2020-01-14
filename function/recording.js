@@ -41,6 +41,7 @@ let video = document.querySelector('video');
 let recorder;
 let ctnCreador = document.getElementById('ctnCreador');
 let previousPage = document.getElementById('previousPage');
+let captureTimer = document.getElementById('captureTimer');
 previousPage.addEventListener('click', () => {
     if(localStorage.getItem('currentPage') === 'index'){
         previousPage.setAttribute('href',"index.html");
@@ -102,8 +103,8 @@ function grabar(){
                 if(!recorder) {
                     return;
                 }
-                console.log('Recording Duration: ' + calculateTimeDuration((new Date().getTime() - dateStarted) / 1000));
-                setTimeout(looper, 1000);
+                calculateTimeDuration((new Date().getTime() - dateStarted) / 1000);
+                setTimeout(looper, 100);
             })();
             recorder.stream = stream;
             ctnBtnInitialPreview.classList.add('hidden');
@@ -125,23 +126,15 @@ function grabar(){
 let blob;
 let data;
 let form ;
-let newId;
-
-async function randomId(){
-    let url = 'https://api.giphy.com/v1/randomid?api_key=' + apiKey;
-    let resp = await fetch(url);
-    let random = await resp.json();
-    newId = random.data.random_id
-    return newId;
-}          
-
+  
+let previewTimer = document.getElementById('previewTimer');
 ctnBtnCaptura.addEventListener('click', () => {
     recorder.stop((blob) => {
-        newId = randomId();
-        console.log(newId);
+        console.log('Time is:'+hr + ':' + min + ':' + sec + ':' + msec);
+        previewTimer.textContent = hr + ':' + min + ':' + sec + ':' + msec;
+
         blob = blob;
         video.srcObject = null;
-        recorder= null;
         video.classList.add('hidden');
         imgGIF.classList.remove('hidden');    
         console.log(blob);
@@ -186,11 +179,20 @@ ctnBtnCaptura.addEventListener('click', () => {
     ctnBtnLastPreview.classList.remove('hidden');
     
 })
+let hr;
+let min;
+let sec;
+let msec;
 function calculateTimeDuration(secs) {
-    var hr = Math.floor(secs / 3600);
-    var min = Math.floor((secs - (hr * 3600)) / 60);
-    var sec = Math.floor(secs - (hr * 3600) - (min * 60));
-
+    hr = Math.floor(secs / 3600);
+    min = Math.floor((secs - (hr * 3600)) / 60);
+    sec = Math.floor(secs - (hr * 3600) - (min * 60));
+    msec = Math.floor((secs - (hr * 3600) - (min * 60)-sec)*100);
+    if (hr < 10) {
+        hr = "0" + hr;
+    }else if (hr === 0){
+        hr = '00'
+    }
     if (min < 10) {
         min = "0" + min;
     }
@@ -198,12 +200,10 @@ function calculateTimeDuration(secs) {
     if (sec < 10) {
         sec = "0" + sec;
     }
-
-    if(hr <= 0) {
-        return min + ':' + sec;
+    if (msec < 10){
+        msec = "0" + msec;
     }
-
-    return hr + ':' + min + ':' + sec;
+    captureTimer.textContent = hr + ':' + min + ':' + sec + ':' + msec;
 }
 
 
@@ -216,7 +216,17 @@ btnRepeat.addEventListener('click', () => {
 })
 
 
-/*            form = new FormData();
+/*            
+let newId;
+
+async function randomId(){
+    let url = 'https://api.giphy.com/v1/randomid?api_key=' + apiKey;
+    let resp = await fetch(url);
+    let random = await resp.json();
+    newId = random.data.random_id
+    return newId;
+}      
+form = new FormData();
             form.append('file', recorder.blob, 'myGuifo.gif');
             form.append('api_key', 'HxeqWZObT2555n5inNEcjXprIyTed8Iq');
             form.append('gif_id', base64data);
