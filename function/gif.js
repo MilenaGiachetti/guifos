@@ -17,7 +17,10 @@ let pageLeft = document.getElementById('pageLeft');
 let pageRight = document.getElementById('pageRight');
 let pageLeftTrend = document.getElementById('pageLeftTrend');
 let pageRightTrend = document.getElementById('pageRightTrend');
+let btnOpenMenu = document.getElementById('btnOpenMenu');
+let caretMenu = document.getElementById('caretMenu');
 let imgLupa = document.getElementById('imgLupa');
+let nav = document.getElementById('nav');
 
 let suggestItems = ['Morty','Rick','Dark','Star Wars','Planet','Death Note', 'Love','Baby Yoda', 'Yoda','Cat', 'Juego', 'Dancing', 'Typing', 'Game','Weird', 'Pig','Funny','Animation','Movies','Anime','Unicorn','Werk', 'Adventure Time', 'Gravity Falls', 'SpongeBob', 'Avocado', 'Vaca', 'Disney', 'Joker','Japón', 'Corea', 'Strange', 'Ñoño', 'Hola', 'Area 51', 'Comida', 'Baby Shark', 'Quiero', 'Queso', '1984', 'Queen', 'X-Men', 'Zorro'];
 if(localStorage.getItem('suggestions') === '' || localStorage.getItem('suggestions') === null ){
@@ -28,6 +31,7 @@ if(localStorage.getItem('theme') === 'theme-dark'){
     logo.setAttribute('src',"assets/img/logodark.png");
     imgLupa.setAttribute('src', 'assets/img/lupamiddlegray.svg')
     caret.classList.add('whiteCaret');
+    caretMenu.classList.add('whiteCaret');
     pageLeft.classList.add('whiteCaret');
     pageRight.classList.add('whiteCaret');
     pageLeftTrend.classList.add('whiteCaret');
@@ -37,6 +41,7 @@ if(localStorage.getItem('theme') === 'theme-dark'){
     logo.setAttribute('src',"assets/img/logo.png");
     imgLupa.setAttribute('src', 'assets/img/lupainactive.svg');
     caret.classList.remove('whiteCaret');
+    caretMenu.classList.remove('whiteCaret');
     pageLeft.classList.remove('whiteCaret');
     pageRight.classList.remove('whiteCaret');
     pageLeftTrend.classList.remove('whiteCaret');
@@ -51,6 +56,7 @@ dark.addEventListener('click',()=>{
     setTheme('theme-dark');
     logo.setAttribute('src',"assets/img/logodark.png");
     caret.classList.add('whiteCaret');
+    caretMenu.classList.add('whiteCaret');
     pageLeft.classList.add('whiteCaret');
     pageRight.classList.add('whiteCaret');
     pageLeftTrend.classList.add('whiteCaret');
@@ -67,6 +73,7 @@ light.addEventListener('click',()=>{
     setTheme('theme-light');
     logo.setAttribute('src',"assets/img/logo.png");
     caret.classList.remove('whiteCaret');
+    caretMenu.classList.remove('whiteCaret');
     pageLeft.classList.remove('whiteCaret');
     pageRight.classList.remove('whiteCaret');
     pageLeftTrend.classList.remove('whiteCaret');
@@ -88,6 +95,20 @@ function cerrarMenu (){
 document.addEventListener('click', ()=>{
     caret.classList.remove('open-caret');        
     dropdownMenu.classList.add('hidden');
+    if(nav.style.display == 'flex'){
+        nav.style.display = 'none'; 
+        caretMenu.classList.toggle('open-caret');               
+    }
+})
+btnOpenMenu.addEventListener('click', () => {
+    if(nav.style.display == 'flex'){
+        nav.style.display = 'none';        
+    }else{
+        nav.style.display = 'flex';
+    }
+    caretMenu.classList.toggle('open-caret'); 
+    event.stopPropagation();
+
 })
 //now the page when you go back
 localStorage.setItem('currentPage', 'index');
@@ -187,6 +208,14 @@ function busqueda(){
 function loadContent(respuesta){
     ctnBusqueda.innerHTML = '';
     console.log(respuesta.data.length);
+    let total = 0;
+    for (let i = 0; i < respuesta.data.length; i++) {
+        total++;
+        if(respuesta.data[i].images.fixed_height.width >= '360'){
+            total++;
+        }
+    }    
+    console.log(total);
     for (let i = (24*(currentPage-1)); i < (24*currentPage); i++) {
         let ctnTotal = document.createElement('div');
         ctnTotal.setAttribute('class', 'ctnTotal');
