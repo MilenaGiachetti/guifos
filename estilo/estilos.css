@@ -8,16 +8,6 @@
   src: url("../assets/font/ChakraPetch-Bold.ttf");
 }
 
-@keyframes giro{
-  from{transform: rotate(0deg);}
-  to{transform: rotate(180deg);}
-}
-.arriba{
-  transform: rotate(180deg);
-}
-.abajo{
-  transform: rotate(0deg);
-}
 .close-caret{
   transform: rotate(0deg);
   transition: all .25s ease-in;
@@ -280,6 +270,9 @@ body header .head nav .dropdown button .caret{
 .whiteCaret{
   filter: invert(100%);
 }
+.whiteCaret:hover{
+  filter: invert(70%);
+}
 body header .head nav .dropdown .dropdownContent {
   -webkit-box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 var(--light-shadow);
           box-shadow: inset -2px -2px 0 0 var(--bg-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
@@ -493,6 +486,9 @@ body main .busqueda #ctnBusqueda .ctnTotal:hover .ctnImg .img {
   height: 100%;
   width: 2rem;
 }
+#ctnBusquedaPages img:hover{
+  filter: invert(60%);
+}
 #ctnBusquedaPages #ctnPageBtn{
   display: inline;
 }
@@ -504,6 +500,9 @@ body main .busqueda #ctnBusqueda .ctnTotal:hover .ctnImg .img {
   padding: 0rem 1rem;
   margin: 2px;
   font-family: "chakraBold", Arial, Helvetica, sans-serif;
+}
+#ctnBusquedaPages #ctnPageBtn button:hover{
+  background: var(--btn-shadow);
 }
 #ctnBusquedaPages #ctnPageBtn .currentPageHighlight{
   background: var(--gradiente-primario);
@@ -639,6 +638,9 @@ body main .tendencia #ctnTrending .ctnTotal .ctnImg .img .title {
   height: 100%;
   width: 2rem;
 }
+#ctnTrendingPages img:hover{
+  filter: invert(60%);
+}
 #ctnTrendingPages #ctnPageBtnTrend{
   display: inline;
 }
@@ -650,6 +652,9 @@ body main .tendencia #ctnTrending .ctnTotal .ctnImg .img .title {
   padding: 0rem 1rem;
   margin: 2px;
   font-family: "chakraBold", Arial, Helvetica, sans-serif;
+}
+#ctnTrendingPages #ctnPageBtnTrend button:hover{
+  background: var(--btn-shadow);
 }
 #ctnTrendingPages #ctnPageBtnTrend .currentTrendPageHighlight{
   background: var(--gradiente-primario);

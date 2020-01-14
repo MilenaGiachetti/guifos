@@ -133,7 +133,7 @@ function busqueda(){
     titleBusq.classList.add('hidden');
     tagsSugeridos.classList.add('hidden');
     async function giphyBusqueda(busqueda){
-        let url = "https://api.giphy.com/v1/gifs/search?q=" + busqueda + "&api_key=" + apiKey + "&limit=240&rating=PG";
+        let url = "https://api.giphy.com/v1/gifs/search?q=" + busqueda + "&api_key=" + apiKey + "&limit=192&rating=PG";
         const resp = await fetch(url);
         const datos = await resp.json();
         return datos;
@@ -407,7 +407,7 @@ for (let i = 0; i < 4; i++) {
 }
 //trending
 async function giphyTrending(){
-    let url = "https://api.giphy.com/v1/gifs/trending?api_key=" + apiKey + "&limit=240&rating=PG";
+    let url = "https://api.giphy.com/v1/gifs/trending?api_key=" + apiKey + "&limit=192&rating=PG";
     const resp = await fetch(url);
     const trendingDatos = await resp.json();
     return trendingDatos;
