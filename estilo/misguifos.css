@@ -139,6 +139,17 @@ body header .head nav {
             align-items: center;
     font-size: 0;
 }
+#btnOpenMenu{
+  display: none;
+}
+#btnOpenMenu .texto{
+  width: 100px;
+}
+#btnOpenMenu img{
+  position: relative;
+  top: 10px;
+  left: 75px;
+}
 .btn {
     height: 36px;
     background: var(--gradiente-primario);
@@ -331,6 +342,85 @@ body main .misGuifos div .ctnTotal .ctnImg {
   top: 0;
   background-size: cover;
 }*/
-@media screen and (max-width:1200px){
+@media screen and (max-width: 900px){
+  html{
+    font-size: 14px;
+  }
+  body header .head #logo {
+    width: 5rem;
+  }
+  body header .head nav {
+    display: none;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 0;
+    -webkit-box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 var(--light-shadow);
+            box-shadow: inset -2px -2px 0 0 var(--bg-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
+    position: absolute;
+    z-index: 4;
+    right: 10%;
+    top: 94px;
+    width: 230px;
+    height: 160px;
+    background: var(--fondo-secundario);
+    padding: 5px;
+  }
+  body header .head nav .texto{
+    width: 138px;
+  }
+  body header .head nav a .texto{
+    width: 180px;
+  }
+  body header .head nav .enlace{
+    text-align: center;
+    width: 180px;
+    padding: 6px 0;
+  }
+  #btnOpenMenu{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  #btnOpenMenu .texto{
+    width: 225px;
+  }
+}
 
+@media screen and (max-width: 475px){
+  body header .head #logo {
+    width: 4rem;
+  }
+  body header .head nav {
+    right: 10%;
+    top: 105px;
+
+    width: 160px;
+    height: 160px;
+    background: var(--fondo-secundario);
+    padding: 5px;
+  }
+  body header .head nav #btnTexto .texto{
+    width: 74px;
+    line-height: 14px;
+  }
+  body header .head nav a .texto{
+    width: 116px;
+  }
+  body header .head nav .enlace{
+    text-align: center;
+    width: 100px;
+    padding: 6px 0;
+  }
+  #btnOpenMenu{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  #btnOpenMenu .texto{
+    width: 154px;
+  }
+  #btnOpenMenu img {
+    left: 40px;
+  }
 }

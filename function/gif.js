@@ -108,9 +108,8 @@ btnOpenMenu.addEventListener('click', () => {
     }
     caretMenu.classList.toggle('open-caret'); 
     event.stopPropagation();
-
 })
-//now the page when you go back
+//know the page when you go back
 localStorage.setItem('currentPage', 'index');
 
 //busqueda 
