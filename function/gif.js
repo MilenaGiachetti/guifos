@@ -123,7 +123,8 @@ let noResults = false;
 let ctnPageBtn = document.getElementById('ctnPageBtn');
 let ctnBusquedaPages = document.getElementById('ctnBusquedaPages');
 let currentPage = 1;
-let biggerPage;
+let biggerPage = 1;
+let firstIndexSearch = [0];
 function busqueda(){
     currentPage = 1;
     ctnBusquedaPages.classList.add('hidden');
@@ -149,11 +150,30 @@ function busqueda(){
             titleBusq.textContent = "Resultados de: '" + inputBusqueda.value+"'";
             loadContent(respuesta);
         }else{
+            let j = 0;
+            for(let i = 0; i < respuesta.data.length; i++){
+                if(j > 22){
+                    j = 0;
+                    firstIndexSearch.push(i);
+                    biggerPage++;
+                }
+                if(respuesta.data[i].images.fixed_height.width >= '360'){
+                    if(j > 21){
+                        j = 0;
+                        firstIndexSearch.push(i);
+                        biggerPage++;
+                    }
+                    j++;
+                }
+                j++;
+                if(i === (respuesta.data.length-1)){
+                    firstIndexSearch.push(i);
+                }
+            }
             ctnBusquedaPages.classList.remove('hidden');
             titleBusq.classList.remove('hidden');
             tagsSugeridos.classList.remove('hidden');
             titleBusq.textContent = "Resultados de: '" + inputBusqueda.value+"'";
-            biggerPage = Math.ceil(respuesta.data.length/24);
             for(let i = 1; i <= biggerPage; i++){
                 let button = document.createElement('button');
                 button.textContent = i;
@@ -206,16 +226,7 @@ function busqueda(){
 
 function loadContent(respuesta){
     ctnBusqueda.innerHTML = '';
-    console.log(respuesta.data.length);
-    let total = 0;
-    for (let i = 0; i < respuesta.data.length; i++) {
-        total++;
-        if(respuesta.data[i].images.fixed_height.width >= '360'){
-            total++;
-        }
-    }    
-    console.log(total);
-    for (let i = (24*(currentPage-1)); i < (24*currentPage); i++) {
+    for (let i = (firstIndexSearch[currentPage-1]); i <= (firstIndexSearch[currentPage]); i++) {
         let ctnTotal = document.createElement('div');
         ctnTotal.setAttribute('class', 'ctnTotal');
         let ctnImg = document.createElement('div');
@@ -226,43 +237,26 @@ function loadContent(respuesta){
         /*background-size: auto 100%;*/
         img.style.backgroundSize = 'auto 100%';
         if(respuesta.data[i].images.fixed_height.width >= '360'){
-            if(i !== (24*currentPage-1)||i !== (24*currentPage-1)){
+            if(i !== firstIndexSearch[currentPage]){
                 ctnTotal.classList.add('largeTotal');
                 ctnImg.classList.add('largeImg');
             }
-            i++;
-                        //mover img
-            img.addEventListener('mouseenter', function(){
-                this.style.background = 'url('+respuesta.data[i-1].images.fixed_height.url+') center center';
-                this.style.backgroundSize = 'auto 100%';
-            });
-            //pausar img
-            img.addEventListener('mouseleave', function(){
-                this.style.background = 'url('+respuesta.data[i-1].images.fixed_height_still.url+') center center'
-                this.style.backgroundSize = 'auto 100%';
-    
-            });
-            //url al clickear
-            img.addEventListener('click', function(){
-                window.open(respuesta.data[i-1].url,'_blank');
-            });
-        }else{
-            //mover img
-            img.addEventListener('mouseenter', function(){
-                this.style.background = 'url('+respuesta.data[i].images.fixed_height.url+') center center'
-                this.style.backgroundSize = 'auto 100%';
-            });
-            //pausar img
-            img.addEventListener('mouseleave', function(){
-                this.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center'
-                this.style.backgroundSize = 'auto 100%';
-    
-            });
-            //url al clickear
-            img.addEventListener('click', function(){
-                window.open(respuesta.data[i].url,'_blank');
-            });
         }
+        //mover img
+        img.addEventListener('mouseenter', function(){
+            this.style.background = 'url('+respuesta.data[i].images.fixed_height.url+') center center'
+            this.style.backgroundSize = 'auto 100%';
+        });
+        //pausar img
+        img.addEventListener('mouseleave', function(){
+            this.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center'
+            this.style.backgroundSize = 'auto 100%';
+
+        });
+        //url al clickear
+        img.addEventListener('click', function(){
+            window.open(respuesta.data[i].url,'_blank');
+        });
         ctnImg.appendChild(img);
         ctnTotal.appendChild(ctnImg);
         ctnBusqueda.appendChild(ctnTotal);
@@ -423,7 +417,7 @@ for (let i = 0; i < 4; i++) {
 }
 //trending
 async function giphyTrending(){
-    let url = "https://api.giphy.com/v1/gifs/trending?api_key=" + apiKey + "&limit=192&rating=PG";
+    let url = "https://api.giphy.com/v1/gifs/trending?api_key=" + apiKey + "&limit=160&rating=PG";
     const resp = await fetch(url);
     const trendingDatos = await resp.json();
     return trendingDatos;
@@ -432,10 +426,33 @@ trendingDatos = giphyTrending();
 
 let ctnTrendingPages = document.getElementById('ctnTrendingPages');
 let ctnPageBtnTrend = document.getElementById('ctnPageBtnTrend');
+let firstIndex = [0];
 let currentTrendingPage = 1;
-let maxPageTrending;
+let maxPageTrending = 1;
 trendingDatos.then((respuesta)=>{
-    maxPageTrending = Math.ceil(respuesta.data.length/24);
+
+    let j = 0;
+    for(let i = 0; i < respuesta.data.length; i++){
+        if(j > 22){
+            j = 0;
+            firstIndex.push(i);
+            maxPageTrending++;
+        }
+        if(respuesta.data[i].images.fixed_height.width >= '360'){
+            if(j > 21){
+                j = 0;
+                firstIndex.push(i);
+                maxPageTrending++;
+            }
+            j++;
+        }
+        j++;
+        if(i === (respuesta.data.length-1)){
+            firstIndex.push(i);
+        }
+    }
+    console.log(firstIndex);
+    console.log(maxPageTrending);
     for(let i = 1; i <= maxPageTrending; i++){
         let button = document.createElement('button');
         button.textContent = i;
@@ -473,7 +490,7 @@ trendingDatos.then((respuesta)=>{
 });
 function loadTrendingPage(respuesta){
     ctnTrending.innerHTML = '';
-    for (let i = (24*(currentTrendingPage-1)); i < (24*currentTrendingPage); i++) {
+    for (let i = (firstIndex[currentTrendingPage-1]); i <= (firstIndex[currentTrendingPage]); i++) {
         let content;
         let titleStr;
         let ctnTotal = document.createElement('div');
@@ -484,58 +501,32 @@ function loadTrendingPage(respuesta){
         img.setAttribute('class', 'img');
         img.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center';
         img.style.backgroundSize = 'auto 100%';
-        console.log(respuesta.data[i]);
         if(respuesta.data[i].images.fixed_height.width >= '360'){
-            if(i !== (24*currentTrendingPage-1)){
+            if(i !== firstIndex[currentTrendingPage]){
                 ctnTotal.classList.add('largeTotal');
                 ctnImg.classList.add('largeImg');
             }
-                //mover img
-            img.addEventListener('mouseenter', function(){
-                this.style.background = 'url('+respuesta.data[i-1].images.fixed_height.url+') center center'
-                this.style.backgroundSize = 'auto 100%';
-            });
-            //pausar img
-            img.addEventListener('mouseleave', function(){
-                this.style.background = 'url('+respuesta.data[i-1].images.fixed_height_still.url+') center center'
-                this.style.backgroundSize = 'auto 100%';
-            });
-            //url al clickear
-            img.addEventListener('click', ()=>{
-                window.open(respuesta.data[i-1].url,'_blank');
-            });
-            content = document.createElement('p');
-            content.setAttribute('class', 'title');
-            titleStr = respuesta.data[i].title.charAt(0).toUpperCase() + respuesta.data[i].title.substring(1); 
-            content.textContent = titleStr.slice(0, titleStr.indexOf("GIF")); 
-            if(content.textContent === ''){ 
-                content.classList.add('hidden'); 
-            }
-            i++
-        }else{
-            //mover img
-            img.addEventListener('mouseenter', function(){
-                this.style.background = 'url('+respuesta.data[i].images.fixed_height.url+') center center'
-                this.style.backgroundSize = 'auto 100%';
-            });
-            //pausar img
-            img.addEventListener('mouseleave', function(){
-                this.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center'
-                this.style.backgroundSize = 'auto 100%';
-            });
-            //url al clickear
-            img.addEventListener('click', ()=>{
-                window.open(respuesta.data[i].url,'_blank');
-            });
-            console.log(respuesta.data[i]);
-
-            content = document.createElement('p');
-            content.setAttribute('class', 'title');
-            titleStr = respuesta.data[i].title.charAt(0).toUpperCase() + respuesta.data[i].title.substring(1); 
-            content.textContent = titleStr.slice(0, titleStr.indexOf("GIF")); 
-            if(content.textContent === ''){ 
-                content.classList.add('hidden'); 
-            }
+        }
+        //mover img
+        img.addEventListener('mouseenter', function(){
+            this.style.background = 'url('+respuesta.data[i].images.fixed_height.url+') center center'
+            this.style.backgroundSize = 'auto 100%';
+        });
+        //pausar img
+        img.addEventListener('mouseleave', function(){
+            this.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center'
+            this.style.backgroundSize = 'auto 100%';
+        });
+        //url al clickear
+        img.addEventListener('click', ()=>{
+            window.open(respuesta.data[i].url,'_blank');
+        });
+        content = document.createElement('p');
+        content.setAttribute('class', 'title');
+        titleStr = respuesta.data[i].title.charAt(0).toUpperCase() + respuesta.data[i].title.substring(1); 
+        content.textContent = titleStr.slice(0, titleStr.indexOf("GIF")); 
+        if(content.textContent === ''){ 
+            content.classList.add('hidden'); 
         }
         img.appendChild(content);
         ctnImg.appendChild(img);
