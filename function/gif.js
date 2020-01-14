@@ -231,22 +231,38 @@ function loadContent(respuesta){
                 ctnImg.classList.add('largeImg');
             }
             i++;
+                        //mover img
+            img.addEventListener('mouseenter', function(){
+                this.style.background = 'url('+respuesta.data[i-1].images.fixed_height.url+') center center';
+                this.style.backgroundSize = 'auto 100%';
+            });
+            //pausar img
+            img.addEventListener('mouseleave', function(){
+                this.style.background = 'url('+respuesta.data[i-1].images.fixed_height_still.url+') center center'
+                this.style.backgroundSize = 'auto 100%';
+    
+            });
+            //url al clickear
+            img.addEventListener('click', function(){
+                window.open(respuesta.data[i-1].url,'_blank');
+            });
+        }else{
+            //mover img
+            img.addEventListener('mouseenter', function(){
+                this.style.background = 'url('+respuesta.data[i].images.fixed_height.url+') center center'
+                this.style.backgroundSize = 'auto 100%';
+            });
+            //pausar img
+            img.addEventListener('mouseleave', function(){
+                this.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center'
+                this.style.backgroundSize = 'auto 100%';
+    
+            });
+            //url al clickear
+            img.addEventListener('click', function(){
+                window.open(respuesta.data[i].url,'_blank');
+            });
         }
-        //mover img
-        img.addEventListener('mouseenter', function(){
-            this.style.background = 'url('+respuesta.data[i].images.fixed_height.url+') center center'
-            this.style.backgroundSize = 'auto 100%';
-        });
-        //pausar img
-        img.addEventListener('mouseleave', function(){
-            this.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center'
-            this.style.backgroundSize = 'auto 100%';
-
-        });
-        //url al clickear
-        img.addEventListener('click', function(){
-            window.open(respuesta.data[i].url,'_blank');
-        });
         ctnImg.appendChild(img);
         ctnTotal.appendChild(ctnImg);
         ctnBusqueda.appendChild(ctnTotal);
@@ -458,6 +474,8 @@ trendingDatos.then((respuesta)=>{
 function loadTrendingPage(respuesta){
     ctnTrending.innerHTML = '';
     for (let i = (24*(currentTrendingPage-1)); i < (24*currentTrendingPage); i++) {
+        let content;
+        let titleStr;
         let ctnTotal = document.createElement('div');
         ctnTotal.setAttribute('class', 'ctnTotal');
         let ctnImg = document.createElement('div');
@@ -466,34 +484,58 @@ function loadTrendingPage(respuesta){
         img.setAttribute('class', 'img');
         img.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center';
         img.style.backgroundSize = 'auto 100%';
+        console.log(respuesta.data[i]);
         if(respuesta.data[i].images.fixed_height.width >= '360'){
-            if(i !== (24*currentTrendingPage-1)||i !== (24*currentTrendingPage-1)){
+            if(i !== (24*currentTrendingPage-1)){
                 ctnTotal.classList.add('largeTotal');
                 ctnImg.classList.add('largeImg');
-                console.log(i);
             }
-            i++;
-        }
-        //mover img
-        img.addEventListener('mouseenter', function(){
-            this.style.background = 'url('+respuesta.data[i].images.fixed_height.url+') center center'
-            this.style.backgroundSize = 'auto 100%';
-        });
-        //pausar img
-        img.addEventListener('mouseleave', function(){
-            this.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center'
-            this.style.backgroundSize = 'auto 100%';
-        });
-        //url al clickear
-        img.addEventListener('click', ()=>{
-            window.open(respuesta.data[i].url,'_blank');
-        });
-        let content = document.createElement('p');
-        content.setAttribute('class', 'title');
-        let titleStr = respuesta.data[i].title.charAt(0).toUpperCase() + respuesta.data[i].title.substring(1); 
-        content.textContent = titleStr.slice(0, titleStr.indexOf("GIF")); 
-        if(content.textContent === ''){ 
-            content.classList.add('hidden'); 
+                //mover img
+            img.addEventListener('mouseenter', function(){
+                this.style.background = 'url('+respuesta.data[i-1].images.fixed_height.url+') center center'
+                this.style.backgroundSize = 'auto 100%';
+            });
+            //pausar img
+            img.addEventListener('mouseleave', function(){
+                this.style.background = 'url('+respuesta.data[i-1].images.fixed_height_still.url+') center center'
+                this.style.backgroundSize = 'auto 100%';
+            });
+            //url al clickear
+            img.addEventListener('click', ()=>{
+                window.open(respuesta.data[i-1].url,'_blank');
+            });
+            content = document.createElement('p');
+            content.setAttribute('class', 'title');
+            titleStr = respuesta.data[i].title.charAt(0).toUpperCase() + respuesta.data[i].title.substring(1); 
+            content.textContent = titleStr.slice(0, titleStr.indexOf("GIF")); 
+            if(content.textContent === ''){ 
+                content.classList.add('hidden'); 
+            }
+            i++
+        }else{
+            //mover img
+            img.addEventListener('mouseenter', function(){
+                this.style.background = 'url('+respuesta.data[i].images.fixed_height.url+') center center'
+                this.style.backgroundSize = 'auto 100%';
+            });
+            //pausar img
+            img.addEventListener('mouseleave', function(){
+                this.style.background = 'url('+respuesta.data[i].images.fixed_height_still.url+') center center'
+                this.style.backgroundSize = 'auto 100%';
+            });
+            //url al clickear
+            img.addEventListener('click', ()=>{
+                window.open(respuesta.data[i].url,'_blank');
+            });
+            console.log(respuesta.data[i]);
+
+            content = document.createElement('p');
+            content.setAttribute('class', 'title');
+            titleStr = respuesta.data[i].title.charAt(0).toUpperCase() + respuesta.data[i].title.substring(1); 
+            content.textContent = titleStr.slice(0, titleStr.indexOf("GIF")); 
+            if(content.textContent === ''){ 
+                content.classList.add('hidden'); 
+            }
         }
         img.appendChild(content);
         ctnImg.appendChild(img);
