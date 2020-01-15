@@ -121,30 +121,10 @@ function grabar(){
         }
     })
 }
-/*if(respuesta.data.length === 0){
-                    //ctnBusqueda.innerHTML = "<p class='error'>OOPS! Todavía no has creado ningún Guifo.</p>";*/
-/*function generateMisGuifos (){
-    let storageMisGuifosActual = JSON.parse(localStorage.misGuifos);
-    //ctnBusqueda.innerHTML = '';
-    for(let i = 0; i < storageMisGuifosActual.length; i++){
-            async function generateMyGuifo(busqueda){
-                let url = "http://api.giphy.com/v1/gifs/" + id + "?api_key=" + apiKey;
-                const resp = await fetch(url);
-                const datos = await resp.json();
-                return datos;
-            }
-            datos = generateMyGuifo();
-            datos.then((respuesta) => {
-            
-                    
-            }
-
-    }
-}*/
 if (localStorage.getItem("misGuifos") !== null) {
     let storageMisGuifosActual = JSON.parse(localStorage.misGuifos);
         //ctnMisGuifos.innerHTML = '';
-    for(let i = 0; i < storageMisGuifosActual.length; i++){
+    for(let i = storageMisGuifosActual.length-1 ; i >= 0; i--){
         generateMisGuifos (storageMisGuifosActual[i]);
     }
 }
@@ -173,16 +153,25 @@ function generateMisGuifos (id){
                 ctnImg.classList.add('largeImg');
             }
         }
+        img.addEventListener('click', function(){
+            window.open(respuesta.data.url,'_blank');
+        });
         ctnImg.appendChild(img);
         ctnTotal.appendChild(ctnImg);
-        ctnMisGuifos.appendChild(ctnTotal);
+        if(idAdded !== true){
+            ctnMisGuifos.appendChild(ctnTotal);
+        }else{
+            ctnMisGuifos.insertBefore(ctnTotal, ctnMisGuifos.firstChild);
+            idAdded === false;
+        }
     })
 }
 
 let blob;
 let data;
 let form ;
-  
+let idAdded = false;
+
 let previewTimer = document.getElementById('previewTimer');
 ctnBtnCaptura.addEventListener('click', () => {
     recorder.stop((blob) => {
@@ -232,6 +221,8 @@ ctnBtnCaptura.addEventListener('click', () => {
                         localStorage.setItem("misGuifos", JSON.stringify(misGuifosActual));    
                     }
                     console.log(response.data.id);
+                    idAdded = true;
+                    generateMisGuifos (newId);
                 });
                 imgGIF.classList.add('hidden');    
                 gifContainer.classList.add('hidden');
@@ -287,118 +278,4 @@ if (localStorage.getItem("misGuifos") === null) {
     misGuifosActual.push(newId);
     localStorage.setItem("misGuifos", JSON.stringify(misGuifosActual));    
 }
-*/
-
-
-
-
-/*            
-let newId;
-
-async function randomId(){
-    let url = 'https://api.giphy.com/v1/randomid?api_key=' + apiKey;
-    let resp = await fetch(url);
-    let random = await resp.json();
-    newId = random.data.random_id
-    return newId;
-}      
-form = new FormData();
-            form.append('file', recorder.blob, 'myGuifo.gif');
-            form.append('api_key', 'HxeqWZObT2555n5inNEcjXprIyTed8Iq');
-            form.append('gif_id', base64data);
-
-            let reader = new FileReader();
-            reader.readAsDataURL(recorder.blob); 
-            reader.onload = function(){
-                base64data = reader.result;                
-                console.log(base64data);
-                function uploadToGiphy(){
-                    console.log(base64data);
-                    fetch('https://upload.giphy.com/v1/gifs?api_key=HxeqWZObT2555n5inNEcjXprIyTed8Iq',{
-                        method: 'POST',
-                        headers: {
-                            'api_key' : 'HxeqWZObT2555n5inNEcjXprIyTed8Iq',
-                            'username' : 'Milenaag',
-                            'Content-Type': 'multipart/form-data',
-                            //'gif_id' : base64data
-                        },
-                        data : {
-                            api_key : 'HxeqWZObT2555n5inNEcjXprIyTed8Iq',
-                            file: {
-                                value: base64data,
-                                contentType: 'image/gif'
-                            },
-                        },
-                        mode: 'no-cors',
-                        body: form,
-                    })
-                    .then((response) => {
-                        if (response.ok) {
-                            let json = response.json();
-                            console.log(json);
-                            return json;
-                        }else{
-                            console.log('Problema subiendo el GIF');
-                        }
-                    })
-                    .catch((error) => {
-                        console.log('Error al ejecutar Fetch' + error);
-                    })
-                }
-                uploadToGiphy();
-            }
-        form = new FormData();
-            form.append('file', base64data, 'myGuifo.gif');
-            form.append('api_key', 'HxeqWZObT2555n5inNEcjXprIyTed8Iq');
-        form.append('username', 'Milenaag');;
-        form.append('gif_id', newId);
-
-
-            console.log(form.get('file'));
-            upload(postData).then((gifUrl) => {
-                console.log('Posted to' + gifUrl);
-                data = {
-                    api_key : 'HxeqWZObT2555n5inNEcjXprIyTed8Iq',
-                    file: {
-                        value: recorder.blob,
-                        contentType: 'image/gif'
-                    }
-                }*/
-/*function upload(postData){
-    let options = {
-        url: 'https://upload.giphy.com/v1/gifs&api_key=;'+ postData.api_key,
-        formData: {
-            api_key = 'HxeqWZObT2555n5inNEcjXprIyTed8Iq',
-            file: {
-                value: recorder.blob,
-                contentType: 'myGuifo.gif'
-            }
-        },
-        json: true
-    };
-    console.log('Uploading via '+ options.url);
-    const promise = new Promise((resolve, reject) => {
-        request.post(options, function(e, resp, body){
-            if(e  || resp.statusCode !== 200) console.log('giphy upload failed: ' + e);
-            resolve('https://media.giphy.com/media/'+body.data.id+'/giphy.gif')
-        });
-    });
-    return p
-    /*async function giphyUpload(gif){
-        let url = "https://upload.giphy.com/v1/gifs&api_key=" + apiKey;
-        const resp = await post(url);
-        const datos = await resp.json();
-        return datos;
-    }
-    datos = giphyUpload(gif);
-    datos.then(function(respuesta){
-        console.log(respuesta);
-    });
-}*/
-
-
-
-//api.giphy.com/v1/gifs gif by id endpoint
-/*para guardar gifs en la compu creo q se puede agregar nombre del archivo como segundo parametro: blob, 'miGuifo.(extension de gif)'
-        invokeSaveAsDialog(blob, 'miGuifo');
 */

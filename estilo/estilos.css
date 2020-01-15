@@ -482,7 +482,6 @@ body main .busqueda #ctnBusqueda .ctnTotal:hover .ctnImg .img {
   flex-flow: row nowrap;
   justify-content: center;
   margin-top: 3rem;
-  margin-bottom: 5rem;
   height: 2.5rem;
 }
 #ctnBusquedaPages img{
@@ -637,7 +636,6 @@ body main .tendencia #ctnTrending .ctnTotal .ctnImg .img .title {
   flex-flow: row nowrap;
   justify-content: center;
   margin-top: 3rem;
-  margin-bottom: 5rem;
   height: 2.5rem;
 }
 #ctnTrendingPages img{
@@ -669,7 +667,19 @@ body main .tendencia #ctnTrending .ctnTotal .ctnImg .img .title {
 body main .busqueda .buscar .lineaBusq .btnBuscar .texto{
   color: var(--color-fuente-nav);
 }
-
+.linkTop{
+  display: inline-block;
+  width: 100%;
+  text-align: right;
+  text-decoration: none;
+  color: var(--color-fuente-nav);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.linkTop img{
+  width: 20px;
+  height: 20px;
+}
 @media screen and (max-width: 1400px){
   body main .busqueda #ctnBusqueda {
     grid-template-columns: repeat(4, 1fr);
@@ -807,6 +817,9 @@ body main .busqueda .buscar .lineaBusq .btnBuscar .texto{
     grid-column-end: span 1;
     grid-row-end: span 1;
   }
+  .linkTop{
+    margin-top: 5rem;
+  }
 }
 @media screen and (max-width: 475px){
   body header .head #logo {
@@ -846,6 +859,9 @@ body main .busqueda .buscar .lineaBusq .btnBuscar .texto{
   }
   #btnOpenMenu img {
     left: 40px;
+  }
+  .linkTop{
+    margin-top: 7rem;
   }
 }
 

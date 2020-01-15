@@ -1,3 +1,6 @@
+const apiKey = 'HxeqWZObT2555n5inNEcjXprIyTed8Iq';
+
+
 let light = document.getElementById('light');
 let dark = document.getElementById('dark');
 let dropdownCaret = document.getElementById('dropdownCaret');
@@ -65,3 +68,42 @@ btnOpenMenu.addEventListener('click', () => {
 })
 localStorage.setItem('currentPage', 'misGuifos');
 
+if (localStorage.getItem("misGuifos") !== null) {
+    let storageMisGuifosActual = JSON.parse(localStorage.misGuifos);
+        //ctnMisGuifos.innerHTML = '';
+    for(let i = storageMisGuifosActual.length-1 ; i >= 0; i--){
+        generateMisGuifos (storageMisGuifosActual[i]);
+    }
+}
+let ctnMisGuifos = document.getElementById('ctnMisGuifos');
+function generateMisGuifos (id){
+    async function generateMyGuifo(id){
+        let url = "http://api.giphy.com/v1/gifs/" + id + "?api_key=" + apiKey;
+        const resp = await fetch(url);
+        const datos = await resp.json();
+        return datos;
+    }
+    datos = generateMyGuifo(id);
+    datos.then((respuesta) => {
+        let ctnTotal = document.createElement('div');
+        ctnTotal.setAttribute('class', 'ctnTotal');
+        let ctnImg = document.createElement('div');
+        ctnImg.setAttribute('class', 'ctnImg');
+        let img = document.createElement('div');
+        img.setAttribute('class', 'img');  
+        img.style.background = 'url('+respuesta.data.images.fixed_height.url+') center center';
+        img.style.backgroundSize = 'auto 100%';
+        if(respuesta.data.images.fixed_height.width >= '360'){
+            if(i !== firstIndexSearch[currentPage]){
+                ctnTotal.classList.add('largeTotal');
+                ctnImg.classList.add('largeImg');
+            }
+        }
+        img.addEventListener('click', function(){
+            window.open(respuesta.data.url,'_blank');
+        });
+        ctnImg.appendChild(img);
+        ctnTotal.appendChild(ctnImg);
+        ctnMisGuifos.appendChild(ctnTotal);
+    })
+}

@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <p class="title topTitle">¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas: <span id="visitas"> 12.765.803</span></p>
+        <p class="title topTitle" id="top">¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas: <span id="visitas"> 12.765.803</span></p>
         <h1>Guifos</h1>
         <div class="head">
             <a href="index.html"><img src="assets/img/logo.png" id="logo" alt=""></a>
@@ -44,10 +44,11 @@
                 <h2 class="title">Buscar</h2>
                 <div class="lineaBusq">
                     <input type="text" placeholder="Busca gifs, hashtags, temas, busca lo que quieras…" id="inputBusqueda">
-                    <button type="submit" class="btnInactivo" id="btnBusqueda"><span class="texto">
-                        <img src="assets/img/lupainactive.svg" id="imgLupa" alt="">
-                        Buscar
-                    </span>
+                    <button type="submit" class="btnInactivo" id="btnBusqueda">
+                        <span class="texto">
+                            <img src="assets/img/lupainactive.svg" id="imgLupa" alt="">
+                            Buscar
+                        </span>
                     </button>
                 </div>
             </div>
@@ -56,18 +57,15 @@
                 <div class="sugBusq" id="cuadroSug2"><span id="resultado2" ></span></div>
                 <div class="sugBusq" id="cuadroSug3"><span id="resultado3" ></span></div>
             </div>
-            <div id="tagsSugeridos" class="hidden">
-                <div class="btnSecundario"><span>#Un ejemplo</span></div>
-                <div class="btnSecundario"><span>#Un ejemplomaslargo</span></div>
-                <div class="btnSecundario"><span>#tagsrelacionados</span></div>
-            </div>
+            <div id="tagsSugeridos" class="hidden"></div>
             <h2 id="titleBusq" class="hidden">Ejemplo de búsqueda (resultados)</h2>
             <div id="ctnBusqueda"></div>
             <div id="ctnBusquedaPages" class="hidden">
-                <img id="pageLeft" class="caret" src="assets/img/caret-left.svg" alt="">
+                <div id="ctnPageLeft"></div>
                 <div id="ctnPageBtn"></div>
-                <img id="pageRight" class="caret" src="assets/img/caret-right.svg" alt="">
+                <div id="ctnPageRight"></div>
             </div>
+            <a href="#top" id="GoToTopSearch" class="linkTop hidden">Ir arriba <img id="caretTopSearch" src="assets/img/caret-up.svg" alt=""></a>
         </section>
         <section class="sugerencias">
             <h2>Hoy te sugerimos:</h2>
@@ -81,6 +79,7 @@
                 <div id="ctnPageBtnTrend"></div>
                 <img id="pageRightTrend" class="caret" src="assets/img/caret-right.svg" alt="">
             </div>
+            <a href="#top" class="linkTop">Ir arriba <img id="caretTopTrend" src="assets/img/caret-up.svg" alt=""></a>
         </section>
     </main>
     <script src="function/gif.js"></script>
