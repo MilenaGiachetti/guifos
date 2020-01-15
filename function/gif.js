@@ -136,14 +136,15 @@ function saveTags() {
 function displayTags() {
     tagsSugeridos.innerHTML = '';
     lastSearchTags = JSON.parse(localStorage.searchTags);
-    for(i = (lastSearchTags.length - 1); i >= 0; i--){0
+    for(i = (lastSearchTags.length - 1); i >= (lastSearchTags.length - 11); i--){0
         let tag = document.createElement('div');
         tag.classList.add('btnSecundario');
         let tagSpan = document.createElement('span');
-        tagSpan.textContent = lastSearchTags[i];
+        tagSpan.textContent = '#'+lastSearchTags[i];
         tag.appendChild(tagSpan);
         tagSpan.addEventListener('click', () => {
-            inputBusqueda.value = tagSpan.textContent;
+            let newInput = tagSpan.textContent;
+            inputBusqueda.value = newInput.substring(1);
             busqueda();
         })
         tagsSugeridos.appendChild(tag);

@@ -96,7 +96,7 @@ h2 {
   margin: 3rem auto 0 auto;
   font-size: 1.5rem;
   font-family: "chakraReg", Arial, Helvetica, sans-serif;
-  grid-column-end: span 4;
+  grid-column-end: span 8;
 }
 .title {
   background-image: -webkit-gradient(linear, right top, left top, from(  var(--gradiente-primario)), to(var(--gradiente-secundario)));
