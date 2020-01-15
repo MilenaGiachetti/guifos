@@ -108,6 +108,8 @@ function grabar(){
             ctnBtnInitialPreview.classList.add('hidden');
             ctnBtnCaptura.classList.remove('hidden');
         })
+
+
     })
     .catch((error) => {
         if(error.name === 'ConstraintNotSatisfiedError'){
@@ -119,7 +121,63 @@ function grabar(){
         }
     })
 }
+/*if(respuesta.data.length === 0){
+                    //ctnBusqueda.innerHTML = "<p class='error'>OOPS! Todavía no has creado ningún Guifo.</p>";*/
+/*function generateMisGuifos (){
+    let storageMisGuifosActual = JSON.parse(localStorage.misGuifos);
+    //ctnBusqueda.innerHTML = '';
+    for(let i = 0; i < storageMisGuifosActual.length; i++){
+            async function generateMyGuifo(busqueda){
+                let url = "http://api.giphy.com/v1/gifs/" + id + "?api_key=" + apiKey;
+                const resp = await fetch(url);
+                const datos = await resp.json();
+                return datos;
+            }
+            datos = generateMyGuifo();
+            datos.then((respuesta) => {
+            
+                    
+            }
 
+    }
+}*/
+if (localStorage.getItem("misGuifos") !== null) {
+    let storageMisGuifosActual = JSON.parse(localStorage.misGuifos);
+        //ctnMisGuifos.innerHTML = '';
+    for(let i = 0; i < storageMisGuifosActual.length; i++){
+        generateMisGuifos (storageMisGuifosActual[i]);
+    }
+}
+let ctnMisGuifos = document.getElementById('ctnMisGuifos');
+function generateMisGuifos (id){
+    async function generateMyGuifo(id){
+        let url = "http://api.giphy.com/v1/gifs/" + id + "?api_key=" + apiKey;
+        const resp = await fetch(url);
+        const datos = await resp.json();
+        return datos;
+    }
+    datos = generateMyGuifo(id);
+    datos.then((respuesta) => {
+        let ctnTotal = document.createElement('div');
+        ctnTotal.setAttribute('class', 'ctnTotal');
+        let ctnImg = document.createElement('div');
+        ctnImg.setAttribute('class', 'ctnImg');
+        let img = document.createElement('div');
+        img.setAttribute('class', 'img');  
+        img.style.background = 'url('+respuesta.data.images.fixed_height.url+') center center';
+        /*background-size: auto 100%;*/
+        img.style.backgroundSize = 'auto 100%';
+        if(respuesta.data.images.fixed_height.width >= '360'){
+            if(i !== firstIndexSearch[currentPage]){
+                ctnTotal.classList.add('largeTotal');
+                ctnImg.classList.add('largeImg');
+            }
+        }
+        ctnImg.appendChild(img);
+        ctnTotal.appendChild(ctnImg);
+        ctnMisGuifos.appendChild(ctnTotal);
+    })
+}
 
 let blob;
 let data;
@@ -137,36 +195,50 @@ ctnBtnCaptura.addEventListener('click', () => {
         console.log(blob);
         let blobURL = URL.createObjectURL(blob);
         imgGIF.src = blobURL;
+
+        btnRepeat.addEventListener('click', () => {
+            blobURL = URL.revokeObjectURL(blobURL);
+            blobURL = null;
+            blob = null;
+            recorder.clearRecordedData();
+            recorder = null;
+            imgGIF.classList.add('hidden');   
+            ctnBtnLastPreview.classList.add('hidden'); 
+            video.classList.remove('hidden');
+            ctnBtnInitialPreview.classList.remove('hidden');
+            grabar();
+        })
         btnUpload.addEventListener('click', () => {   
-            let form = new FormData();
-            form.append('file', recorder.blob, 'miGuifo.gif');
-            console.log(form.get('file'));
-            fetch('https://upload.giphy.com/v1/gifs?api_key=' + apiKey, {
-                method: 'POST',
-                body: form,
-                headers: {
-                    'API-Key': apiKey,
-                    'Content-Type': 'multipart/form-data',
-                },
-                mode: 'no-cors',
-            })
-            .then((response) => {
-                if (response.ok) {
-                    let json = response.json();
-                    console.log(json);
-                    return json;
-                }else{
-                    console.log('Problema subiendo el GIF');
-                }
-            })
-            .catch((error) => {
-                console.log('Error al ejecutar Fetch' + error);
-            })
-            imgGIF.classList.add('hidden');    
-            gifContainer.classList.add('hidden');
-            ctnBtnLastPreview.classList.add('hidden');
-            contenidoUploading.classList.remove('hidden');
-            ctnBtnUploading.classList.remove('hidden');
+            if(blobURL !== null){
+                let form = new FormData();
+                form.append('file', recorder.blob, 'miGuifo.gif');
+                console.log(form.get('file'));
+                console.log(blobURL); 
+                fetch('https://upload.giphy.com/v1/gifs?api_key=' + apiKey, {
+                    method: 'POST',
+                    body: form
+                })
+                .then(res => res.json())
+                .catch(error => console.error('Error al ejecutar el Fetch: ', error))
+                .then((response) => {
+                    let misGuifosActual;
+                    let newId = response.data.id;
+                    if (localStorage.getItem("misGuifos") === null) {
+                        let misGuifosActual = [newId];
+                        localStorage.setItem('misGuifos', JSON.stringify(misGuifosActual));
+                    }else{
+                        misGuifosActual = JSON.parse(localStorage.misGuifos);
+                        misGuifosActual.push(newId);
+                        localStorage.setItem("misGuifos", JSON.stringify(misGuifosActual));    
+                    }
+                    console.log(response.data.id);
+                });
+                imgGIF.classList.add('hidden');    
+                gifContainer.classList.add('hidden');
+                ctnBtnLastPreview.classList.add('hidden');
+                contenidoUploading.classList.remove('hidden');
+                ctnBtnUploading.classList.remove('hidden');
+            }
 
         });
         btnDownload.addEventListener('click', () => {
@@ -204,13 +276,20 @@ function calculateTimeDuration(secs) {
 }
 
 
-btnRepeat.addEventListener('click', () => {
-    imgGIF.classList.add('hidden');   
-    ctnBtnLastPreview.classList.add('hidden'); 
-    video.classList.remove('hidden');
-    ctnBtnInitialPreview.classList.remove('hidden');
-    grabar();
-})
+/*'http://api.giphy.com/v1/gifs/IccczI41mAIxf00g6J?api_key='+ apiKey;
+
+
+let newId = response.data.id;
+if (localStorage.getItem("misGuifos") === null) {
+    localStorage.setItem('misGuifos', newId);
+}else{
+    let misGuifosActual = JSON.parse(localStorage.misGuifos);
+    misGuifosActual.push(newId);
+    localStorage.setItem("misGuifos", JSON.stringify(misGuifosActual));    
+}
+*/
+
+
 
 
 /*            

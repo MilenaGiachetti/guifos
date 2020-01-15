@@ -122,11 +122,13 @@ let cuadroSug3 = document.getElementById('cuadroSug3');
 let noResults = false;
 let ctnPageBtn = document.getElementById('ctnPageBtn');
 let ctnBusquedaPages = document.getElementById('ctnBusquedaPages');
-let currentPage = 1;
-let biggerPage = 1;
-let firstIndexSearch = [0];
+let currentPage;
+let biggerPage;
+let firstIndexSearch;
 function busqueda(){
     currentPage = 1;
+    biggerPage = 1;
+    firstIndexSearch = [0];
     ctnBusquedaPages.classList.add('hidden');
     sugerenciasBusq.classList.add('hidden');
     ctnPageBtn.innerHTML = '';
@@ -404,7 +406,12 @@ function sugerir(sugerencia){
         img.style.backgroundSize = 'cover';
         let btn = document.createElement('button');
         btn.setAttribute('class', 'btnSecundario');
-        btn.innerHTML = "<a href='"+respuesta.data.bitly_url+"' target='_blank'> Ver más...</a>";
+        btn.innerHTML = "<span> Ver más...</span>";
+        btn.addEventListener('click', () =>{
+            inputBusqueda.value = sugerencia;
+            ctnBusqueda.innerHTML = '';
+            busqueda();
+        })
         img.appendChild(btn);
         ctnImg.appendChild(img);
         ctnTotal.appendChild(ctnImg);
