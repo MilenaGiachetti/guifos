@@ -176,13 +176,11 @@ let newGuifo = document.getElementById('newGuifo');
 let previewTimer = document.getElementById('previewTimer');
 ctnBtnCaptura.addEventListener('click', () => {
     recorder.stop((blob) => {
-        console.log('Time is:'+hr + ':' + min + ':' + sec + ':' + msec);
         previewTimer.textContent = hr + ':' + min + ':' + sec + ':' + msec;
         blob = blob;
         video.srcObject = null;
         video.classList.add('hidden');
         imgGIF.classList.remove('hidden');    
-        console.log(blob);
         let blobURL = URL.createObjectURL(blob);
         imgGIF.src = blobURL;
         btnRepeat.addEventListener('click', () => {
@@ -205,8 +203,6 @@ ctnBtnCaptura.addEventListener('click', () => {
             if(blobURL !== null){
                 let form = new FormData();
                 form.append('file', recorder.blob, 'miGuifo.gif');
-                console.log(form.get('file'));
-                console.log(blobURL); 
                 fetch('https://upload.giphy.com/v1/gifs?api_key=' + apiKey, {
                     method: 'POST',
                     body: form
@@ -224,7 +220,6 @@ ctnBtnCaptura.addEventListener('click', () => {
                         misGuifosActual.push(newId);
                         localStorage.setItem("misGuifos", JSON.stringify(misGuifosActual));    
                     }
-                    console.log(response.data.id);
                     idAdded = true;
                     generateMisGuifos (newId);
                     return response.data.id;
@@ -240,7 +235,6 @@ ctnBtnCaptura.addEventListener('click', () => {
                     }
                     datos = generateMyGuifo(response);
                     datos.then((respuesta) => {
-                        console.log(respuesta.data.images.fixed_width);
                         newGuifo.style.background = 'url('+respuesta.data.images.fixed_width.url+') center center';
                         newGuifo.style.backgroundSize = '100% auto';
                         btnURL.addEventListener('click', () => {

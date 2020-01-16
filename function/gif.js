@@ -286,7 +286,6 @@ function busqueda(){
             titleBusq.classList.remove('hidden');
             tagsSugeridos.classList.remove('hidden');
             titleBusq.textContent = "Resultados de: '" + inputBusqueda.value+"'";
-            console.log(lastImgBig);
             for(let i = 1; i <= biggerPage; i++){
                 let button = document.createElement('button');
                 button.textContent = i;
@@ -304,9 +303,8 @@ function busqueda(){
                     }
                 })
             }
-            console.log(buttons);
-                pageLeft.addEventListener('click', previousPage);
-                pageRight.addEventListener('click', nextPage);
+            pageLeft.addEventListener('click', previousPage);
+            pageRight.addEventListener('click', nextPage);
 
             /*btnBusqueda.addEventListener('click', () => {
                 pageLeft.removeEventListener('click', previousPage);
@@ -596,8 +594,6 @@ trendingDatos.then((respuesta)=>{
             firstIndex.push(i);
         }
     }
-    console.log(firstIndex);
-    console.log(maxPageTrending);
     for(let i = 1; i <= maxPageTrending; i++){
         let button = document.createElement('button');
         button.textContent = i;
