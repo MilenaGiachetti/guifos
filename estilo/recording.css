@@ -645,13 +645,32 @@ body main .crearGuifos p .enter{
     }
 }
 @media screen and (max-width: 420px){
+    .ctnResult {
+        width: 100%;
+        display: flex;
+        flex-flow: column wrap;
+    }
+    #ctnBtnFinal{
+        margin: 0;
+        padding: 0;
+    }
+    .newGuifoCtn {
+        margin: 0;
+        width: 100%;
+        height: 180px;
+    }
+    .ctnFinalText .btnSecundario {
+        width: 90%;
+    }
+    .ctnFinalText {
+        margin-top: 1rem;
+        width: 100%;
+    }
     body main .crearGuifos .startingPage p{
         margin: 0;
     }
     body main .crearGuifos .startingPage img {
-        width: 2rem;
-        margin: 0 1rem;
-        margin-left: auto;
+        display: hidden;
     }
     body main .crearGuifos .startingPage .startingPageText{
         width: calc(100%);
@@ -683,5 +702,11 @@ body main .crearGuifos p .enter{
     }
     #ctnBtnPrincipal button{
         padding: 7px 10px;
+    }
+    #btnListo{
+        padding: 8px 13px;
+    }
+    #btnToStart {
+        margin: 0 1rem 1rem auto;
     }
 }
