@@ -64,8 +64,10 @@
                 </div>
                 <div class="ctnBtn hidden" id="ctnBtnCaptura">
                     <p id="captureTimer" class="timer">00:00:00:00</p>
-                    <button id="imgListo" class="btn"><img src="assets/img/recording.svg" alt=""></button>
-                    <button id="btnListo" class="btn">Listo</button>
+                    <div class="listo">
+                        <button id="imgListo" class="btn"><img src="assets/img/recording.svg" alt=""></button>
+                        <button id="btnListo" class="btn">Listo</button>
+                    </div>
                 </div>
                 <div class="ctnBtn hidden" id="ctnBtnLastPreview">
                     <p id="previewTimer" class="timer">00:00:00:00</p>
@@ -73,7 +75,7 @@
                         <div id="previewControls">
                             <img src="assets/img/pause.svg" id="previewControlsImg" alt="">
                         </div>
-                        <div id="visualTimer">
+                        <div class="visualTimer">
                             <div class="timeSlot"></div>
                             <div class="timeSlot"></div>
                             <div class="timeSlot"></div>
@@ -91,23 +93,59 @@
                             <div class="timeSlot"></div>
                         </div>
                     </div>
-                    <div>
+                    <div class="lastPreviewBtnCtn">
                         <button class="btnSecundario" id="btnRepeat"><span>Repetir Captura</span></button>
                         <button class="btn" id="btnUpload">Subir Guifo</button>
                     </div>
                 </div>
                 <div id="contenidoUploading" class="hidden">
-                    <img src="assets/img/globe.png" alt="">
-                    <h4>Estamos subiendo tu guifo…</h4>
-                    <p>Tiempo restante: <span class="tachado">38 años</span> algunos minutos</p>
+                    <div class="contenidoPrincipal">
+                        <img src="assets/img/globe.png" alt="">
+                        <h4>Estamos subiendo tu guifo…</h4>
+                        <div class="visualTimer">
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                            <div class="timeSlot"></div>
+                        </div>
+                        <p>Tiempo restante: <span class="tachado">38 años</span> algunos minutos</p>
+                    </div>
                     <div class="ctnBtn hidden" id="ctnBtnUploading">
                         <button class="btnSecundario" id="btnCancelUpload"><span>Cancelar</span></button>
                     </div>
                 </div>
                 <div class="ctnBtn hidden" id="ctnBtnFinal">
-                    <h4>Guifo creado con éxito</h4>
-                    <button class="btnSecundario" id="btnURL"><span>Copiar Enlace Guifo</span></button>
-                    <button class="btnSecundario" id="btnDownload"><span>Descargar Guifo</span></button>
+                    <div class="ctnResult">
+                        <div class="newGuifoCtn">
+                            <div id='newGuifo'></div>
+                        </div>
+                        <div class="ctnFinalText">
+                            <h4>Guifo creado con éxito</h4>
+                            <button class="btnSecundario" id="btnURL"><span>Copiar Enlace Guifo</span></button>
+                            <button class="btnSecundario" id="btnDownload"><span>Descargar Guifo</span></button>
+                        </div>
+                    </div>
                     <button class="btn" id="btnToStart">Listo</button>
                 </div>
             </div>

@@ -2,29 +2,9 @@
     font-family: 'chakraReg';
     src: url("../assets/font/ChakraPetch-Regular.ttf");
 }
-  
 @font-face {
     font-family: 'chakraBold';
     src: url("../assets/font/ChakraPetch-Bold.ttf");
-}
-  
-@keyframes giro{
-    from{transform: rotate(0deg);}
-    to{transform: rotate(180deg);}
-}
-.arriba{
-    transform: rotate(180deg);
-}
-.abajo{
-    transform: rotate(0deg);
-}
-.close-caret{
-    transform: rotate(0deg);
-    transition: all .25s ease-in;
-}
-.open-caret {
-    transform: rotate(180deg);
-    transition: all .25s ease-out;
 }
 .theme-dark{
     --fondo: #110038;
@@ -140,7 +120,7 @@ body main .misGuifos h2{
     margin-bottom: 1rem;
 }
 body main .crearGuifos{
-    width: 60%;
+    width: 65%;
     margin: 50px auto ;
     padding: 3px;
     background: var(--fondo-secundario);
@@ -154,7 +134,7 @@ body main .crearGuifos .title{
     justify-content: space-between;
 }
 body main .crearGuifos .title h2{
-    font-family: 'chakraBold';
+    font-family: 'chakraBold', Arial, Helvetica, sans-serif;
     font-size: 0.875rem;
     color: #FFFFFF;
     letter-spacing: 0;
@@ -166,12 +146,11 @@ body main .crearGuifos .title img{
 body main .crearGuifos .contenido{ 
     width: 100%;
 }
-
 .gifContainer{
     padding: 4px;
     margin: 1rem 1rem 0 1rem;
     width: calc(100% - 2rem);
-    background: #FFFFFF;
+    background:  var(--fondo) ;
     border: 1px solid #979797;
     box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
 }
@@ -190,20 +169,17 @@ body main .crearGuifos .startingPage{
     align-items: flex-start;
     margin-top: 1rem;
 }
-
 body main .crearGuifos .startingPage .startingPageText{
     width: calc(100% - 8rem);
     margin: 0 1rem 0 0;
 }
-
 body main .crearGuifos .startingPage img{ 
     width: 2rem;
     margin: 1rem 1.5rem;
 }
 body main .crearGuifos .startingPage h4{ 
     display: inline-block;
-
-    font-family: 'chakraBold';
+    font-family: 'chakraBold', Arial, Helvetica, sans-serif;
     font-size: 1rem;
     color: var(--color-fuente-oscuro);
     letter-spacing: 0;
@@ -212,7 +188,6 @@ body main .crearGuifos .startingPage h4{
 }
 body main .crearGuifos .startingPage p{ 
     display: inline-block;
-
     font-family: 'chakraReg';
     font-size: 0.875rem;
     color: var(--color-fuente-oscuro);
@@ -222,7 +197,7 @@ body main .crearGuifos .startingPage p{
     margin-bottom: 2rem;
 }
 body main .crearGuifos p .bold{ 
-    font-family: 'chakraBold';
+    font-family: 'chakraBold', Arial, Helvetica, sans-serif;
 }
 body main .crearGuifos p .tilted{ 
     font-style: italic;
@@ -234,8 +209,6 @@ body main .crearGuifos p .enter{
 .tachado{
     text-decoration: line-through;
 }
-
-
 .ctnBtn{
     width: 100%;
     text-align: right;
@@ -244,7 +217,7 @@ body main .crearGuifos p .enter{
     padding-right: 1rem;
 }
 .ctnBtn a, .ctnBtn button, .ctnBtn p{
-    font-size: 16px;
+    font-size: 1rem;
     margin-left: 1rem;
 }
 .btn{
@@ -283,11 +256,12 @@ body main .crearGuifos p .enter{
 }
 
 
-
-
 #ctnBtnPrincipal{
     padding-right: 4rem;
     margin-bottom: 3rem;
+}
+.listo{
+    display: inline-block;
 }
 #imgListo, #btnListo{
     background: #FF6161;
@@ -297,7 +271,10 @@ body main .crearGuifos p .enter{
 }
 #imgListo img{
     position: relative;
-    top: 3px;
+    top: 2px;
+}
+.listo:hover #btnListo, .listo:hover  #imgListo, #imgListo:hover, #btnListo:hover{
+    background: rgb(214, 83, 83);
 }
 #imgCapturar {
     padding: 8px;
@@ -310,6 +287,14 @@ body main .crearGuifos p .enter{
     padding: 0;
     margin: 0;
 }
+#ctnBtnInitialPreview{
+    display: inline-block;
+}
+#ctnBtnInitialPreview:hover #btnCapturar,#ctnBtnInitialPreview:hover #imgCapturar {
+    background: var(--btn-bg-hover);
+
+}
+
 #ctnBtnInitialPreview #btnCapturar{
     margin-left: 0;
 }
@@ -329,13 +314,14 @@ body main .crearGuifos p .enter{
     margin-left: 0;
 }
 .timer{
-    padding: 10px;
+    padding: 8px;
     width: 160px;
     text-align: center;
-    background: #FFFFFF;
+    background: var(--fondo-secundario-claro);
     border: 1px solid #979797;
     box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
     font-family: "chakraReg", Arial, Helvetica, sans-serif;
+    margin-right: 1rem;
     font-size: 16px;
     color: #110038;
     line-height: 22px;
@@ -343,12 +329,10 @@ body main .crearGuifos p .enter{
 }
 #ctnBtnLastPreview{
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 #ctnBtnLastPreview .controlCtn{
     height: 24px;
-    width: 320px;
     display: flex;
     flex-flow: row wrap;
 }
@@ -362,9 +346,9 @@ body main .crearGuifos p .enter{
     display: inline-block;
     height: 24px;
     width: 24px;
-    background: #F7C9F3;
+    background: var(--gradiente-primario);
     border: 1px solid #110038;
-    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+    box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 #FFFFFF;
 }
 #previewControls img{
     display: inline-block;
@@ -375,7 +359,7 @@ body main .crearGuifos p .enter{
     top: 5px;
     right: 6px;
 }
-#visualTimer{
+.visualTimer{
     margin-left: 6px;
     padding: 2px;
     background: #B4B4B4;
@@ -383,7 +367,7 @@ body main .crearGuifos p .enter{
     font-size: 0;
 }
 .timeSlot{
-    margin-left: 1px;
+    margin-left: 2px;
     padding: 0;
     display: inline-block;
     background: #999999;
@@ -391,52 +375,77 @@ body main .crearGuifos p .enter{
     width: 12px;
 }
 .passedTimeSlot{
-    background: #F7C9F3;
+    background: var(--gradiente-primario);
+}
+.lastPreviewBtnCtn{
+    margin-left: auto;
 }
 
-#contenidoUploading{
+#contenidoUploading .contenidoPrincipal{
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #979797;
+    box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
 }
-
-
-
+#contenidoUploading .contenidoPrincipal img{
+    margin-top: 8rem;
+    margin-bottom: 0.5rem;
+}
+#contenidoUploading .contenidoPrincipal h4{
+    margin-bottom: 2.5rem;
+    font-size: 16px;
+    font-family: "chakraBold", Arial, Helvetica, sans-serif;
+}
+#contenidoUploading .contenidoPrincipal .visualTimer{
+    margin-bottom: 0.5rem;
+}
+#contenidoUploading .contenidoPrincipal p{
+    font-family: "chakraReg", Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: rgba(17,0,56,0.64);
+    letter-spacing: 0;
+    margin-bottom: 8rem;
+    text-align: center;
+    line-height: 14px;
+}
 #ctnMisGuifos {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-gap: 1rem;
     grid-auto-flow: dense;
-  }
- #ctnMisGuifos .ctnTotal {
+}
+#ctnMisGuifos .ctnTotal {
     background: var(--fondo-secundario);
     -webkit-box-shadow: inset -2px -2px 0 0 var(--bg-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
             box-shadow: inset -2px -2px 0 0 var(--bg-sec-shadow), inset 2px 2px 0 0 var(--light-shadow);
     width: 100%;
     height: 100%;
     padding: 0;
-  }
- #ctnMisGuifos .largeTotal {
+}
+#ctnMisGuifos .largeTotal {
     grid-column-end: span 2;
     grid-row-end: span 1;
-  }
-  #ctnMisGuifos .ctnTotal:hover {
+}
+#ctnMisGuifos .ctnTotal:hover {
     padding: 4px;
-  }
-  #ctnMisGuifos .ctnTotal .ctnImg {
+}
+#ctnMisGuifos .ctnTotal .ctnImg {
     position: relative;
     width: 100%;
     padding-bottom: 100%;
     overflow: hidden;
-  }
-  #ctnMisGuifos .ctnTotal .largeImg{
+}
+#ctnMisGuifos .ctnTotal .largeImg{
     padding-bottom: calc(50% - (1rem/2));
-  }
-  #ctnMisGuifos .ctnTotal:hover .largeImg{
+}
+#ctnMisGuifos .ctnTotal:hover .largeImg{
     padding-bottom: calc(50% - (1rem/2) - 4px);
-  }
-  #ctnMisGuifos .ctnTotal .ctnImg .img {
+}
+#ctnMisGuifos .ctnTotal .ctnImg .img {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -444,13 +453,65 @@ body main .crearGuifos p .enter{
     top: 0;
     background-size: cover;
     border: 1px solid #00000000;
-  }
-  
-  #ctnMisGuifos .ctnTotal:hover .ctnImg .img {
+}
+#ctnMisGuifos .ctnTotal:hover .ctnImg .img {
     border: 1px dotted var(--color-fuente-oscuro);
-  }
-
-  @media screen and (max-width: 1400px){
+}
+#ctnBtnFinal{
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+}
+.ctnResult{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    margin-bottom: 2rem;
+}
+.ctnFinalText{
+    width: 45%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.ctnFinalText h4{
+    font-family: "chakraBold", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #110038;
+    letter-spacing: 0;
+    margin-left: 1rem;
+    line-height: 22px;
+}
+.ctnFinalText .btnSecundario{
+    width: 100%;
+    margin-top: 1rem;
+}
+.ctnFinalText .btnSecundario span{
+    padding: 5px 0;
+}
+#btnToStart{
+    width: 150px;
+    text-align: center;
+    padding: 5px 10px;
+    margin-left: auto;
+}
+.newGuifoCtn{
+    background: #FFFFFF;
+    border: 1px solid #979797;
+    box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+    padding: 2px;
+    margin-left: 1rem;
+    width: 50%;
+}
+#newGuifo{
+    width: 100%;
+    height: 100%;
+}
+@media screen and (max-width: 1400px){
+    body main .crearGuifos{
+        width: 75%;
+    }
     #ctnMisGuifos {
       grid-template-columns: repeat(4, 1fr);
       grid-gap: 1rem;
@@ -462,20 +523,41 @@ body main .crearGuifos p .enter{
       padding-bottom: calc(50% - (1rem/2) - 4px);
     }
 
-  }
-  @media screen and (max-width: 900px){
-
-
+}
+@media screen and (max-width: 1200px){
+    html{
+        font-size: 14px;
+    }
+    body main .crearGuifos{
+        width: 80%;
+        margin: 30px auto ;
+    }
+    #ctnBtnLastPreview .timer{
+        padding: 6px;
+        width: 110px;
+        font-size: 14px;
+        margin-right: 0.5rem;
+    }
+    #ctnBtnLastPreview .timeSlot{
+        height: 20px;
+        width: 8px;
+    }
+    .ctnBtn a, .ctnBtn button, .ctnBtn p {
+        margin-left: 1rem;
+    }
+}
+@media screen and (max-width: 900px){
+    body main .crearGuifos{
+        width: 100%;
+        margin: 30px auto ;
+    }
     #ctnMisGuifos {
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 1rem;
     }
-  
-
-  }
-  
-  @media screen and (max-width: 700px){
-  
+}
+ 
+@media screen and (max-width: 740px){
     #ctnMisGuifos {
       grid-template-columns: repeat(1, 1fr);
       grid-gap: 1rem;
@@ -484,60 +566,81 @@ body main .crearGuifos p .enter{
       grid-column-end: span 1;
       grid-row-end: span 1;
     }
-
-  }
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*body main .misGuifos div{
-    display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+    #ctnBtnPrincipal{
+        padding-right: 0;
+        text-align: center;
+    }
+    #ctnBtnLastPreview{
+        display: block;
+    }
+    #ctnBtnLastPreview .controlCtn{
+        padding-top: 0.5rem;
+        height: 24px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-end;
+    }
+    #ctnBtnLastPreview .timer{
+        padding: 4px;
+        margin: 0;
+        width: calc(100% - 1rem);
+    }
+    #ctnBtnLastPreview .timeSlot{
+        height: 20px;
+        width: 12px;
+    }
+    .lastPreviewBtnCtn {
+        padding-top: 0.5rem;
+        margin-left: auto;
+        display: block;
+        margin-top: 1rem;
+    }
 }
-body main .misGuifos div .ctnTotal {
-  position: relative;
-  height: 0;
-  width: 24%;
-  padding-bottom: 24%;
-  overflow: hidden;
-}
-body main .misGuifos div .ctnTotal .ctnImg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background-size: cover;
-}*/
+@media screen and (max-width: 560px){
+    #ctnBtnLastPreview {
+        width: 100%;
+        margin-right: 1rem;
+        display: flex;
+        flex-flow: column wrap;
+        align-content: flex-end;
+    }
+    #ctnBtnLastPreview .controlCtn{
+        padding-top: 1rem;
+    }
+    #previewTimer{
+        margin: 0;
+        width: calc(100% - 1rem);
+        margin-left: 1rem;
+    }
+    .timer{
+        padding: 6px;
+        width: 110px;
+        font-size: 14px;
+        margin-right: 0.5rem;
+    }
+    .timeSlot{
+        height: 20px;
+        width: 8px;
+    }
+    #ctnBtnLastPreview .timeSlot{
+        height: 20px;
+        width: 12px;
+    }
 
+    .lastPreviewBtnCtn {
+        padding-top: 1rem;
+    }
+    #btnRepeat{
+        margin: 0;
+    }
+    #contenidoUploading .contenidoPrincipal img{
+        margin-top: 4rem;
+        margin-bottom: 0.5rem;
+    }
+    #contenidoUploading .contenidoPrincipal h4{
+        margin-bottom: 1.5rem;
+    }
+    #contenidoUploading .contenidoPrincipal p{
+        margin-bottom: 4rem;
+    }
+}

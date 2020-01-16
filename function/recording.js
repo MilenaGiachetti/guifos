@@ -97,16 +97,17 @@ function grabar(){
         ctnBtnInitialPreview.addEventListener('click', () => {
             recorder.record();
             dateStarted = new Date().getTime();
+            ctnBtnInitialPreview.classList.add('hidden');
+            ctnBtnCaptura.classList.remove('hidden');
+
             (function looper() {
-                if(!recorder) {
+                if(!recorder || ctnBtnCaptura.classList.contains('hidden')) {
                     return;
                 }
                 calculateTimeDuration((new Date().getTime() - dateStarted) / 1000);
                 setTimeout(looper, 100);
             })();
             recorder.stream = stream;
-            ctnBtnInitialPreview.classList.add('hidden');
-            ctnBtnCaptura.classList.remove('hidden');
         })
 
 
@@ -171,7 +172,7 @@ let blob;
 let data;
 let form ;
 let idAdded = false;
-
+let newGuifo = document.getElementById('newGuifo');
 let previewTimer = document.getElementById('previewTimer');
 ctnBtnCaptura.addEventListener('click', () => {
     recorder.stop((blob) => {
@@ -184,12 +185,10 @@ ctnBtnCaptura.addEventListener('click', () => {
         console.log(blob);
         let blobURL = URL.createObjectURL(blob);
         imgGIF.src = blobURL;
-
         btnRepeat.addEventListener('click', () => {
             blobURL = URL.revokeObjectURL(blobURL);
             blobURL = null;
             blob = null;
-            recorder.clearRecordedData();
             recorder = null;
             imgGIF.classList.add('hidden');   
             ctnBtnLastPreview.classList.add('hidden'); 
@@ -198,6 +197,11 @@ ctnBtnCaptura.addEventListener('click', () => {
             grabar();
         })
         btnUpload.addEventListener('click', () => {   
+            imgGIF.classList.add('hidden');    
+            gifContainer.classList.add('hidden');
+            ctnBtnLastPreview.classList.add('hidden');
+            contenidoUploading.classList.remove('hidden');
+            ctnBtnUploading.classList.remove('hidden');
             if(blobURL !== null){
                 let form = new FormData();
                 form.append('file', recorder.blob, 'miGuifo.gif');
@@ -223,18 +227,34 @@ ctnBtnCaptura.addEventListener('click', () => {
                     console.log(response.data.id);
                     idAdded = true;
                     generateMisGuifos (newId);
-                });
-                imgGIF.classList.add('hidden');    
-                gifContainer.classList.add('hidden');
-                ctnBtnLastPreview.classList.add('hidden');
-                contenidoUploading.classList.remove('hidden');
-                ctnBtnUploading.classList.remove('hidden');
+                    return response.data.id;
+                })
+                .then((response) => {
+                    contenidoUploading.classList.add('hidden');
+                    ctnBtnUploading.classList.add('hidden');
+                    async function generateMyGuifo(response){
+                        let url = "http://api.giphy.com/v1/gifs/" + response + "?api_key=" + apiKey;
+                        const resp = await fetch(url);
+                        const datos = await resp.json();
+                        return datos;
+                    }
+                    datos = generateMyGuifo(response);
+                    datos.then((respuesta) => {
+                        console.log(respuesta.data.images.fixed_width);
+                        newGuifo.style.background = 'url('+respuesta.data.images.fixed_width.url+') center center';
+                        newGuifo.style.backgroundSize = '100% auto';
+                        btnURL.addEventListener('click', () => {
+                            window.open(respuesta.data.url,'_blank');
+                        })
+                        btnDownload.addEventListener('click', () => {
+                            invokeSaveAsDialog(blob);
+                        })
+                        ctnBtnFinal.classList.remove('hidden');
+                    });
+                })
             }
 
         });
-        btnDownload.addEventListener('click', () => {
-            invokeSaveAsDialog(blob);
-        })
     });
     ctnBtnCaptura.classList.add('hidden');
     ctnBtnLastPreview.classList.remove('hidden');

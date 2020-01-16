@@ -127,6 +127,9 @@ function saveTags() {
             localStorage.setItem('searchTags', JSON.stringify(lastSearchTags));
         }else{
             lastSearchTags = JSON.parse(localStorage.searchTags);
+            if(lastSearchTags.length === 10){
+                lastSearchTags.shift();
+            }
             lastSearchTags.push(newTag);
             localStorage.setItem("searchTags", JSON.stringify(lastSearchTags));    
         }
@@ -136,11 +139,11 @@ function saveTags() {
 function displayTags() {
     tagsSugeridos.innerHTML = '';
     lastSearchTags = JSON.parse(localStorage.searchTags);
-    for(i = (lastSearchTags.length - 1); i >= (lastSearchTags.length - 11); i--){0
+    for(i = (lastSearchTags.length - 1); i >= 0; i--){
         let tag = document.createElement('div');
         tag.classList.add('btnSecundario');
         let tagSpan = document.createElement('span');
-        tagSpan.textContent = '#'+lastSearchTags[i];
+        tagSpan.textContent = '#'+lastSearchTags[i].charAt(0).toUpperCase() + lastSearchTags[i].substring(1);
         tag.appendChild(tagSpan);
         tagSpan.addEventListener('click', () => {
             let newInput = tagSpan.textContent;
