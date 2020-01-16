@@ -165,7 +165,7 @@ body main .crearGuifos .startingPage{
     width: 100%;
     display: flex;
     flex-flow: row wrap;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: flex-start;
     margin-top: 1rem;
 }
@@ -642,5 +642,46 @@ body main .crearGuifos p .enter{
     }
     #contenidoUploading .contenidoPrincipal p{
         margin-bottom: 4rem;
+    }
+}
+@media screen and (max-width: 420px){
+    body main .crearGuifos .startingPage p{
+        margin: 0;
+    }
+    body main .crearGuifos .startingPage img {
+        width: 2rem;
+        margin: 0 1rem;
+        margin-left: auto;
+    }
+    body main .crearGuifos .startingPage .startingPageText{
+        width: calc(100%);
+        margin: 0 1rem;
+    }
+    #ctnBtnPrincipal a{
+        margin: 0;
+        padding: 6px 10px;
+    }
+    body main .crearGuifos .startingPage h4 {
+        line-height: 1rem;
+        margin: 1rem 0;
+    }
+    #ctnBtnPrincipal{
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem 0 2rem 0;
+        font-size: 13px;
+    }
+    #ctnBtnPrincipal a{
+        margin: 0;
+        padding: 0;
+    }
+    #ctnBtnPrincipal span{
+        padding: 6px 10px;
+    }
+    #ctnBtnPrincipal button{
+        padding: 7px 10px;
     }
 }
