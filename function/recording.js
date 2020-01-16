@@ -132,7 +132,7 @@ if (localStorage.getItem("misGuifos") !== null) {
 let ctnMisGuifos = document.getElementById('ctnMisGuifos');
 function generateMisGuifos (id){
     async function generateMyGuifo(id){
-        let url = "http://api.giphy.com/v1/gifs/" + id + "?api_key=" + apiKey;
+        let url = "https://api.giphy.com/v1/gifs/" + id + "?api_key=" + apiKey;
         const resp = await fetch(url);
         const datos = await resp.json();
         return datos;
@@ -233,7 +233,7 @@ ctnBtnCaptura.addEventListener('click', () => {
                     contenidoUploading.classList.add('hidden');
                     ctnBtnUploading.classList.add('hidden');
                     async function generateMyGuifo(response){
-                        let url = "http://api.giphy.com/v1/gifs/" + response + "?api_key=" + apiKey;
+                        let url = "https://api.giphy.com/v1/gifs/" + response + "?api_key=" + apiKey;
                         const resp = await fetch(url);
                         const datos = await resp.json();
                         return datos;
