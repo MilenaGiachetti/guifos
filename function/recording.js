@@ -98,7 +98,9 @@ function grabar(){
             recorder.record();
             dateStarted = new Date().getTime();
             ctnBtnInitialPreview.classList.add('hidden');
+            title.textContent = 'Capturando Tu Guifo';
             ctnBtnCaptura.classList.remove('hidden');
+
 
             (function looper() {
                 if(!recorder || ctnBtnCaptura.classList.contains('hidden')) {
@@ -178,6 +180,7 @@ ctnBtnCaptura.addEventListener('click', () => {
     recorder.stop((blob) => {
         previewTimer.textContent = hr + ':' + min + ':' + sec + ':' + msec;
         blob = blob;
+        title.textContent = 'Vista Previa';
         video.srcObject = null;
         video.classList.add('hidden');
         imgGIF.classList.remove('hidden');    
@@ -189,6 +192,7 @@ ctnBtnCaptura.addEventListener('click', () => {
             blob = null;
             recorder = null;
             imgGIF.classList.add('hidden');   
+            title.textContent = 'Un Chequeo Antes de Empezar';
             ctnBtnLastPreview.classList.add('hidden'); 
             video.classList.remove('hidden');
             ctnBtnInitialPreview.classList.remove('hidden');
@@ -196,6 +200,7 @@ ctnBtnCaptura.addEventListener('click', () => {
         })
         btnUpload.addEventListener('click', () => {   
             imgGIF.classList.add('hidden');    
+            title.textContent = 'Subiendo Guifo';
             gifContainer.classList.add('hidden');
             ctnBtnLastPreview.classList.add('hidden');
             contenidoUploading.classList.remove('hidden');
@@ -235,6 +240,7 @@ ctnBtnCaptura.addEventListener('click', () => {
                     }
                     datos = generateMyGuifo(response);
                     datos.then((respuesta) => {
+                        title.textContent = 'Guifo Subido Con Éxito';
                         newGuifo.style.background = 'url('+respuesta.data.images.fixed_width.url+') center center';
                         newGuifo.style.backgroundSize = '100% auto';
                         btnURL.addEventListener('click', () => {
