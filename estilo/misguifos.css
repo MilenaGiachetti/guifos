@@ -363,7 +363,20 @@ body main .misGuifos h2{
 #ctnMisGuifos .ctnTotal:hover .ctnImg .img {
   border: 1px dotted var(--color-fuente-oscuro);
 }
-
+.error{
+  color:var(--color-fuente-nav);
+  margin: 3rem auto 3rem auto;
+  font-size: 1.5rem;
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  grid-column-end: span 8;
+  text-align: center;
+}
+.error a{
+  color: var(--gradiente-secundario);
+}
+.error a:hover{
+  color: var(--color-fuente-nav);
+}
 @media screen and (max-width: 1400px){
   #ctnMisGuifos {
     grid-template-columns: repeat(4, 1fr);

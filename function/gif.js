@@ -119,7 +119,9 @@ localStorage.setItem('currentPage', 'index');
 /*            <div id="tagsSugeridos" class="hidden">
                 <div class="btnSecundario"><span>#Un ejemplo</span></div>*/
 function saveTags() {
-    let lastSearchTags = [];
+    let lastSearchTags = []
+    let repeated = false;
+    let repeatedIndex;
     let newTag = inputBusqueda.value;
     if(noResults === false && newTag !== undefined  && newTag !== ''){
         if (localStorage.getItem("searchTags") === null) {
@@ -127,7 +129,17 @@ function saveTags() {
             localStorage.setItem('searchTags', JSON.stringify(lastSearchTags));
         }else{
             lastSearchTags = JSON.parse(localStorage.searchTags);
-            if(lastSearchTags.length === 10){
+            for(let i = 0; i < lastSearchTags.length; i++){
+                if(newTag.toLowerCase() === lastSearchTags[i].toLowerCase()){
+                    repeated = true;
+                    repeatedIndex = i;
+                    break;
+                }
+            }
+            if(repeated === true){
+                lastSearchTags.splice(repeatedIndex, 1);
+            }
+            if(lastSearchTags.length === 25){
                 lastSearchTags.shift();
             }
             lastSearchTags.push(newTag);
@@ -210,7 +222,7 @@ function busqueda(){
             tagsSugeridos.classList.remove('hidden');
             titleBusq.textContent = "Resultados de: '" + inputBusqueda.value+"'";
             ctnBusqueda.innerHTML = '';
-            for (let i = 0; i <= respuesta.data.length; i++) {
+            for (let i = 0; i < respuesta.data.length; i++) {
                 let ctnTotal = document.createElement('div');
                 ctnTotal.setAttribute('class', 'ctnTotal');
                 let ctnImg = document.createElement('div');

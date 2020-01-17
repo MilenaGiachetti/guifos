@@ -97,6 +97,7 @@ h2 {
   font-size: 1.5rem;
   font-family: "chakraReg", Arial, Helvetica, sans-serif;
   grid-column-end: span 8;
+  text-align: center;
 }
 .title {
   background-image: -webkit-gradient(linear, right top, left top, from(  var(--gradiente-primario)), to(var(--gradiente-secundario)));
@@ -228,6 +229,7 @@ body header .head nav #btnCrear:hover, body header .head nav #btnCaret:hover, bo
   font-size: 0.875rem;
   color: var(--light-shadow);
   letter-spacing: 0;
+  flex-shrink: 0;
   background: var(--gradiente-secundario);
   border: 1px solid #4C2F99;
   padding: 2px;
@@ -428,6 +430,11 @@ body main .busqueda #sugerenciasBusq .sugBusq span:hover {
           box-shadow: unset;
 }
 body main .busqueda #tagsSugeridos {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  height: 31px;
+  overflow: hidden;
   margin-top: 12px;
 }
 body main .busqueda #ctnBusqueda {

@@ -68,14 +68,19 @@ btnOpenMenu.addEventListener('click', () => {
 })
 localStorage.setItem('currentPage', 'misGuifos');
 
+let ctnMisGuifos = document.getElementById('ctnMisGuifos');
 if (localStorage.getItem("misGuifos") !== null) {
     let storageMisGuifosActual = JSON.parse(localStorage.misGuifos);
-        //ctnMisGuifos.innerHTML = '';
-    for(let i = storageMisGuifosActual.length-1 ; i >= 0; i--){
-        generateMisGuifos (storageMisGuifosActual[i]);
+    if (storageMisGuifosActual.length === 0){
+        ctnMisGuifos.innerHTML = "<p class='error'>OOPS! No has creado ningún Guifo aún. </p>";
+    }else{
+        for(let i = storageMisGuifosActual.length-1 ; i >= 0; i--){
+            generateMisGuifos (storageMisGuifosActual[i]);
+        }
     }
+}else{
+    ctnMisGuifos.innerHTML = "<p class='error'>OOPS! No has creado ningún Guifo aún. Para crear uno haga <a href= 'recording.html'>click aquí. </a></p>";
 }
-let ctnMisGuifos = document.getElementById('ctnMisGuifos');
 function generateMisGuifos (id){
     async function generateMyGuifo(id){
         let url = "https://api.giphy.com/v1/gifs/" + id + "?api_key=" + apiKey;

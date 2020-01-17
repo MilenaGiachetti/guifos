@@ -47,14 +47,14 @@ previousPage.addEventListener('click', () => {
     }else{
         previousPage.setAttribute('href',"misguifos.html");
     }
-})
+});
 cancelLink.addEventListener('click', () => {
     if(localStorage.getItem('currentPage') === 'index'){
         cancelLink.setAttribute('href',"index.html");
     }else{
         cancelLink.setAttribute('href',"misguifos.html");
     }
-})
+});
 btnComenzar.addEventListener('click', () => {
     title.textContent = 'Un Chequeo Antes de Empezar';
     startingPage.classList.add('hidden');
@@ -64,7 +64,7 @@ btnComenzar.addEventListener('click', () => {
     video.classList.remove('hidden');
     ctnBtnInitialPreview.classList.remove('hidden');
     grabar();
-})
+});
 
 let constraints = window.constraints = {
     audio: false,
@@ -77,7 +77,7 @@ function grabar(){
     .then((stream) => {
         video.srcObject = stream;
         video.play();
-        console.log('Got stream')
+        console.log('Got stream');
         recorder = new GifRecorder (stream, {
             type: 'gif',
             frameRate: 1,
@@ -86,52 +86,55 @@ function grabar(){
             hidden: 240,
             timeSlice: 1000,
             onGifRecordingStarted: () => {
-                console.log('started')
+                console.log('started');
             },
         });
         videoWindowClose.addEventListener('click', () => {
             ctnCreador.classList.add('hidden');
             video.pause();
             stream.stop();
-        })
+        });
         ctnBtnInitialPreview.addEventListener('click', () => {
             recorder.record();
-            dateStarted = new Date().getTime();
+            let dateStarted = new Date().getTime();
             ctnBtnInitialPreview.classList.add('hidden');
             title.textContent = 'Capturando Tu Guifo';
             ctnBtnCaptura.classList.remove('hidden');
-
-
+            recorder.stream = stream;
             (function looper() {
                 if(!recorder || ctnBtnCaptura.classList.contains('hidden')) {
                     return;
                 }
-                calculateTimeDuration((new Date().getTime() - dateStarted) / 1000);
-                setTimeout(looper, 100);
+                let time = calculateTimeDuration((new Date().getTime() - dateStarted) / 1000);
+                setTimeout(looper, 300);
+                captureTimer.textContent = time;
             })();
-            recorder.stream = stream;
-        })
-
-
+        });
     })
     .catch((error) => {
         if(error.name === 'ConstraintNotSatisfiedError'){
-            alert('Error: Su dispositivo no tiene la resolución requerida')
+            alert('Error: Su dispositivo no tiene la resolución requerida');
         }else if (error.name === 'PermissionDeniedError'){
-            alert('Error: No se ha dado permiso para usar la cámara, permita el acceso para poder usar esta funcionalidad.')
+            alert('Error: No se ha dado permiso para usar la cámara, permita el acceso para poder usar esta funcionalidad.');
         }else{
-            alert('Error.')
+            alert('Error.');
         }
-    })
-}
-if (localStorage.getItem("misGuifos") !== null) {
-    let storageMisGuifosActual = JSON.parse(localStorage.misGuifos);
-        //ctnMisGuifos.innerHTML = '';
-    for(let i = storageMisGuifosActual.length-1 ; i >= 0; i--){
-        generateMisGuifos (storageMisGuifosActual[i]);
-    }
+    });
 }
 let ctnMisGuifos = document.getElementById('ctnMisGuifos');
+
+if (localStorage.getItem("misGuifos") !== null) {
+    let storageMisGuifosActual = JSON.parse(localStorage.misGuifos);
+    if (storageMisGuifosActual.length === 0){
+        ctnMisGuifos.innerHTML = "<p class='error'>OOPS! No has creado ningún Guifo aún. </p>";
+    }else{
+        for(let i = storageMisGuifosActual.length-1 ; i >= 0; i--){
+            generateMisGuifos (storageMisGuifosActual[i]);
+        }
+    }
+}else{
+    ctnMisGuifos.innerHTML = "<p class='error'>OOPS! No has creado ningún Guifo aún. </p>";
+}
 function generateMisGuifos (id){
     async function generateMyGuifo(id){
         let url = "https://api.giphy.com/v1/gifs/" + id + "?api_key=" + apiKey;
@@ -175,22 +178,142 @@ let data;
 let form ;
 let idAdded = false;
 let newGuifo = document.getElementById('newGuifo');
+let errorNoGuifo = document.querySelector('#ctnMisGuifos .error');
 let previewTimer = document.getElementById('previewTimer');
+let previewTimeSlots = document.querySelectorAll('#previewVisualTimer .timeSlot')
+let uploadTimeSlots = document.querySelectorAll('#uploadVisualTimer .timeSlot')
+
 ctnBtnCaptura.addEventListener('click', () => {
+    ctnBtnCaptura.classList.add('hidden');
+    ctnBtnLastPreview.classList.remove('hidden');
     recorder.stop((blob) => {
-        previewTimer.textContent = hr + ':' + min + ':' + sec + ':' + msec;
+        let newDateStarted = new Date().getTime();
+        let totalTime = +hr*24 + min*60 + sec;
+        let slotTime = (totalTime*1000 + msec) / 15;
+        let recordHr = hr;
+        let recordMin = min;
+        let recordSec = sec;
+        let recordMsec = msec;
+        hr = 0;
+        min = 0;
+        sec = 0;
+        msec = 0;
+        let slotNumber = -1;
+        previewTimer.textContent = '00:00:00,00';
+        function fillOneSlot(){
+            if(slotNumber === (previewTimeSlots.length-1)){
+                previewTimeSlots[slotNumber].classList.add('passedTimeSlot');
+                slotNumber = -1;
+            }else if(slotNumber === -1){
+                for(let i = 0; i < previewTimeSlots.length; i++){
+                    previewTimeSlots[i].classList.remove('passedTimeSlot');
+                }
+                slotNumber++;
+            }else{
+                previewTimeSlots[slotNumber].classList.add('passedTimeSlot');
+                slotNumber++;
+            }
+        }
+        (function fillSlots() {
+            if(!recorder || gifContainer.classList.contains('hidden')) {
+                for(let i = 0; i < previewTimeSlots.length; i++){
+                    previewTimeSlots[i].classList.remove('passedTimeSlot');
+                }
+                return;
+            }
+            fillOneSlot();
+            setTimeout(fillSlots, slotTime);
+        })();
+        function calculateTimeDurationPreview(secs) {
+            hr = Math.floor(secs / 3600);
+            min = Math.floor((secs - (hr * 3600)) / 60);
+            sec = Math.floor(secs - (hr * 3600) - (min * 60));
+            msec = Math.floor((secs - (hr * 3600) - (min * 60)-sec)*100);
+            if (hr < 10) {
+                hr = "0" + hr;
+            }else if (hr === 0){
+                hr = '00';
+            }
+            if (min < 10) {
+                min = "0" + min;
+            }
+            if (sec < 10) {
+                sec = "0" + sec;
+            }
+            if (msec < 10){
+                msec = "0" + msec;
+            }
+            if((hr*3600+min*60+sec) > (recordHr*3600+recordMin*60+recordSec)){
+                previewTimer.textContent = recordHr + ':' + recordMin + ':' + recordSec + ',' + recordMsec;
+                hr = 0;
+                min = 0;
+                sec = 0;
+                msec = 0;
+                newDateStarted = new Date().getTime();
+            }else{
+                previewTimer.textContent = hr + ':' + min + ':' + sec + ',' + msec;;
+            }
+        }            
+        (function previewLooper() {
+            if(!recorder || gifContainer.classList.contains('hidden')) {
+                return;
+            }
+            calculateTimeDurationPreview((new Date().getTime() - newDateStarted) / 1000);
+            setTimeout(previewLooper, 300);
+        })();
+        /*function previewTimerFunction(){
+            msec = +msec + 25;
+            if (msec === 100){
+                msec = "00";
+                sec = +sec + 1;
+            }
+            if(sec < 10) {
+                sec = "0" + +sec;
+            }else if(sec === 60){
+                sec = '00';
+                min = +min + 1;
+            }
+            if(min < 10) {
+                min = "0" + +min;
+            }else if (min === 60){
+                min = '00';
+                hr = +hr + 1;
+            }
+            if(hr < 10) {
+                hr = "0" + +hr;
+            }
+            if((hr*3600+min*60+sec) > (recordHr*3600+recordMin*60+recordSec)){
+                previewTimer.textContent = recordHr + ':' + recordMin + ':' + recordSec + ',' + recordMsec;
+                hr = 0;
+                min = 0;
+                sec = 0;
+                msec = 0;
+            }else{
+                previewTimer.textContent = hr + ':' + min + ':' + sec + ',' + msec;
+            }
+        };*/
+        //let newDateStarted = new Date().getTime();
+        //previewTimer.textContent = '00:00:00,00';   
+        /*(function previewLooper() {
+            previewTimerFunction();
+            setTimeout(previewLooper, 250);
+        })();*/
+        //previewTimer.textContent = hr + ':' + min + ':' + sec + ',' + msec;
         blob = blob;
+        console.log(blob);
         title.textContent = 'Vista Previa';
         video.srcObject = null;
         video.classList.add('hidden');
         imgGIF.classList.remove('hidden');    
         let blobURL = URL.createObjectURL(blob);
         imgGIF.src = blobURL;
+
         btnRepeat.addEventListener('click', () => {
             blobURL = URL.revokeObjectURL(blobURL);
             blobURL = null;
             blob = null;
             recorder = null;
+            stream.pause();
             imgGIF.classList.add('hidden');   
             title.textContent = 'Un Chequeo Antes de Empezar';
             ctnBtnLastPreview.classList.add('hidden'); 
@@ -201,10 +324,35 @@ ctnBtnCaptura.addEventListener('click', () => {
         btnUpload.addEventListener('click', () => {   
             imgGIF.classList.add('hidden');    
             title.textContent = 'Subiendo Guifo';
+            let slotNumber = -1;
             gifContainer.classList.add('hidden');
             ctnBtnLastPreview.classList.add('hidden');
             contenidoUploading.classList.remove('hidden');
             ctnBtnUploading.classList.remove('hidden');
+            function fillOneSlot(){
+                if(slotNumber === (uploadTimeSlots.length-1)){
+                    uploadTimeSlots[slotNumber].classList.add('passedTimeSlot');
+                    slotNumber = -1;
+                }else if(slotNumber === -1){
+                    for(let i = 0; i < uploadTimeSlots.length; i++){
+                        uploadTimeSlots[i].classList.remove('passedTimeSlot');
+                    }
+                    slotNumber++;
+                }else{
+                    uploadTimeSlots[slotNumber].classList.add('passedTimeSlot');
+                    slotNumber++;
+                }
+            }
+            (function fillSlots() {
+                if(contenidoUploading.classList.contains('hidden')) {
+                    for(let i = 0; i < uploadTimeSlots.length; i++){
+                        uploadTimeSlots[i].classList.remove('passedTimeSlot');
+                    }
+                    return;
+                }
+                fillOneSlot();
+                setTimeout(fillSlots, 500);
+            })();
             const controller = new AbortController();
             const signal = controller.signal;
             ctnBtnUploading.addEventListener('click', ()=>{
@@ -221,11 +369,16 @@ ctnBtnCaptura.addEventListener('click', () => {
                 })
                 .then(res => res.json())
                 .then((response) => {
+                    blobURL = URL.revokeObjectURL(blobURL);
+                    blobURL = null;
+                    blob = null;
+                    recorder = null;
                     let misGuifosActual;
                     let newId = response.data.id;
                     if (localStorage.getItem("misGuifos") === null) {
                         let misGuifosActual = [newId];
                         localStorage.setItem('misGuifos', JSON.stringify(misGuifosActual));
+                        errorNoGuifo.classList.add('hidden');
                     }else{
                         misGuifosActual = JSON.parse(localStorage.misGuifos);
                         misGuifosActual.push(newId);
@@ -251,7 +404,7 @@ ctnBtnCaptura.addEventListener('click', () => {
                         newGuifo.style.backgroundSize = '100% auto';
                         let miGuifoUrl = respuesta.data.url;
                         btnURL.addEventListener('click', () => {
-                            var dummy = document.createElement("input");
+                            let dummy = document.createElement("input");
                             document.body.appendChild(dummy);
                             dummy.value = miGuifoUrl;
                             dummy.select();
@@ -264,6 +417,7 @@ ctnBtnCaptura.addEventListener('click', () => {
                         btnToStart.addEventListener('click', () =>{
                             title.textContent = 'Crear Guifos';
                             ctnBtnFinal.classList.add('hidden');
+                            videoWindowClose.classList.add('hidden');
                             startingPage.classList.remove('hidden');
                             ctnBtnPrincipal.classList.remove('hidden');
                             blobURL = URL.revokeObjectURL(blobURL);
@@ -281,20 +435,15 @@ ctnBtnCaptura.addEventListener('click', () => {
                     blobURL = null;
                     blob = null;
                     recorder = null;
-                    title.textContent = 'Un Chequeo Antes de Empezar';
+                    title.textContent = 'Crear Guifos';
                     startingPage.classList.remove('hidden');
                     ctnBtnPrincipal.classList.remove('hidden');
                     videoWindowClose.classList.add('hidden');
                     contenidoUploading.classList.add('hidden');
-
                 })
             }
-
         });
     });
-    ctnBtnCaptura.classList.add('hidden');
-    ctnBtnLastPreview.classList.remove('hidden');
-    
 })
 let hr;
 let min;
@@ -308,7 +457,7 @@ function calculateTimeDuration(secs) {
     if (hr < 10) {
         hr = "0" + hr;
     }else if (hr === 0){
-        hr = '00'
+        hr = '00';
     }
     if (min < 10) {
         min = "0" + min;
@@ -319,7 +468,7 @@ function calculateTimeDuration(secs) {
     if (msec < 10){
         msec = "0" + msec;
     }
-    captureTimer.textContent = hr + ':' + min + ':' + sec + ':' + msec;
+    return hr + ':' + min + ':' + sec + ',' + msec;
 }
 
 
