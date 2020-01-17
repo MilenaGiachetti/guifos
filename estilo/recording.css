@@ -488,6 +488,9 @@ body main .crearGuifos p .enter{
     margin-top: 1rem;
 }
 .ctnFinalText .btnSecundario span{
+    display: block;
+    width: 100%;
+    height: 100%;
     padding: 5px 0;
 }
 #btnToStart{
@@ -574,6 +577,8 @@ body main .crearGuifos p .enter{
         display: block;
     }
     #ctnBtnLastPreview .controlCtn{
+        width: 100%;
+        margin: 1rem 0;
         padding-top: 0.5rem;
         height: 24px;
         display: flex;
@@ -583,6 +588,7 @@ body main .crearGuifos p .enter{
     #ctnBtnLastPreview .timer{
         padding: 4px;
         margin: 0;
+        margin-left: 1rem;
         width: calc(100% - 1rem);
     }
     #ctnBtnLastPreview .timeSlot{

@@ -205,15 +205,21 @@ ctnBtnCaptura.addEventListener('click', () => {
             ctnBtnLastPreview.classList.add('hidden');
             contenidoUploading.classList.remove('hidden');
             ctnBtnUploading.classList.remove('hidden');
+            const controller = new AbortController();
+            const signal = controller.signal;
+            ctnBtnUploading.addEventListener('click', ()=>{
+                controller.abort();
+            }
+            )
             if(blobURL !== null){
                 let form = new FormData();
                 form.append('file', recorder.blob, 'miGuifo.gif');
-                fetch('https://upload.giphy.com/v1/gifs?api_key=' + apiKey, {
+                fetch('https://upload.giphy.com/v1/gifs?api_key=' + apiKey,{
+                    signal,
                     method: 'POST',
                     body: form
                 })
                 .then(res => res.json())
-                .catch(error => console.error('Error al ejecutar el Fetch: ', error))
                 .then((response) => {
                     let misGuifosActual;
                     let newId = response.data.id;
@@ -243,14 +249,44 @@ ctnBtnCaptura.addEventListener('click', () => {
                         title.textContent = 'Guifo Subido Con Éxito';
                         newGuifo.style.background = 'url('+respuesta.data.images.fixed_width.url+') center center';
                         newGuifo.style.backgroundSize = '100% auto';
+                        let miGuifoUrl = respuesta.data.url;
                         btnURL.addEventListener('click', () => {
-                            window.open(respuesta.data.url,'_blank');
+                            var dummy = document.createElement("input");
+                            document.body.appendChild(dummy);
+                            dummy.value = miGuifoUrl;
+                            dummy.select();
+                            document.execCommand("copy");
+                            document.body.removeChild(dummy);
                         })
                         btnDownload.addEventListener('click', () => {
                             invokeSaveAsDialog(blob);
                         })
+                        btnToStart.addEventListener('click', () =>{
+                            title.textContent = 'Crear Guifos';
+                            ctnBtnFinal.classList.add('hidden');
+                            startingPage.classList.remove('hidden');
+                            ctnBtnPrincipal.classList.remove('hidden');
+                            blobURL = URL.revokeObjectURL(blobURL);
+                            blobURL = null;
+                            blob = null;
+                            recorder = null;
+                        })
                         ctnBtnFinal.classList.remove('hidden');
                     });
+                })
+                .catch((error) => {
+                    console.error('Error al ejecutar el Fetch: ', error);
+                    alert('Se cancelo el upload');
+                    blobURL = URL.revokeObjectURL(blobURL);
+                    blobURL = null;
+                    blob = null;
+                    recorder = null;
+                    title.textContent = 'Un Chequeo Antes de Empezar';
+                    startingPage.classList.remove('hidden');
+                    ctnBtnPrincipal.classList.remove('hidden');
+                    videoWindowClose.classList.add('hidden');
+                    contenidoUploading.classList.add('hidden');
+
                 })
             }
 
