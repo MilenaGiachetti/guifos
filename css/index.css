@@ -1,0 +1,827 @@
+/*-------------generales---------------*/
+/*Colores temas*/
+.theme-dark {
+  --bg-primary: #110038;
+  --bg-secondary: #b4b4b4;
+  --bg-tertiary: #cccccc;
+  --gradient-primary: #ee3efe;
+  --gradient-secondary: #2e32fb;
+  --color-primary: #110038;
+  --color-secondary: #fff;
+  --shadow-primary: #5c5c5c;
+  --shadow-secondary: #b4b4b4;
+  --shadow-tertiary: #fff;
+  --btn-shadow: #a72cb3;
+  --btn-bg-hover: #ce36db;
+  --btn-sec-bg-hover: #2629CC;
+  --btn-sec-shadow: #2124B3;
+  --border-second-h: #2e32fb;
+  --shadow-second-h: #110038;
+  --bg-theme-selector: #2e32f2;
+  --border-theme-selector: #33358f;
+}
+.theme-light {
+  --bg-primary: #fff4fd;
+  --bg-secondary: #e6e6e6;
+  --bg-tertiary: #f0f0f0;
+  --gradient-primary: #f7c9f3;
+  --gradient-secondary: #4180f6;
+  --color-primary: #110038;
+  --color-secondary: #110038;
+  --shadow-primary: #b4b4b4;
+  --shadow-secondary: #b4b4b4;
+  --shadow-tertiary: #fff;
+  --btn-shadow: #997d97;
+  --btn-bg-hover: #e6bbe2;
+  --btn-sec-bg-hover: #3a72db;
+  --btn-sec-shadow: #284f99;
+  --border-second-h: #e6bbe2;
+  --shadow-second-h: #80687d;
+  --bg-theme-selector: #fff4fd;
+  --border-theme-selector: #cca6c9;
+}
+/*Fuentes*/
+@font-face {
+  font-family: "chakraReg";
+  src: url("../assets/font/ChakraPetch-Regular.ttf");
+}
+@font-face {
+  font-family: "chakraBold";
+  src: url("../assets/font/ChakraPetch-Bold.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  vertical-align: top;
+}
+html {
+  font-size: 16px;
+}
+/*Headings*/
+h2 {
+  background: #fffafe;
+  border: 1px solid var(--border-second-h);
+  -webkit-box-shadow: inset -2px -2px 0 0 #e6dce4,
+    inset 2px 2px 0 0 var(--shadow-second-h);
+  box-shadow: inset -2px -2px 0 0 #e6dce4,
+    inset 2px 2px 0 0 var(--shadow-second-h);
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  letter-spacing: 0;
+  font-weight: normal;
+  padding: 0.5rem;
+  letter-spacing: 0;
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+}
+.heading {
+  background-image: linear-gradient(
+    270deg,
+    var(--gradient-primary) 0%,
+    var(--gradient-secondary) 100%
+  );
+  font-family: "chakraBold", Arial, Helvetica, sans-serif;
+  font-size: 0.875rem;
+  color: var(--shadow-tertiary);
+  letter-spacing: 0;
+  padding: 0.25rem;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+/*Carets*/
+.close-caret {
+  transform: rotate(0deg);
+  transition: all 0.25s ease-in;
+}
+.open-caret {
+  transform: rotate(180deg);
+  transition: all 0.25s ease-out;
+}
+.whiteCaret {
+  filter: invert(100%);
+}
+.whiteCaret:hover {
+  filter: invert(70%);
+}
+/*Botones*/
+.btn {
+  height: 36px;
+  background: var(--gradient-primary);
+  border: 1px solid var(--color-primary);
+  -webkit-box-shadow: inset -1px -1px 0 0 var(--btn-shadow),
+    inset 1px 1px 0 0 var(--shadow-tertiary);
+  box-shadow: inset -1px -1px 0 0 var(--btn-shadow),
+    inset 1px 1px 0 0 var(--shadow-tertiary);
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  color: var(--color-secondary);
+  padding: 2px;
+}
+.btn:hover,
+.btn:active {
+  background: var(--btn-bg-hover);
+}
+.btn .text {
+  line-height: 28px;
+  width: 131px;
+  display: inline-block;
+  font-size: 1rem;
+  border: 1px solid #00000000;
+}
+.btn .text:hover,
+.btn .text:active {
+  border: 1px dotted var(--color-primary);
+}
+.btn .caret {
+  vertical-align: 0;
+  line-height: 18px;
+  padding-top: 10px;
+  display: inline-block;
+  border: 1px solid #00000000;
+}
+.btn .caret:hover,
+.btn .caret:active {
+  border: 1px dotted var(--color-primary);
+}
+.btnSecondary {
+  display: inline-block;
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  font-size: 0.875rem;
+  color: var(--shadow-tertiary);
+  letter-spacing: 0;
+  flex-shrink: 0;
+  background: var(--gradient-secondary);
+  border: 1px solid #4c2f99;
+  padding: 2px;
+  -webkit-box-shadow: inset -2px -2px 0 0 var(--btn-sec-shadow),
+    inset 2px 2px 0 0 var(--shadow-tertiary);
+  box-shadow: inset -2px -2px 0 0 var(--btn-sec-shadow),
+    inset 2px 2px 0 0 var(--shadow-tertiary);
+}
+.btnSecondary:hover {
+  background: var(--btn-sec-bg-hover);
+}
+.btnSecondary span,
+.btnSecondary a {
+  text-decoration: none;
+  color: var(--shadow-tertiary);
+  padding: 0.25rem;
+  display: inline-block;
+  border: 1px solid #00000000;
+}
+.btnSecondary span:hover,
+.btnSecondary a:hover {
+  border: 1px dotted var(--color-primary);
+}
+/*Texto de error*/
+.error {
+  color: var(--color-secondary);
+  margin: 3rem auto 0 auto;
+  font-size: 1.5rem;
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  grid-column-end: span 8;
+  text-align: center;
+}
+/*Enlaces a arriba de todo*/
+.linkTop {
+  display: inline-block;
+  width: 100%;
+  text-align: right;
+  text-decoration: none;
+  color: var(--color-secondary);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.linkTop img {
+  width: 20px;
+  height: 20px;
+}
+/*-------------particulares---------------*/
+body {
+  background: var(--bg-primary);
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  color: var(--color-primary);
+}
+body header .topHeading {
+  padding: 0.25rem 0.5rem;
+  box-shadow: 0 1px 0 0 var(--color-primary);
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+body header h1 {
+  height: 0;
+  text-indent: -100000px;
+}
+body header .menu {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2.5rem 10% 0 10%;
+}
+body header .menu #logo {
+  width: 6.25rem;
+}
+body header .menu #btnOpenMenu {
+  display: none;
+}
+body header .menu #btnOpenMenu .text {
+  width: 100px;
+}
+body header .menu #btnOpenMenu img {
+  position: relative;
+  top: 10px;
+  left: 75px;
+}
+body header .menu nav {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0;
+}
+body header .menu nav #btnCreate .text {
+  text-align: center;
+}
+body header .menu nav #btnCreate:hover,
+body header .menu nav #btnCaret:hover,
+body header .menu nav #btnTheme:hover span {
+  border: 1px dotted var(--color-primary);
+  background: var(--btn-bg-hover);
+}
+body header .menu nav .dropdown {
+  margin: 0 1rem;
+}
+body header .menu nav .dropdown .dropdownBtn:hover button {
+  background: var(--btn-bg-hover);
+}
+body header .menu nav .dropdown .dropdownBtn:hover button .caret {
+  border: 1px dotted var(--color-primary);
+}
+body header .menu nav .dropdown .dropdownBtn:hover #btnText {
+  background: var(--btn-bg-hover);
+}
+body header .menu nav .dropdown .dropdownBtn:hover #btnText .text {
+  border: 1px dotted var(--color-primary);
+}
+body header .menu nav .dropdown button .caret {
+  display: inline-block;
+  width: 36px;
+}
+body header .menu nav .dropdown .dropdownContent {
+  position: absolute;
+  display: flex;
+  flex-flow: column wrap;
+  width: 180px;
+  padding: 5px;
+  box-shadow: inset -2px -2px 0 0 var(--shadow-primary),
+    inset 2px 2px 0 0 var(--shadow-tertiary);
+  background: var(--bg-secondary);
+}
+body header .menu nav .dropdown .dropdownContent button {
+  margin: 0.25rem;
+  padding: 0.5rem;
+  border: 1px solid #808080;
+  box-shadow: inset -1px -1px 0 0 var(--shadow-primary),
+  inset 1px 1px 0 0 var(--shadow-tertiary);
+  background: var(--bg-tertiary);
+}
+body header .menu nav .dropdown .dropdownContent button:hover {
+  border: 1px solid var(--border-theme-selector);
+  box-shadow: inset -1px -1px 0 0 #e6dce4, inset 1px 1px 0 0 var(--shadow-tertiary);
+  background: var(--bg-theme-selector);
+  color: var(--color-secondary);
+}
+body header .menu nav .dropdown .dropdownContent button span {
+  display: inline-block;
+}
+body header .menu nav .dropdown .dropdownContent button .underline {
+  text-decoration: underline;
+}
+body header .menu nav .linkToGuifos {
+  padding: 6px 16px 4px 0;
+  border: 1px solid rgba(255, 255, 255, 0);
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-size: 1rem;
+  color: var(--color-secondary);
+  line-height: 22px;
+}
+body header .menu nav .linkToGuifos .underline {
+  text-decoration: underline;
+}
+body header .menu nav .linkToGuifos:hover {
+  border: 1px dotted var(--color-secondary);
+}
+body header .menu nav .linkToGuifos:active {
+  border: 1px solid rgba(255, 255, 255, 0);
+  color: var(--shadow-secondary);
+}
+body main {
+  margin: 1.25rem 10%;
+}
+body main .search .searchBox {
+  margin-top: 4rem;
+  padding: 2px;
+  box-shadow: inset -2px -2px 0 0 var(--shadow-primary),
+  inset 2px 2px 0 0 var(--shadow-tertiary);
+  background: var(--bg-secondary);
+}
+body main .search .searchBox h2 {
+  margin-top: 0;
+}
+body main .search .searchBox .searchLine {
+  padding: 0 1rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+body main .search .searchBox .searchLine input {
+  display: inline-block;
+  width: calc(98% - 100px);
+  margin: 0 0 1rem 0;
+  padding: 1rem 1.2rem;
+  border: 1px solid #979797;
+  box-shadow: inset -2px -2px 0 0 var(--bg-secondary),
+    inset 2px 2px 0 0 var(--color-primary);
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  color: var(--color-primary);
+}
+body main .search .searchBox .searchLine button {
+  width: 105px;
+  height: 36px;
+  margin: 0 0 1rem 0;
+  padding: 2px;
+}
+body main .search .searchBox .searchLine button .text {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #00000000;
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  color: var(--shadow-primary);
+  line-height: 28px;
+}
+body main .search .searchBox .searchLine button .text:hover {
+  border: 1px dotted var(--color-primary);
+}
+body main .search .searchBox .searchLine button .text img {
+  position: relative;
+  top: 5px;
+  margin-right: 8px;
+}
+body main .search .searchBox .searchLine .btnInactive {
+  border: 1px solid #808080;
+  box-shadow: inset -1px -1px 0 0 var(--shadow-secondary),
+    inset 1px 1px 0 0 var(--shadow-tertiary);
+  background: var(--bg-secondary);
+}
+body main .search #searchSuggestion {
+  position: absolute;
+  z-index: 2;
+  width: 80%;
+  padding: 1rem 0 0 1.5rem;
+  box-shadow: inset -2px -2px 0 0 var(--shadow-secondary),
+    inset 2px 2px 0 0 var(--shadow-tertiary);
+  background: var(--bg-secondary);
+}
+body main .search #searchSuggestion .suggestionBox {
+  display: block;
+  width: calc(96.5% - 100px);
+  margin-bottom: 1rem;
+  padding: 2px;
+  border: 1px solid #979797;
+  box-shadow: inset -1px -1px 0 0 var(--shadow-secondary),
+    inset 1px 1px 0 0 var(--shadow-tertiary);
+  background: var(--bg-tertiary);
+}
+body main .search #searchSuggestion .suggestionBox span {
+  display: block;
+  padding: 6px 15px;
+  border: 1px solid #8b868600;
+}
+body main .search #searchSuggestion .suggestionBox span:hover {
+  border: 1px dotted var(--color-primary);
+  box-shadow: unset;
+  background: var(--bg-secondary);
+}
+body main .search #tagsSuggestion {
+  height: 31px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  margin-top: 12px;
+  overflow: hidden;
+}
+body main .search #ctnSearch {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 1rem;
+  grid-auto-flow: dense;
+}
+body main .search #ctnSearch .ctnTotal {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  box-shadow: inset -2px -2px 0 0 var(--shadow-primary),
+    inset 2px 2px 0 0 var(--shadow-tertiary);
+  background: var(--bg-secondary);
+}
+body main .search #ctnSearch .largeTotal {
+  grid-column-end: span 2;
+  grid-row-end: span 1;
+}
+body main .search #ctnSearch .ctnTotal:hover {
+  padding: 4px;
+}
+body main .search #ctnSearch .ctnTotal .ctnImg {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  overflow: hidden;
+}
+body main .search #ctnSearch .ctnTotal .largeImg {
+  padding-bottom: calc(50% - (1rem / 2));
+}
+body main .search #ctnSearch .ctnTotal:hover .largeImg {
+  padding-bottom: calc(50% - (1rem / 2) - 4px);
+}
+body main .search #ctnSearch .ctnTotal .ctnImg .img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border: 1px solid #00000000;
+  background-size: cover;
+}
+body main .search #ctnSearch .ctnTotal:hover .ctnImg .img {
+  border: 1px dotted var(--color-primary);
+}
+body main .search #ctnSearchPages {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  height: 2.5rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+body main .search #ctnSearchPages img {
+  width: 2rem;
+  height: 100%;
+}
+body main .search #ctnSearchPages img:hover {
+  filter: invert(60%);
+}
+body main .search #ctnSearchPages #ctnPageBtn {
+  display: inline;
+}
+body main .search #ctnSearchPages #ctnPageBtn button {
+  height: 100%;
+  margin: 2px;
+  padding: 0rem 1rem;
+  box-shadow: inset -2px -2px 0 0 var(--shadow-primary),
+    inset 2px 2px 0 0 var(--shadow-tertiary);
+  background: var(--bg-secondary);
+  font-family: "chakraBold", Arial, Helvetica, sans-serif;
+}
+body main .search #ctnSearchPages #ctnPageBtn button:hover {
+  background: var(--btn-shadow);
+}
+body main .search #ctnSearchPages #ctnPageBtn .currentPageHighlight {
+  background: var(--gradient-primary);
+}
+body main .suggestion #ctnSuggestion {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+body main .suggestion #ctnSuggestion .ctnTotal {
+  width: 24%;
+  margin-bottom: 0.75rem;
+  padding: 4px;
+  box-shadow: inset -2px -2px 0 0 var(--shadow-primary),
+    inset 2px 2px 0 0 var(--shadow-tertiary);
+  background: var(--bg-secondary);
+}
+body main .suggestion #ctnSuggestion .ctnTotal .ctnImg {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  overflow: hidden;
+}
+body main .suggestion #ctnSuggestion .ctnTotal .ctnImg .img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #00000000;
+  background-size: cover;
+}
+body main .suggestion #ctnSuggestion .ctnTotal .ctnImg .img button {
+  position: absolute;
+  bottom: 1rem;
+  left: 0.5rem;
+}
+body main .suggestion #ctnSuggestion .ctnTotal .ctnImg .img:hover {
+  border: 1px dotted var(--color-primary);
+}
+body main .suggestion #ctnSuggestion .ctnTotal .ctnImg .img:hover button {
+  background: var(--btn-sec-bg-hover);
+}
+body main .suggestion #ctnSuggestion .ctnTotal .ctnImg .img:hover a {
+  border: 1px dotted var(--color-primary);
+}
+body main .suggestion #ctnSuggestion .ctnTotal .heading {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+body main .trending #ctnTrending {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 1rem;
+  grid-auto-flow: dense;
+}
+body main .trending #ctnTrending .ctnTotal {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  box-shadow: inset -2px -2px 0 0 var(--shadow-primary),
+    inset 2px 2px 0 0 var(--shadow-tertiary);
+  background: var(--bg-secondary);
+}
+body main .trending #ctnTrending .largeTotal {
+  grid-column-end: span 2;
+  grid-row-end: span 1;
+}
+body main .trending #ctnTrending .ctnTotal:hover {
+  padding: 4px;
+}
+body main .trending #ctnTrending .ctnTotal .ctnImg {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  overflow: hidden;
+}
+body main .trending #ctnTrending .ctnTotal .largeImg {
+  padding-bottom: calc(50% - (1rem / 2));
+}
+body main .trending #ctnTrending .ctnTotal:hover .largeImg {
+  padding-bottom: calc(50% - (1rem / 2) - 4px);
+}
+body main .trending #ctnTrending .ctnTotal .ctnImg .img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  border: 1px solid #00000000;
+}
+body main .trending #ctnTrending .ctnTotal:hover .ctnImg .img {
+  border: 1px dotted var(--color-primary);
+}
+body main .trending #ctnTrending .ctnTotal:hover .ctnImg .img .heading {
+  display: block;
+}
+body main .trending #ctnTrending .ctnTotal .ctnImg .img .heading {
+  position: absolute;
+  bottom: -2px;
+  left: 0px;
+  display: none;
+  width: 100%;
+}
+body main .trending #ctnTrendingPages {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  height: 2.5rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+body main .trending #ctnTrendingPages img {
+  width: 2rem;
+  height: 100%;
+}
+body main .trending #ctnTrendingPages img:hover {
+  filter: invert(60%);
+}
+body main .trending #ctnTrendingPages #ctnPageBtnTrend {
+  display: inline;
+}
+body main .trending #ctnTrendingPages #ctnPageBtnTrend button {
+  height: 100%;
+  margin: 2px;
+  padding: 0rem 1rem;
+  box-shadow: inset -2px -2px 0 0 var(--shadow-primary),
+    inset 2px 2px 0 0 var(--shadow-tertiary);
+  background: var(--bg-secondary);
+  font-family: "chakraBold", Arial, Helvetica, sans-serif;
+}
+body main .trending #ctnTrendingPages #ctnPageBtnTrend button:hover {
+  background: var(--btn-shadow);
+}
+body main .trending #ctnTrendingPages #ctnPageBtnTrend .currentTrendPageHighlight {
+  background: var(--gradient-primary);
+}
+body main .search .searchBox .searchLine .btnSearch .text {
+  color: var(--color-secondary);
+}
+/*-------------Media Queries---------------*/
+@media screen and (max-width: 1400px) {
+  body main .search #ctnSearch {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+  }
+  body main .search #ctnSearch .ctnTotal .largeImg {
+    padding-bottom: calc(50% - (1rem / 2));
+  }
+  body main .search #ctnSearch .ctnTotal:hover .largeImg {
+    padding-bottom: calc(50% - (1rem / 2) - 4px);
+  }
+  body main .suggestion #ctnSuggestion .ctnTotal {
+    width: 24%;
+  }
+  body main .trending #ctnTrending {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+  }
+  body main .trending #ctnTrending .ctnTotal .largeImg {
+    padding-bottom: calc(50% - (1rem / 2));
+  }
+  body main .trending #ctnTrending .ctnTotal:hover .largeImg {
+    padding-bottom: calc(50% - (1rem / 2) - 4px);
+  }
+}
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 14px;
+  }
+  body header .menu #logo {
+    width: 5rem;
+  }
+  body header .menu nav {
+    display: none;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    z-index: 4;
+    top: 94px;
+    right: 10%;
+    width: 230px;
+    height: 160px;
+    padding: 5px;
+    box-shadow: inset -2px -2px 0 0 var(--shadow-primary), inset 2px 2px 0 0 var(--shadow-tertiary);
+    background: var(--bg-secondary);
+    font-size: 0;
+  }
+  body header .menu nav .text {
+    width: 138px;
+  }
+  body header .menu nav a .text {
+    width: 180px;
+  }
+  body header .menu nav .linkToGuifos {
+    text-align: center;
+    width: 180px;
+    padding: 6px 0;
+  }
+  body header .menu nav .dropdown .dropdownContent {
+    width: 186px;
+  }
+  body header .menu #btnOpenMenu {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  body header .menu #btnOpenMenu .text {
+    width: 225px;
+  }
+  body main .search #searchSuggestion {
+    width: 80%;
+    padding: 1rem 0 0.5rem 0;
+  }
+  body main .search #searchSuggestion .suggestionBox {
+    width: 95%;
+    margin: 0 auto 0.5rem auto;
+  }
+  body main .search #ctnSearch {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+  }
+  body main .suggestion #ctnSuggestion .ctnTotal {
+    width: 49%;
+  }
+  body main .trending #ctnTrending {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    grid-auto-flow: dense;
+  }
+  body main .trending #ctnTrending .ctnTotal .largeImg {
+    padding-bottom: calc(50% - (1rem / 2));
+  }
+  body main .trending #ctnTrending .ctnTotal:hover .largeImg {
+    padding-bottom: calc(50% - (1rem / 2) - 4px);
+  }
+}
+@media screen and (max-width: 700px) {
+  .linkTop {
+    margin-top: 5rem;
+  }
+  body main .search .searchBox .searchLine {
+    padding: 0;
+  }
+  body main .search .searchBox .searchLine input {
+    width: 90%;
+    margin: 0 0 0.5rem 0;
+  }
+  body main .search .searchBox .searchLine button {
+    height: 36px;
+    width: 90%;
+  }
+  body main .search #searchSuggestion .suggestionBox {
+    width: 90%;
+    margin: 0 auto 0.5rem auto;
+  }
+  body main .search #ctnSearch {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1rem;
+  }
+  body main .search #ctnSearch .largeTotal {
+    grid-column-end: span 1;
+    grid-row-end: span 1;
+  }
+  body main .suggestion #ctnSuggestion .ctnTotal {
+    width: 100%;
+  }
+  body main .trending #ctnTrending {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  body main .trending #ctnTrending .largeTotal {
+    grid-column-end: span 1;
+    grid-row-end: span 1;
+  }
+}
+@media screen and (max-width: 475px) {
+  body header .menu #logo {
+    width: 4rem;
+  }
+  body header .menu nav {
+    right: 10%;
+    top: 106px;
+    width: 160px;
+    height: 160px;
+    padding: 5px;
+    background: var(--bg-secondary);
+  }
+  body header .menu nav .dropdown .dropdownContent {
+    width: 122px;
+  }
+  body header .menu nav #btnText .text {
+    width: 74px;
+    line-height: 14px;
+  }
+  body header .menu nav a .text {
+    width: 116px;
+  }
+  body header .menu nav .linkToGuifos {
+    width: 100px;
+    padding: 6px 0;
+    text-align: center;
+  }
+  body header .menu #btnOpenMenu {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  body header .menu #btnOpenMenu .text {
+    width: 154px;
+  }
+  body header .menu #btnOpenMenu img {
+    left: 40px;
+  }
+  .linkTop {
+    margin-top: 7rem;
+  }
+}
+
+/*clase para desaparicion y aparicion*/
+.hidden {
+  display: none !important;
+}

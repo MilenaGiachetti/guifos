@@ -6,35 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gif.OS</title>
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="estilo/recording.css">
+    <link rel="stylesheet" href="css/recording.css">
 </head>
 <body>
     <header>
-        <p class="title topTitle">¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas: <span id="visitas"> 12.765.803</span></p>
+        <p class="heading topHeading">¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas: <span id="visitas"> 12.765.803</span></p>
         <h1>Guifos</h1>
-        <div class="head">
+        <div class="menu">
             <a href="" id="previousPage">
-                <img src="assets/img/arrow.svg" id="svgArrow" alt="">
+                <img src="assets/img/arrow.svg" id="svgArrow" alt="Ir para atrás">
             </a>
-            <a href="index.html"><img src="assets/img/logo.png" id="logo" alt=""></a>
+            <a href="index.html"><img src="assets/img/logo.png" id="logo" alt="Logo de Gif.OS"></a>
         </div>
     </header>
     <main>
-        <section class="crearGuifos" id="ctnCreador">
-            <div class="title topTitle">
-                <h2  id='title'>Crear Guifos</h2>            
-                <img src="assets/img/close.svg" class="hidden" id="videoWindowClose" alt="">
+        <section class="createGuifos" id="ctnCreator">
+            <div class="heading topHeading">
+                <h2  id='heading'>Crear Guifos</h2>            
+                <img src="assets/img/close.svg" class="hidden" id="videoWindowClose" alt="Cerrar ventana de creación de gifs">
             </div>
-            <div id="contenido" class="contenido">
+            <div id="windowContent" class="windowContent">
                 <div class="gifContainer hidden" id="gifContainer">
-                    <img alt="" id="imgGIF" src="assets/img/globe.png" class="hidden">
+                    <img alt="Gif grabado" id="imgGIF" src="assets/img/globe.png" class="hidden">
                     <video class="hidden"></video>
                 </div>
                 <div class="startingPage" id="startingPage">
                     <img src="assets/img/window.png" id="windowImg" alt="">
                     <div class="startingPageText">
-                        <h4 id="secondaryTitle">Aquí podrás crear tus propios guifos</h4>
-                        <p id="instrucciones">
+                        <h4>Aquí podrás crear tus propios guifos</h4>
+                        <p>
                             <span class="enter">Crear tu <span class="bold tilted">guifo</span> es muy fácil, graba cualquier imagen con tu cámara y obtén guifos personalizados. Los pasos para crear tu guifo son:
                             </span>
                             <span class="enter">
@@ -56,26 +56,26 @@
                     </div>
                 </div>
                 <div class="ctnBtn" id="ctnBtnPrincipal">
-                    <a id='cancelLink' class='btnSecundario' href=""><span>Cancelar</span></a>
-                    <button id="btnComenzar" class="btn">Comenzar</button>
+                    <a id='cancelLink' class='btnSecondary' href=""><span>Cancelar</span></a>
+                    <button id="btnStart" class="btn">Comenzar</button>
                 </div>
                 <div class="ctnBtn hidden" id="ctnBtnInitialPreview">
-                    <button id="imgCapturar" class="btn"><img src="assets/img/camera.svg" id="svgCamera" alt=""></button>
-                    <button id="btnCapturar" class="btn">Capturar</button>
+                    <button id="imgCapture" class="btn"><img src="assets/img/camera.svg" id="svgCamera" alt=""></button>
+                    <button id="btnCapture" class="btn">Capturar</button>
                 </div>
-                <div class="ctnBtn hidden" id="ctnBtnCaptura">
+                <div class="ctnBtn hidden" id="ctnBtnCapture">
                     <p id="captureTimer" class="timer">00:00:00:00</p>
-                    <div class="listo">
-                        <button id="imgListo" class="btn"><img src="assets/img/recording.svg" alt=""></button>
-                        <button id="btnListo" class="btn">Listo</button>
+                    <div class="ready">
+                        <button id="imgReady" class="btn"><img src="assets/img/recording.svg" alt=""></button>
+                        <button id="btnReady" class="btn">Listo</button>
                     </div>
                 </div>
                 <div class="ctnBtn hidden" id="ctnBtnLastPreview">
                     <p id="previewTimer" class="timer">00:00:00:00</p>
                     <div class="controlCtn">
-                        <div id="previewControls">
+                        <!--<div id="previewControls">
                             <img src="assets/img/pause.svg" id="previewControlsImg" alt="">
-                        </div>
+                        </div>-->
                         <div class="visualTimer" id="previewVisualTimer">
                             <div class="timeSlot"></div>
                             <div class="timeSlot"></div>
@@ -95,12 +95,12 @@
                         </div>
                     </div>
                     <div class="lastPreviewBtnCtn">
-                        <button class="btnSecundario" id="btnRepeat"><span>Repetir Captura</span></button>
+                        <button class="btnSecondary" id="btnRepeat"><span>Repetir Captura</span></button>
                         <button class="btn" id="btnUpload">Subir Guifo</button>
                     </div>
                 </div>
-                <div id="contenidoUploading" class="hidden">
-                    <div class="contenidoPrincipal">
+                <div id="uploadingContent" class="hidden">
+                    <div class="primaryContent">
                         <img src="assets/img/globe.png" alt="">
                         <h4>Estamos subiendo tu guifo…</h4>
                         <div class="visualTimer" id="uploadVisualTimer">
@@ -130,10 +130,10 @@
                             <div class="timeSlot"></div>
                             <div class="timeSlot"></div>
                         </div>
-                        <p>Tiempo restante: <span class="tachado">38 años</span> algunos minutos</p>
+                        <p>Tiempo restante: <span class="crossed">38 años</span> algunos minutos</p>
                     </div>
                     <div class="ctnBtn hidden" id="ctnBtnUploading">
-                        <button class="btnSecundario" id="btnCancelUpload"><span>Cancelar</span></button>
+                        <button class="btnSecondary" id="btnCancelUpload"><span>Cancelar</span></button>
                     </div>
                 </div>
                 <div class="ctnBtn hidden" id="ctnBtnFinal">
@@ -143,8 +143,8 @@
                         </div>
                         <div class="ctnFinalText">
                             <h4>Guifo creado con éxito</h4>
-                            <button class="btnSecundario" id="btnURL"><span>Copiar Enlace Guifo</span></button>
-                            <button class="btnSecundario" id="btnDownload"><span>Descargar Guifo</span></button>
+                            <button class="btnSecondary" id="btnURL"><span>Copiar Enlace Guifo</span></button>
+                            <button class="btnSecondary" id="btnDownload"><span>Descargar Guifo</span></button>
                         </div>
                     </div>
                     <button class="btn" id="btnToStart">Listo</button>

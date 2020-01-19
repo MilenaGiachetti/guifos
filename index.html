@@ -1,88 +1,154 @@
 <!DOCTYPE html>
 <html lang="en" class="theme-light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Gif.OS</title>
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="estilo/estilos.css">
-</head>
-<body>
+    <link
+      rel="shortcut icon"
+      href="assets/img/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
     <header>
-        <p class="title topTitle" id="top">¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas: <span id="visitas"> 12.765.803</span></p>
-        <h1>Guifos</h1>
-        <div class="head">
-            <a href="index.html"><img src="assets/img/logo.png" id="logo" alt=""></a>
-            <button id="btnOpenMenu" class="btn"> 
-                <span class="texto">Menú
-                    <img id="caretMenu" class='close-caret' src="assets/img/dropdown.svg" alt="">
+      <p class="heading topHeading">
+        ¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número
+        de visitas: 12.765.803
+      </p>
+      <h1>Guifos</h1>
+      <div class="menu">
+        <a href="index.html">
+            <img src="assets/img/logo.png" id="logo" alt="Logo de Gif.OS"/>
+        </a>
+        <button id="btnOpenMenu" class="btn">
+          <span class="text">Menú
+            <img
+              id="caretMenu"
+              class="close-caret"
+              src="assets/img/dropdown.svg"
+              alt="Abrir-cerrar menú"
+            />
+          </span>
+        </button>
+        <nav id="nav">
+          <a id="btnCreate" href="recording.html" class="btn">
+              <span class="text">Crear Guifos</span>
+          </a>
+          <div class="dropdown">
+            <div class="dropdownBtn">
+              <button class="btn" id="btnText">
+                <span class="text"> Elegir tema </span>
+              </button>
+              <button id="btnTheme" class="btn">
+                <span class="caret" id="dropdownCaret">
+                    <img
+                    id="caret"
+                    class="close-caret"
+                    src="assets/img/dropdown.svg"
+                    alt="Abrir-cerrar selector de temas de color"/>
                 </span>
-            </button>
-            <nav id="nav">
-                <a id="btnCrear" href="recording.html" class="btn"><span class="texto">Crear Guifos</span></a>
-                <div class="dropdown">
-                    <div class="dropdownBtn">
-                        <button class="btn" id="btnTexto">
-                            <span class="texto"> Elegir tema </span>
-                        </button>
-                        <button id="btnTema" class="btn">
-                            <span class="caret" id="dropdownCaret"><img id='caret' class='close-caret' src="assets/img/dropdown.svg" alt=""></span>
-                        </button>
-                    </div>
-                    <div class="dropdownContent hidden" id="dropdownMenu">
-                        <button id="light"><span class="subrayado">S</span>ailor Day</button>
-                        <button id="dark"><span class="subrayado">S</span>ailor Night</button>
-                    </div>
-                </div>
-                <a class="enlace" href="misguifos.html"><span class="subrayado">M</span>is Guifos</a>
-            </nav>
-        </div>
+              </button>
+            </div>
+            <div class="dropdownContent hidden" id="dropdownMenu">
+              <button id="light">
+                <span class="underline">S</span>ailor Day
+              </button>
+              <button id="dark">
+                <span class="underline">S</span>ailor Night
+              </button>
+            </div>
+          </div>
+          <a class="linkToGuifos" href="misguifos.html">
+              <span class="underline">M</span>is Guifos
+          </a>
+        </nav>
+      </div>
     </header>
     <main>
-        <section class="busqueda">
-            <div class="buscar">
-                <h2 class="title">Buscar</h2>
-                <div class="lineaBusq">
-                    <input type="text" placeholder="Busca gifs, hashtags, temas, busca lo que quieras…" id="inputBusqueda">
-                    <button type="submit" class="btnInactivo" id="btnBusqueda">
-                        <span class="texto">
-                            <img src="assets/img/lupainactive.svg" id="imgLupa" alt="">
-                            Buscar
-                        </span>
-                    </button>
-                </div>
-            </div>
-            <div id="sugerenciasBusq" class="hidden">
-                <div class="sugBusq" id="cuadroSug1"><span id="resultado1" ></span></div>
-                <div class="sugBusq" id="cuadroSug2"><span id="resultado2" ></span></div>
-                <div class="sugBusq" id="cuadroSug3"><span id="resultado3" ></span></div>
-            </div>
-            <div id="tagsSugeridos" class="hidden"></div>
-            <h2 id="titleBusq" class="hidden">Ejemplo de búsqueda (resultados)</h2>
-            <div id="ctnBusqueda"></div>
-            <div id="ctnBusquedaPages" class="hidden">
-                <div id="ctnPageLeft"></div>
-                <div id="ctnPageBtn"></div>
-                <div id="ctnPageRight"></div>
-            </div>
-            <a href="#top" id="GoToTopSearch" class="linkTop hidden">Ir arriba <img id="caretTopSearch" src="assets/img/caret-up.svg" alt=""></a>
-        </section>
-        <section class="sugerencias">
-            <h2>Hoy te sugerimos:</h2>
-            <div id="ctnSugerencias"></div>
-        </section>    
-        <section class="tendencia">
-            <h2>Tendencias:</h2>
-            <div id="ctnTrending"></div>
-            <div id="ctnTrendingPages" class="">
-                <img id="pageLeftTrend" class="caret" src="assets/img/caret-left.svg" alt="">
-                <div id="ctnPageBtnTrend"></div>
-                <img id="pageRightTrend" class="caret" src="assets/img/caret-right.svg" alt="">
-            </div>
-            <a href="#top" class="linkTop">Ir arriba <img id="caretTopTrend" src="assets/img/caret-up.svg" alt=""></a>
-        </section>
+      <section class="search">
+        <div class="searchBox">
+          <h2 class="heading">Buscar</h2>
+          <div class="searchLine">
+            <input
+              type="text"
+              placeholder="Busca gifs, hashtags, temas, busca lo que quieras…"
+              id="searchInput"
+            />
+            <button type="submit" class="btnInactive" id="btnSearch">
+              <span class="text">
+                <img
+                  src="assets/img/lensinactive.svg"
+                  id="imgLens"
+                  alt="Buscar"
+                />
+                Buscar
+              </span>
+            </button>
+          </div>
+        </div>
+        <div id="searchSuggestion" class="hidden">
+          <div class="suggestionBox" id="suggestionBox1">
+            <span id="result1"></span>
+          </div>
+          <div class="suggestionBox" id="suggestionBox2">
+            <span id="result2"></span>
+          </div>
+          <div class="suggestionBox" id="suggestionBox3">
+            <span id="result3"></span>
+          </div>
+        </div>
+        <div id="tagsSuggestion" class="hidden"></div>
+        <h2 id="searchHeading" class="hidden">
+          Ejemplo de búsqueda (resultados)
+        </h2>
+        <div id="ctnSearch"></div>
+        <div id="ctnSearchPages" class="hidden">
+          <div id="ctnPageLeft"></div>
+          <div id="ctnPageBtn"></div>
+          <div id="ctnPageRight"></div>
+        </div>
+        <a href="#top" id="goToTopSearch" class="linkTop hidden">
+          Ir arriba
+          <img
+            id="caretTopSearch"
+            src="assets/img/caret-up.svg"
+            alt="Flecha hacia arriba"/>
+        </a>
+      </section>
+      <section class="suggestion">
+        <h2>Hoy te sugerimos:</h2>
+        <div id="ctnSuggestion"></div>
+      </section>
+      <section class="trending">
+        <h2>Tendencias:</h2>
+        <div id="ctnTrending"></div>
+        <div id="ctnTrendingPages" class="">
+          <img
+            id="pageLeftTrend"
+            class="caret"
+            src="assets/img/caret-left.svg"
+            alt="Flecha hacia la izquierda"
+          />
+          <div id="ctnPageBtnTrend"></div>
+          <img
+            id="pageRightTrend"
+            class="caret"
+            src="assets/img/caret-right.svg"
+            alt="Flecha hacia la derecha"
+          />
+        </div>
+        <a href="#top" class="linkTop">
+          Ir arriba
+          <img
+            id="caretTopTrend"
+            src="assets/img/caret-up.svg"
+            alt="Flecha hacia arriba"/>
+        </a>
+      </section>
     </main>
-    <script src="function/gif.js"></script>
-</body>
+    <script src="function/index.js"></script>
+  </body>
 </html>

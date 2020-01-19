@@ -1,50 +1,73 @@
 <!DOCTYPE html>
 <html lang="en" class="theme-light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Gif.OS</title>
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="estilo/misguifos.css">
-</head>
-<body>
+    <link
+      rel="shortcut icon"
+      href="assets/img/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="css/misguifos.css" />
+  </head>
+  <body>
     <header>
-        <p class="title topTitle">¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas: <span id="visitas"> 12.765.803</span></p>
-        <h1>Guifos</h1>
-        <div class="head">
-            <a href="index.html"><img src="assets/img/logo.png" id="logo" alt=""></a>
-            <button id="btnOpenMenu" class="btn"> 
-                <span class="texto">Menú
-                    <img id="caretMenu" class='close-caret' src="assets/img/dropdown.svg" alt="">
+      <p class="heading topHeading">
+        ¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número
+        de visitas: 12.765.803
+      </p>
+      <h1>Guifos</h1>
+      <div class="menu">
+        <a href="index.html">
+            <img src="assets/img/logo.png" id="logo" alt="Logo de Gif.OS"/>
+        </a>
+        <button id="btnOpenMenu" class="btn">
+          <span class="text">Menú
+            <img id="caretMenu" class="close-caret" src="assets/img/dropdown.svg" alt="Abrir-cerrar menú"/>
+          </span>
+        </button>
+        <nav id="nav">
+          <a id="btnCreate" href="recording.html" class="btn">
+              <span class="text">Crear Guifos</span>
+          </a>
+          <div class="dropdown">
+            <div class="dropdownBtn">
+              <button class="btn" id="btnText">
+                <span class="text"> Elegir tema </span>
+              </button>
+              <button id="btnTheme" class="btn">
+                <span class="caret" id="dropdownCaret">
+                    <img
+                    id="caret"
+                    class="close-caret"
+                    src="assets/img/dropdown.svg"
+                    alt="Abrir-cerrar selector de temas de color"/>
                 </span>
-            </button>
-            <nav id="nav">
-                <a id="btnCrear" href="recording.html" class="btn"><span class="texto">Crear Guifos</span></a>
-                <div class="dropdown">
-                    <div class="dropdownBtn">
-                        <button class="btn" id="btnTexto">
-                            <span class="texto"> Elegir tema </span>
-                        </button>
-                        <button id="btnTema" class="btn">
-                            <span class="caret" id="dropdownCaret"><img id='caret' class='close-caret' src="assets/img/dropdown.svg" alt=""></span>
-                        </button>
-                    </div>
-                    <div class="dropdownContent hidden" id="dropdownMenu">
-                        <button id="light"><span class="subrayado">S</span>ailor Day</button>
-                        <button id="dark"><span class="subrayado">S</span>ailor Night</button>
-                    </div>
-                </div>
-                <a class="enlace" href="misguifos.html"><span class="subrayado">M</span>is Guifos</a>
-            </nav>
-        </div>
+              </button>
+            </div>
+            <div class="dropdownContent hidden" id="dropdownMenu">
+              <button id="light">
+                <span class="underline">S</span>ailor Day
+              </button>
+              <button id="dark">
+                <span class="underline">S</span>ailor Night
+              </button>
+            </div>
+          </div>
+          <a class="linkToGuifos" href="misguifos.html">
+              <span class="underline">M</span>is Guifos
+          </a>
+        </nav>
+      </div>
     </header>
     <main>
-        <section class="misGuifos">
-            <h2>Mis guifos</h2>
-            <div id="ctnMisGuifos"></div>
-        </section>    
+      <section class="misGuifos">
+        <h2>Mis guifos</h2>
+        <div id="ctnMisGuifos"></div>
+      </section>
     </main>
     <script src="function/misguifos.js"></script>
-</body>
+  </body>
 </html>

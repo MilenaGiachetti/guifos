@@ -1,0 +1,746 @@
+/*-------------generales---------------*/
+/*Colores temas*/
+.theme-dark {
+  --bg-primary: #110038;
+  --bg-secondary: #b4b4b4;
+  --bg-tertiary: #cccccc;
+  --gradient-primary: #ee3efe;
+  --gradient-secondary: #2e32fb;
+  --color-primary: #110038;
+  --color-secondary: #fff;
+  --shadow-primary: #110038;
+  --shadow-secondary: #b4b4b4;
+  --shadow-tertiary: #fff;
+  --btn-shadow: #a72cb3;
+  --btn-bg-hover: #ce36db;
+  --btn-sec-bg-hover: #2629cc;
+  --btn-sec-shadow: #2124b3;
+  --border-second-h: #2e32fb;
+  --shadow-second-h: #110038;
+  --bg-theme-selector: #2e32f2;
+  --border-theme-selector: #33358f;
+}
+.theme-light {
+  --bg-primary: #fff4fd;
+  --bg-secondary: #e6e6e6;
+  --bg-tertiary: #f0f0f0;
+  --gradient-primary: #f7c9f3;
+  --gradient-secondary: #4180f6;
+  --color-primary: #110038;
+  --color-secondary: #110038;
+  --shadow-primary: #f0e5ee;
+  --shadow-secondary: #b4b4b4;
+  --shadow-tertiary: #fff;
+  --btn-shadow: #997d97;
+  --btn-bg-hover: #e6bbe2;
+  --btn-sec-bg-hover: #3a72db;
+  --btn-sec-shadow: #284f99;
+  --border-second-h: #e6bbe2;
+  --shadow-second-h: #80687d;
+  --border-theme-selector: #cca6c9;
+}
+/*Fuentes*/
+@font-face {
+  font-family: "chakraReg";
+  src: url("../assets/font/ChakraPetch-Regular.ttf");
+}
+@font-face {
+  font-family: "chakraBold";
+  src: url("../assets/font/ChakraPetch-Bold.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  vertical-align: top;
+}
+html {
+  font-size: 16px;
+}
+
+/*Carets*/
+.white {
+  filter: invert(100%);
+}
+/*botones*/
+.ctnBtn {
+  width: 100%;
+  margin: 1rem 0;
+  padding-right: 1rem;
+  text-align: right;
+  font-size: 0;
+}
+.ctnBtn a,
+.ctnBtn button,
+.ctnBtn p {
+  margin-left: 1rem;
+  font-size: 1rem;
+}
+.btn {
+  padding: 8px 40px;
+  border: 1px solid var(--color-primary);
+  box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 #ffffff;
+  background: var(--gradient-primary);
+  font-family: "chakraReg";
+  color: var(--color-secondary);
+  font-size: 1rem;
+}
+.btn:hover {
+  background: var(--btn-bg-hover);
+}
+.btnSecondary {
+  padding: 2px;
+  border: 1px solid var(--color-primary);
+  box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 #ffffff;
+  background: var(--bg-primary);
+  font-family: "chakraReg";
+  color: var(--color-secondary);
+  font-size: 1rem;
+}
+.btnSecondary span {
+  display: inline-block;
+  padding: 5px 36px;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+.btnSecondary span:hover {
+  border: 1px dotted var(--color-secondary);
+  background: var(--shadow-primary);
+}
+/*timers*/
+.timer {
+  float: left;
+  width: 160px;
+  margin-right: 1rem;
+  padding: 8px;
+  border: 1px solid #979797;
+  box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000000;
+  background: var(--bg-tertiary);
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  color: #110038;
+  font-size: 16px;
+  text-align: center;
+  line-height: 22px;
+}
+.visualTimer {
+  margin-left: 6px;
+  padding: 2px;
+  background: #b4b4b4;
+  box-shadow: inset 2px 2px 0 0 #000000, inset -2px -2px 0 0 #fffcfc;
+  font-size: 0;
+}
+.timeSlot {
+  margin-left: 2px;
+  padding: 0;
+  display: inline-block;
+  background: #999999;
+  height: 20px;
+  width: 12px;
+}
+.passedTimeSlot {
+  background: var(--gradient-primary);
+}
+/*mensaje de error*/
+.error {
+  color: var(--color-secondary);
+  margin: 3rem auto 3rem auto;
+  font-size: 1.5rem;
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  grid-column-end: span 8;
+  text-align: center;
+}
+/*-------------particulares---------------*/
+body {
+  background: var(--bg-primary);
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  color: var(--color-primary);
+}
+body header .topHeading {
+  box-shadow: 0 1px 0 0 var(--color-primary);
+  padding: 4px 8px;
+  background-image: linear-gradient(
+    270deg,
+    var(--gradient-primary) 0%,
+    var(--gradient-secondary) 100%
+  );
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  color: var(--shadow-tertiary);
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  line-height: 1rem;
+}
+body header h1 {
+  height: 0;
+  text-indent: -100000px;
+}
+body header .menu {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin: 2.5rem 10% 0 10%;
+}
+body header .menu #logo {
+  width: 100px;
+  margin-left: 16px;
+}
+body main {
+  margin: 20px 10%;
+}
+body main .misGuifos h2 {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  padding: 8px;
+  border: 1px solid var(--border-second-h);
+  box-shadow: inset -2px -2px 0 0 #e6dce4,
+    inset 2px 2px 0 0 var(--shadow-second-h);
+  background: #fff4fd;
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  color: var(--color-primary);
+  font-weight: normal;
+  font-size: 0.875rem;
+  letter-spacing: 0;
+  letter-spacing: 0;
+}
+body main .createGuifos {
+  width: 65%;
+  margin: 50px auto;
+  padding: 3px;
+  box-shadow: inset -2px -2px 0 0 var(--shadow-secondary),
+    inset 2px 2px 0 0 #ffffff;
+  background: var(--bg-secondary);
+}
+body main .createGuifos .heading {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 3px;
+  background-image: linear-gradient(
+    270deg,
+    var(--gradient-primary) 0%,
+    var(--gradient-secondary) 100%
+  );
+}
+body main .createGuifos .heading h2 {
+  font-family: "chakraBold", Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  font-size: 0.875rem;
+  letter-spacing: 0;
+}
+body main .createGuifos .heading img {
+  width: 16px;
+  margin: 0;
+}
+body main .createGuifos .windowContent {
+  width: 100%;
+}
+.gifContainer {
+  width: calc(100% - 2rem);
+  margin: 1rem 1rem 0 1rem;
+  padding: 4px;
+  border: 1px solid #979797;
+  box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000000;
+  background: var(--bg-primary);
+}
+body main .createGuifos .windowContent video {
+  width: 100%;
+}
+body main .createGuifos .windowContent #imgGIF {
+  width: 100%;
+  margin: 0;
+}
+body main .createGuifos .startingPage {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 1rem;
+}
+body main .createGuifos .startingPage .startingPageText {
+  width: calc(100% - 8rem);
+  margin: 0 1rem 0 0;
+}
+body main .createGuifos .startingPage img {
+  width: 2rem;
+  margin: 1rem 1.5rem;
+}
+body main .createGuifos .startingPage h4 {
+  display: inline-block;
+  margin: 1rem 0 0.75rem 0;
+  font-family: "chakraBold", Arial, Helvetica, sans-serif;
+  color: var(--color-primary);
+  font-size: 1rem;
+  line-height: 1.375rem;
+  letter-spacing: 0;
+}
+body main .createGuifos .startingPage p {
+  display: inline-block;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  font-family: "chakraReg";
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: 0;
+}
+body main .createGuifos p .bold {
+  font-family: "chakraBold", Arial, Helvetica, sans-serif;
+}
+body main .createGuifos p .tilted {
+  font-style: italic;
+}
+body main .createGuifos p .enter {
+  display: block;
+  padding: 4px 0;
+}
+body main .createGuifos .crossed {
+  text-decoration: line-through;
+}
+body main .createGuifos #cancelLink {
+  display: inline-block;
+  font-size: 1rem;
+}
+body main .createGuifos #ctnBtnPrincipal {
+  margin-bottom: 3rem;
+  padding-right: 4rem;
+}
+body main .createGuifos .ready {
+  display: inline-block;
+}
+body main .createGuifos #imgReady,
+body main .createGuifos #btnReady {
+  border: 1px solid #110038;
+  box-shadow: inset -1px -1px 0 0 #993a3a, inset 1px 1px 0 0 #ffffff;
+  background: #ff6161;
+  color: #fff;
+}
+body main .createGuifos #imgReady img {
+  position: relative;
+  top: 2px;
+}
+body main .createGuifos .ready:hover #btnReady,
+body main .createGuifos .ready:hover #imgReady,
+body main .createGuifos #imgReady:hover,
+body main .createGuifos #btnReady:hover {
+  background: rgb(214, 83, 83);
+}
+body main .createGuifos #imgCapture {
+  padding: 8px;
+  text-align: center;
+}
+body main .createGuifos #imgCapture img {
+  position: relative;
+  top: 3px;
+  width: 15px;
+  margin: 0;
+  padding: 0;
+}
+body main .createGuifos #ctnBtnInitialPreview {
+  display: inline-block;
+}
+body main .createGuifos #ctnBtnInitialPreview:hover #btnCapture,
+body main .createGuifos #ctnBtnInitialPreview:hover #imgCapture {
+  background: var(--btn-bg-hover);
+}
+body main .createGuifos #ctnBtnInitialPreview #btnCapture {
+  margin-left: 0;
+}
+body main .createGuifos #btnCancelar {
+  margin-right: 1rem;
+}
+body main .createGuifos #imgReady {
+  padding: 8px;
+  text-align: center;
+}
+body main .createGuifos #imgReady img {
+  width: 15px;
+  padding: 0;
+  margin: 0;
+}
+body main .createGuifos #btnReady {
+  margin-left: 0;
+}
+body main .createGuifos #ctnBtnLastPreview {
+  display: flex;
+  align-items: center;
+}
+body main .createGuifos #ctnBtnLastPreview .controlCtn {
+  display: flex;
+  flex-flow: row wrap;
+  height: 24px;
+}
+body main .createGuifos #ctnBtnLastPreview #btnUpload {
+  padding: 8px 8px;
+}
+body main .createGuifos #ctnBtnLastPreview button span {
+  padding: 5px 5px;
+}
+body main .createGuifos #previewControls {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  border: 1px solid #110038;
+  box-shadow: inset -1px -1px 0 0 var(--btn-shadow), inset 1px 1px 0 0 #ffffff;
+  background: var(--gradient-primary);
+}
+body main .createGuifos #previewControls img {
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  right: 6px;
+  width: 10px;
+  height: 12px;
+  margin: 0;
+}
+body main .createGuifos .lastPreviewBtnCtn {
+  margin-left: auto;
+}
+body main .createGuifos #uploadingContent .primaryContent {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #979797;
+  box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000000;
+  background: #ffffff;
+}
+body main .createGuifos #uploadingContent .primaryContent img {
+  margin-top: 8rem;
+  margin-bottom: 0.5rem;
+}
+body main .createGuifos #uploadingContent .primaryContent h4 {
+  margin-bottom: 2.5rem;
+  font-family: "chakraBold", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+body main .createGuifos #uploadingContent .primaryContent .visualTimer {
+  margin-bottom: 0.5rem;
+}
+body main .createGuifos #uploadingContent .primaryContent p {
+  margin-bottom: 8rem;
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  color: rgba(17, 0, 56, 0.64);
+  font-size: 12px;
+  text-align: center;
+  line-height: 14px;
+  letter-spacing: 0;
+}
+body main .createGuifos #ctnBtnFinal {
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+}
+body main .createGuifos .ctnResult {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+body main .createGuifos .ctnFinalText {
+  width: 45%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+body main .createGuifos .ctnFinalText h4 {
+  margin-left: 1rem;
+  font-family: "chakraBold", Arial, Helvetica, sans-serif;
+  color: #110038;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0;
+}
+body main .createGuifos .ctnFinalText .btnSecondary {
+  width: 100%;
+  margin-top: 1rem;
+}
+body main .createGuifos .ctnFinalText .btnSecondary span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 5px 0;
+}
+body main .createGuifos #btnToStart {
+  width: 150px;
+  margin-left: auto;
+  padding: 5px 10px;
+  text-align: center;
+}
+body main .misGuifos #ctnMisGuifos {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 1rem;
+  grid-auto-flow: dense;
+}
+body main .misGuifos #ctnMisGuifos .ctnTotal {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  box-shadow: inset -2px -2px 0 0 var(--shadow-primary),
+    inset 2px 2px 0 0 var(--shadow-tertiary);
+  background: var(--bg-secondary);
+}
+body main .misGuifos #ctnMisGuifos .largeTotal {
+  grid-column-end: span 2;
+  grid-row-end: span 1;
+}
+body main .misGuifos #ctnMisGuifos .ctnTotal:hover {
+  padding: 4px;
+}
+body main .misGuifos #ctnMisGuifos .ctnTotal .ctnImg {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  overflow: hidden;
+}
+body main .misGuifos #ctnMisGuifos .ctnTotal .largeImg {
+  padding-bottom: calc(50% - (1rem / 2));
+}
+body main .misGuifos #ctnMisGuifos .ctnTotal:hover .largeImg {
+  padding-bottom: calc(50% - (1rem / 2) - 4px);
+}
+body main .misGuifos #ctnMisGuifos .ctnTotal .ctnImg .img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #00000000;
+  background-size: cover;
+}
+body main .misGuifos #ctnMisGuifos .ctnTotal:hover .ctnImg .img {
+  border: 1px dotted var(--color-primary);
+}
+body main .misGuifos .newGuifoCtn {
+  position: relative;
+  width: 50%;
+  margin-left: 1rem;
+  padding: 2px;
+  padding-bottom: 30%;
+  border: 1px solid #979797;
+  box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000000;
+  background: #ffffff;
+  overflow: hidden;
+}
+body main .misGuifos #newGuifo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+/*-------------Media Queries---------------*/
+@media screen and (max-width: 1400px) {
+  body main .createGuifos {
+    width: 75%;
+  }
+  body main .misGuifos #ctnMisGuifos {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+  }
+  body main .misGuifos #ctnMisGuifos .ctnTotal .largeImg {
+    padding-bottom: calc(50% - (1rem / 2));
+  }
+  body main .misGuifos #ctnMisGuifos .ctnTotal:hover .largeImg {
+    padding-bottom: calc(50% - (1rem / 2) - 4px);
+  }
+}
+@media screen and (max-width: 1200px) {
+  html {
+    font-size: 14px;
+  }
+  .ctnBtn a,
+  .ctnBtn button,
+  .ctnBtn p {
+    margin-left: 1rem;
+  }
+  body main .createGuifos {
+    width: 80%;
+    margin: 30px auto;
+  }
+  body main .createGuifos #ctnBtnLastPreview .timer {
+    width: 110px;
+    margin-right: 0.5rem;
+    padding: 6px;
+    font-size: 14px;
+  }
+  body main .createGuifos #ctnBtnLastPreview .timeSlot {
+    width: 8px;
+    height: 20px;
+  }
+}
+@media screen and (max-width: 900px) {
+  body main .createGuifos {
+    width: 100%;
+    margin: 30px auto;
+  }
+  body main .misGuifos #ctnMisGuifos {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+  }
+}
+@media screen and (max-width: 740px) {
+  body main .misGuifos #ctnMisGuifos {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1rem;
+  }
+  body main .misGuifos #ctnMisGuifos .largeTotal {
+    grid-column-end: span 1;
+    grid-row-end: span 1;
+  }
+  #ctnBtnPrincipal {
+    padding-right: 0;
+    text-align: center;
+  }
+  body main .createGuifos #ctnBtnLastPreview {
+    display: block;
+  }
+  body main .createGuifos #ctnBtnLastPreview .controlCtn {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    width: 100%;
+    height: 24px;
+    margin: 1rem 0;
+    padding-top: 0.5rem;
+  }
+  body main .createGuifos #ctnBtnLastPreview .timer {
+    width: calc(100% - 1rem);
+    margin: 0;
+    margin-left: 1rem;
+    padding: 4px;
+  }
+  body main .createGuifos #ctnBtnLastPreview .timeSlot {
+    width: 12px;
+    height: 20px;
+  }
+  body main .createGuifos .lastPreviewBtnCtn {
+    display: block;
+    margin-left: auto;
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+  }
+}
+@media screen and (max-width: 560px) {
+  .timer {
+    width: 110px;
+    margin-right: 0.5rem;
+    padding: 6px;
+    font-size: 14px;
+  }
+  .timeSlot {
+    width: 8px;
+    height: 20px;
+  }
+  body main .createGuifos #ctnBtnLastPreview {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: flex-end;
+    width: 100%;
+    margin-right: 1rem;
+  }
+  body main .createGuifos #ctnBtnLastPreview .controlCtn {
+    padding-top: 1rem;
+  }
+  body main .createGuifos #previewTimer {
+    margin: 0;
+    margin-left: 1rem;
+  }
+  body main .createGuifos #ctnBtnLastPreview .timeSlot {
+    height: 20px;
+    width: 12px;
+  }
+  body main .createGuifos .lastPreviewBtnCtn {
+    padding-top: 1rem;
+  }
+  body main .createGuifos #btnRepeat {
+    margin: 0;
+  }
+  body main .createGuifos #uploadingContent .primaryContent img {
+    margin-top: 4rem;
+    margin-bottom: 0.5rem;
+  }
+  body main .createGuifos #uploadingContent .primaryContent h4 {
+    margin-bottom: 1.5rem;
+  }
+  body main .createGuifos #uploadingContent .primaryContent p {
+    margin-bottom: 4rem;
+  }
+}
+@media screen and (max-width: 420px) {
+  body main .createGuifos .ctnResult {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+  }
+  body main .createGuifos #ctnBtnFinal {
+    margin: 0;
+    padding: 0;
+  }
+  body main .misGuifos .newGuifoCtn {
+    width: 100%;
+    height: 180px;
+    margin: 0;
+  }
+  body main .createGuifos .ctnFinalText .btnSecondary {
+    width: 90%;
+  }
+  body main .createGuifos .ctnFinalText {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  body main .createGuifos .startingPage p {
+    margin: 0;
+  }
+  body main .createGuifos .startingPage img {
+    display: hidden;
+  }
+  body main .createGuifos .startingPage .startingPageText {
+    width: calc(100%);
+    margin: 0 1rem;
+  }
+  body main .createGuifos #ctnBtnPrincipal a {
+    margin: 0;
+    padding: 6px 10px;
+  }
+  body main .createGuifos .startingPage h4 {
+    margin: 1rem 0;
+    line-height: 1rem;
+  }
+  body main .createGuifos #ctnBtnPrincipal {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 1rem 0 2rem 0;
+    font-size: 13px;
+  }
+  body main .createGuifos #ctnBtnPrincipal a {
+    margin: 0;
+    padding: 0;
+  }
+  body main .createGuifos #ctnBtnPrincipal span {
+    padding: 6px 10px;
+  }
+  body main .createGuifos #ctnBtnPrincipal button {
+    padding: 7px 10px;
+  }
+  body main .createGuifos #btnReady {
+    padding: 8px 13px;
+  }
+  body main .createGuifos #btnToStart {
+    margin: 0 1rem 1rem auto;
+  }
+}
+/*clase para desaparicion y aparicion*/
+.hidden {
+  display: none !important;
+}

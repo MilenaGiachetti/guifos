@@ -1,0 +1,416 @@
+/*-------------generales---------------*/
+/*Colores temas*/
+.theme-dark {
+  --bg-primary: #110038;
+  --bg-secondary: #b4b4b4;
+  --bg-tertiary: #cccccc;
+  --gradient-primary: #ee3efe;
+  --gradient-secondary: #2e32fb;
+  --color-primary: #110038;
+  --color-secondary: #fff;
+  --shadow-primary: #5c5c5c;
+  --shadow-secondary: #b4b4b4;
+  --shadow-tertiary: #fff;
+  --btn-shadow: #a72cb3;
+  --btn-bg-hover: #ce36db;
+  --border-second-h: #2e32fb;
+  --shadow-second-h: #110038;
+  --bg-theme-selector: #2e32f2;
+  --border-theme-selector: #33358f;
+}
+.theme-light {
+  --bg-primary: #fff4fd;
+  --bg-secondary: #e6e6e6;
+  --bg-tertiary: #f0f0f0;
+  --gradient-primary: #f7c9f3;
+  --gradient-secondary: #4180f6;
+  --color-primary: #110038;
+  --color-secondary: #110038;
+  --shadow-primary: #b4b4b4;
+  --shadow-secondary: #b4b4b4;
+  --shadow-tertiary: #fff;
+  --btn-shadow: #997d97;
+  --btn-bg-hover: #e6bbe2;
+  --border-second-h: #e6bbe2;
+  --shadow-second-h: #80687d;
+  --bg-theme-selector: #fff4fd;
+  --border-theme-selector: #cca6c9;
+}
+/*Fuentes*/
+@font-face {
+  font-family: "chakraReg";
+  src: url("../assets/font/ChakraPetch-Regular.ttf");
+}
+@font-face {
+  font-family: "chakraBold";
+  src: url("../assets/font/ChakraPetch-Bold.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  vertical-align: top;
+}
+html {
+  font-size: 16px;
+}
+/*Carets*/
+.close-caret {
+  transform: rotate(0deg);
+  transition: all 0.25s ease-in;
+}
+.open-caret {
+  transform: rotate(180deg);
+  transition: all 0.25s ease-out;
+}
+.whiteCaret {
+  filter: invert(100%);
+}
+/*Botones*/
+.btn {
+  height: 36px;
+  padding: 2px;
+  border: 1px solid var(--color-primary);
+  box-shadow: inset -1px -1px 0 0 var(--btn-shadow),
+    inset 1px 1px 0 0 var(--shadow-tertiary);
+  background: var(--gradient-primary);
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  color: var(--color-secondary);
+}
+.btn:hover,
+.btn:active {
+  background: var(--btn-bg-hover);
+}
+.btn .text {
+  display: inline-block;
+  width: 131px;
+  border: 1px solid #00000000;
+  font-size: 1rem;
+  line-height: 28px;
+}
+.btn .text:hover,
+.btn .text:active {
+  border: 1px dotted var(--color-primary);
+}
+.btn .caret {
+  display: inline-block;
+  padding-top: 10px;
+  border: 1px solid #00000000;
+  vertical-align: 0;
+  line-height: 18px;
+}
+.btn .caret:hover,
+.btn .caret:active {
+  border: 1px dotted var(--color-primary);
+}
+/*Texto de error*/
+.error {
+  grid-column-end: span 8;
+  margin: 3rem auto 3rem auto;
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  color: var(--color-secondary);
+  text-align: center;
+}
+.error a {
+  color: var(--gradient-secondary);
+}
+.error a:hover {
+  color: var(--color-secondary);
+}
+
+/*-------------particulares---------------*/
+body {
+  background: var(--bg-primary);
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  color: var(--color-primary);
+}
+body header .topHeading {
+  padding: 0.25rem 0.5rem;
+  box-shadow: 0 1px 0 0 var(--color-primary);
+  background-image: linear-gradient(
+    270deg,
+    var(--gradient-primary) 0%,
+    var(--gradient-secondary) 100%
+  );
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  font-size: 0.75rem;
+  color: var(--shadow-tertiary);
+  line-height: 1rem;
+  letter-spacing: 0;
+}
+body header h1 {
+  height: 0;
+  text-indent: -100000px;
+}
+body header .menu {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2.5rem 10% 0 10%;
+}
+body header .menu #logo {
+  width: 6.25rem;
+}
+body header .menu #btnOpenMenu {
+  display: none;
+}
+body header .menu #btnOpenMenu .text {
+  width: 100px;
+}
+body header .menu #btnOpenMenu img {
+  position: relative;
+  top: 10px;
+  left: 75px;
+}
+body header .menu nav {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0;
+}
+body header .menu nav #btnCreate .text {
+  text-align: center;
+}
+body header .menu nav #btnCreate:hover,
+body header .menu nav #btnCaret:hover,
+body header .menu nav #btnTheme:hover span {
+  border: 1px dotted var(--color-primary);
+  background: var(--btn-bg-hover);
+}
+body header .menu nav .dropdown {
+  margin: 0 1rem;
+}
+body header .menu nav .dropdown button .text {
+  display: inline-block;
+}
+body header .menu nav .dropdown .dropdownBtn:hover button {
+  background: var(--btn-bg-hover);
+}
+body header .menu nav .dropdown .dropdownBtn:hover button .caret {
+  border: 1px dotted var(--color-primary);
+}
+body header .menu nav .dropdown .dropdownBtn:hover #btnText {
+  background: var(--btn-bg-hover);
+}
+body header .menu nav .dropdown .dropdownBtn:hover #btnText .text {
+  border: 1px dotted var(--color-primary);
+}
+body header .menu nav .dropdown button .caret {
+  display: inline-block;
+  width: 36px;
+}
+body header .menu nav .dropdown .dropdownContent {
+  display: flex;
+  flex-flow: column wrap;
+  position: absolute;
+  width: 180px;
+  padding: 5px;
+  box-shadow: inset -2px -2px 0 0 var(--shadow-primary),
+    inset 2px 2px 0 0 var(--shadow-tertiary);
+  background: var(--bg-secondary);
+}
+body header .menu nav .dropdown .dropdownContent button {
+  margin: 0.25rem;
+  padding: 0.5rem;
+  border: 1px solid #808080;
+  box-shadow: inset -1px -1px 0 0 var(--shadow-primary),
+    inset 1px 1px 0 0 var(--shadow-tertiary);
+  background: var(--bg-tertiary);
+}
+body header .menu nav .dropdown .dropdownContent button:hover {
+  border: 1px solid var(--border-theme-selector);
+  box-shadow: inset -1px -1px 0 0 #e6dce4, inset 1px 1px 0 0 var(--shadow-tertiary);
+  background: var(--bg-theme-selector);
+  color: var(--color-secondary);
+}
+body header .menu nav .dropdown .dropdownContent button span {
+  display: inline-block;
+}
+body header .menu nav .dropdown .dropdownContent button .underline {
+  text-decoration: underline;
+}
+body header .menu nav .linkToGuifos {
+  padding: 6px 16px 4px 0;
+  border: 1px solid rgba(255, 255, 255, 0);
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  color: var(--color-secondary);
+  line-height: 22px;
+}
+body header .menu nav .linkToGuifos .underline {
+  text-decoration: underline;
+}
+body header .menu nav .linkToGuifos:hover {
+  border: 1px dotted var(--color-secondary);
+}
+body header .menu nav .linkToGuifos:active {
+  border: 1px solid rgba(255, 255, 255, 0);
+  color: var(--shadow-secondary);
+}
+body main {
+  margin: 20px 10%;
+}
+body main .misGuifos h2 {
+  margin-top: 64px;
+  margin-bottom: 16px;
+  padding: 8px;
+  border: 1px solid var(--border-second-h);
+  box-shadow: inset -2px -2px 0 0 #e6dce4,
+    inset 2px 2px 0 0 var(--shadow-second-h);
+  background: #fffafe;
+  font-family: "chakraReg", Arial, Helvetica, sans-serif;
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  font-weight: normal;
+  letter-spacing: 0;
+}
+body main .misGuifos #ctnMisGuifos {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 1rem;
+  grid-auto-flow: dense;
+}
+body main .misGuifos #ctnMisGuifos .ctnTotal {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset -2px -2px 0 0 var(--shadow-primary),
+    inset 2px 2px 0 0 var(--shadow-tertiary);
+  background: var(--bg-secondary);
+}
+body main .misGuifos #ctnMisGuifos .ctnTotal:hover {
+  padding: 4px;
+}
+body main .misGuifos #ctnMisGuifos .ctnTotal .ctnImg {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  overflow: hidden;
+}
+body main .misGuifos #ctnMisGuifos .ctnTotal .ctnImg .img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #00000000;
+  background-size: cover;
+}
+body main .misGuifos #ctnMisGuifos .ctnTotal:hover .ctnImg .img {
+  border: 1px dotted var(--color-primary);
+}
+/*-------------Media Queries---------------*/
+@media screen and (max-width: 1400px) {
+  body main .misGuifos #ctnMisGuifos {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+  }
+}
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 14px;
+  }
+  body header .menu #logo {
+    width: 5rem;
+  }
+  body header .menu nav {
+    display: none;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    z-index: 4;
+    right: 10%;
+    top: 94px;
+    width: 230px;
+    height: 160px;
+    padding: 5px;
+    box-shadow: inset -2px -2px 0 0 var(--shadow-primary), inset 2px 2px 0 0 var(--shadow-tertiary);
+    background: var(--bg-secondary);
+    font-size: 0;
+  }
+  body header .menu nav .text {
+    width: 138px;
+  }
+  body header .menu nav a .text {
+    width: 180px;
+  }
+  body header .menu nav .linkToGuifos {
+    width: 180px;
+    padding: 6px 0;
+    text-align: center;
+  }
+  body header .menu nav .dropdown .dropdownContent {
+    width: 186px;
+  }
+  body header .menu #btnOpenMenu {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  body header .menu #btnOpenMenu .text {
+    width: 225px;
+  }
+  body main .misGuifos #ctnMisGuifos {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+  }
+}
+@media screen and (max-width: 700px) {
+  body main .misGuifos #ctnMisGuifos {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1rem;
+  }
+}
+@media screen and (max-width: 475px) {
+  body header .menu #logo {
+    width: 4rem;
+  }
+  body header .menu nav {
+    width: 159px;
+    height: 160px;
+    right: 10%;
+    top: 106px;
+    padding: 5px;
+    background: var(--bg-secondary);
+  }
+  body header .menu nav .dropdown .dropdownContent {
+    width: 122px;
+  }
+  body header .menu nav #btnText .text {
+    width: 73px;
+    line-height: 14px;
+  }
+  body header .menu nav a .text {
+    width: 116px;
+  }
+  body header .menu nav .linkToGuifos {
+    width: 100px;
+    padding: 6px 0;
+    text-align: center;
+  }
+  body header .menu #btnOpenMenu {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  body header .menu #btnOpenMenu .text {
+    width: 154px;
+  }
+  body header .menu #btnOpenMenu img {
+    left: 40px;
+  }
+}
+
+/*clase para desaparicion y aparicion*/
+.hidden {
+  display: none !important;
+}
