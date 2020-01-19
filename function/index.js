@@ -401,8 +401,10 @@ function loadContent(response) {
     img.style.backgroundSize = "auto 100%";
     if (response.data[i].images.fixed_height.width >= "360") {
       if (
-        i === firstIndexSearch[currentPage] - 1 &&
-        lastImgBig[currentPage - 1] === true
+        (i === firstIndexSearch[currentPage] - 1 &&
+        lastImgBig[currentPage - 1] === true) || 
+        (i === firstIndexSearch[currentPage] - 1 &&
+        currentPage === biggerPage) 
       ){
 
       }else {
@@ -744,8 +746,10 @@ function loadTrendingPage(response) {
     img.style.backgroundSize = "auto 100%";
     if (response.data[i].images.fixed_height.width >= "360") {
       if (
-        i === firstIndex[currentTrendingPage] - 1 &&
-        lastImgBigTrend[currentTrendingPage - 1] === true
+        (i === firstIndex[currentTrendingPage] - 1 &&
+        lastImgBigTrend[currentTrendingPage - 1] === true)
+        (i === firstIndexSearch[currentPage] - 1 &&
+          currentPage === biggerPage) 
       ) {
       } else {
         ctnTotal.classList.add("largeTotal");
