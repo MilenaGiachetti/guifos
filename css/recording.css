@@ -517,7 +517,7 @@ body main .misGuifos #ctnMisGuifos .ctnTotal .ctnImg .img {
 body main .misGuifos #ctnMisGuifos .ctnTotal:hover .ctnImg .img {
   border: 1px dotted var(--color-primary);
 }
-body main .misGuifos .newGuifoCtn {
+.newGuifoCtn {
   position: relative;
   width: 50%;
   margin-left: 1rem;
@@ -528,7 +528,7 @@ body main .misGuifos .newGuifoCtn {
   background: #ffffff;
   overflow: hidden;
 }
-body main .misGuifos #newGuifo {
+#newGuifo {
   position: absolute;
   left: 0;
   top: 0;
@@ -684,7 +684,7 @@ body main .misGuifos #newGuifo {
     margin: 0;
     padding: 0;
   }
-  body main .misGuifos .newGuifoCtn {
+  .newGuifoCtn {
     width: 100%;
     height: 180px;
     margin: 0;
