@@ -1,162 +1,203 @@
 <!DOCTYPE html>
-<html lang="en"  class="theme-light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<html lang="en" class="theme-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Gif.OS</title>
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/recording.css">
-</head>
-<body>
+    <link
+      rel="shortcut icon"
+      href="assets/img/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="css/recording.css" />
+  </head>
+  <body>
     <header>
-        <p class="heading topHeading">¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas: <span id="visitas"> 12.765.803</span></p>
-        <h1>Guifos</h1>
-        <div class="menu">
-            <a href="" id="previousPage">
-                <img src="assets/img/arrow.svg" id="svgArrow" alt="Ir para atrás">
-            </a>
-            <a href="index.html"><img src="assets/img/logo.png" id="logo" alt="Logo de Gif.OS"></a>
-        </div>
+      <p class="heading topHeading">
+        ¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número
+        de visitas: <span id="visitas"> 12.765.803</span>
+      </p>
+      <h1>Guifos</h1>
+      <div class="menu">
+        <a href="" id="previousPage">
+          <img src="assets/img/arrow.svg" id="svgArrow" alt="Ir para atrás" />
+        </a>
+        <a href="index.html"
+          ><img src="assets/img/logo.png" id="logo" alt="Logo de Gif.OS"
+        /></a>
+      </div>
     </header>
     <main>
-        <section class="createGuifos" id="ctnCreator">
-            <div class="heading topHeading">
-                <h2  id='heading'>Crear Guifos</h2>            
-                <img src="assets/img/close.svg" class="hidden" id="videoWindowClose" alt="Cerrar ventana de creación de gifs">
+      <section class="createGuifos" id="ctnCreator">
+        <div class="heading topHeading">
+          <h2 id="heading">Crear Guifos</h2>
+          <img
+            src="assets/img/close.svg"
+            class="hidden"
+            id="videoWindowClose"
+            alt="Cerrar ventana de creación de gifs"
+          />
+        </div>
+        <div id="windowContent" class="windowContent">
+          <div class="gifContainer hidden" id="gifContainer">
+            <img
+              alt="Gif grabado"
+              id="imgGIF"
+              src="assets/img/globe.png"
+              class="hidden"
+            />
+            <video class="hidden"></video>
+          </div>
+          <div class="startingPage" id="startingPage">
+            <img src="assets/img/window.png" id="windowImg" alt="" />
+            <div class="startingPageText">
+              <h4>Aquí podrás crear tus propios guifos</h4>
+              <p>
+                <span class="enter"
+                  >Crear tu <span class="bold tilted">guifo</span> es muy fácil,
+                  graba cualquier imagen con tu cámara y obtén guifos
+                  personalizados. Los pasos para crear tu guifo son:
+                </span>
+                <span class="enter">
+                  <span class="bold">1)</span> Dar permisos de acceso a la
+                  cámara (sólo por el tiempo de uso)
+                </span>
+                <span class="enter">
+                  <span class="bold">2)</span> Capturar tu momento guifo
+                </span>
+                <span class="enter">
+                  <span class="bold">3)</span> Revisar el momento
+                </span>
+                <span class="enter">
+                  <span class="bold">4)</span> Listo para subir y compartir!
+                </span>
+                <span class="enter">
+                  ¿Quieres comenzar a crear tu
+                  <span class="bold tilted">guifo</span> ahora?
+                </span>
+              </p>
             </div>
-            <div id="windowContent" class="windowContent">
-                <div class="gifContainer hidden" id="gifContainer">
-                    <img alt="Gif grabado" id="imgGIF" src="assets/img/globe.png" class="hidden">
-                    <video class="hidden"></video>
-                </div>
-                <div class="startingPage" id="startingPage">
-                    <img src="assets/img/window.png" id="windowImg" alt="">
-                    <div class="startingPageText">
-                        <h4>Aquí podrás crear tus propios guifos</h4>
-                        <p>
-                            <span class="enter">Crear tu <span class="bold tilted">guifo</span> es muy fácil, graba cualquier imagen con tu cámara y obtén guifos personalizados. Los pasos para crear tu guifo son:
-                            </span>
-                            <span class="enter">
-                                <span class="bold">1)</span> Dar permisos de acceso a la cámara (sólo por el tiempo de uso)
-                            </span>
-                            <span class="enter">
-                                <span class="bold">2)</span> Capturar tu momento guifo
-                            </span>
-                            <span class="enter">       
-                                <span class="bold">3)</span> Revisar el momento
-                            </span>
-                            <span class="enter">
-                                <span class="bold">4)</span> Listo para subir y compartir!
-                            </span>
-                            <span class="enter">
-                                ¿Quieres comenzar a crear tu <span class="bold tilted">guifo</span> ahora?
-                            </span>
-                        </p>
-                    </div>
-                </div>
-                <div class="ctnBtn" id="ctnBtnPrincipal">
-                    <a id='cancelLink' class='btnSecondary' href=""><span>Cancelar</span></a>
-                    <button id="btnStart" class="btn">Comenzar</button>
-                </div>
-                <div class="ctnBtn hidden" id="ctnBtnInitialPreview">
-                    <button id="imgCapture" class="btn"><img src="assets/img/camera.svg" id="svgCamera" alt=""></button>
-                    <button id="btnCapture" class="btn">Capturar</button>
-                </div>
-                <div class="ctnBtn hidden" id="ctnBtnCapture">
-                    <p id="captureTimer" class="timer">00:00:00:00</p>
-                    <div class="ready">
-                        <button id="imgReady" class="btn"><img src="assets/img/recording.svg" alt=""></button>
-                        <button id="btnReady" class="btn">Listo</button>
-                    </div>
-                </div>
-                <div class="ctnBtn hidden" id="ctnBtnLastPreview">
-                    <p id="previewTimer" class="timer">00:00:00:00</p>
-                    <div class="controlCtn">
-                        <!--<div id="previewControls">
+          </div>
+          <div class="ctnBtn" id="ctnBtnPrincipal">
+            <a id="cancelLink" class="btnSecondary" href=""
+              ><span>Cancelar</span></a
+            >
+            <button id="btnStart" class="btn">Comenzar</button>
+          </div>
+          <div class="ctnBtn hidden" id="ctnBtnInitialPreview">
+            <button id="imgCapture" class="btn">
+              <img src="assets/img/camera.svg" id="svgCamera" alt="" />
+            </button>
+            <button id="btnCapture" class="btn">Capturar</button>
+          </div>
+          <div class="ctnBtn hidden" id="ctnBtnCapture">
+            <p id="captureTimer" class="timer">00:00:00:00</p>
+            <div class="ready">
+              <button id="imgReady" class="btn">
+                <img src="assets/img/recording.svg" alt="" />
+              </button>
+              <button id="btnReady" class="btn">Listo</button>
+            </div>
+          </div>
+          <div class="ctnBtn hidden" id="ctnBtnLastPreview">
+            <p id="previewTimer" class="timer">00:00:00:00</p>
+            <div class="controlCtn">
+              <!--<div id="previewControls">
                             <img src="assets/img/pause.svg" id="previewControlsImg" alt="">
                         </div>-->
-                        <div class="visualTimer" id="previewVisualTimer">
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                        </div>
-                    </div>
-                    <div class="lastPreviewBtnCtn">
-                        <button class="btnSecondary" id="btnRepeat"><span>Repetir Captura</span></button>
-                        <button class="btn" id="btnUpload">Subir Guifo</button>
-                    </div>
-                </div>
-                <div id="uploadingContent" class="hidden">
-                    <div class="primaryContent">
-                        <img src="assets/img/globe.png" alt="">
-                        <h4>Estamos subiendo tu guifo…</h4>
-                        <div class="visualTimer" id="uploadVisualTimer">
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                            <div class="timeSlot"></div>
-                        </div>
-                        <p>Tiempo restante: <span class="crossed">38 años</span> algunos minutos</p>
-                    </div>
-                    <div class="ctnBtn hidden" id="ctnBtnUploading">
-                        <button class="btnSecondary" id="btnCancelUpload"><span>Cancelar</span></button>
-                    </div>
-                </div>
-                <div class="ctnBtn hidden" id="ctnBtnFinal">
-                    <div class="ctnResult">
-                        <div class="newGuifoCtn">
-                            <div id='newGuifo'></div>
-                        </div>
-                        <div class="ctnFinalText">
-                            <h4>Guifo creado con éxito</h4>
-                            <button class="btnSecondary" id="btnURL"><span>Copiar Enlace Guifo</span></button>
-                            <button class="btnSecondary" id="btnDownload"><span>Descargar Guifo</span></button>
-                        </div>
-                    </div>
-                    <button class="btn" id="btnToStart">Listo</button>
-                </div>
+              <div class="visualTimer" id="previewVisualTimer">
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+              </div>
             </div>
-        </section>
-        <section class="misGuifos">
-            <h2>Mis guifos</h2>
-            <div id="ctnMisGuifos"></div>
-        </section>    
+            <div class="lastPreviewBtnCtn">
+              <button class="btnSecondary" id="btnRepeat">
+                <span>Repetir Captura</span>
+              </button>
+              <button class="btn" id="btnUpload">Subir Guifo</button>
+            </div>
+          </div>
+          <div id="uploadingContent" class="hidden">
+            <div class="primaryContent">
+              <img src="assets/img/globe.png" alt="" />
+              <h4>Estamos subiendo tu guifo…</h4>
+              <div class="visualTimer" id="uploadVisualTimer">
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+                <div class="timeSlot"></div>
+              </div>
+              <p>
+                Tiempo restante: <span class="crossed">38 años</span> algunos
+                minutos
+              </p>
+            </div>
+            <div class="ctnBtn hidden" id="ctnBtnUploading">
+              <button class="btnSecondary" id="btnCancelUpload">
+                <span>Cancelar</span>
+              </button>
+            </div>
+          </div>
+          <div class="ctnBtn hidden" id="ctnBtnFinal">
+            <div class="ctnResult">
+              <div class="newGuifoCtn">
+                <div id="newGuifo"></div>
+              </div>
+              <div class="ctnFinalText">
+                <h4>Guifo creado con éxito</h4>
+                <button class="btnSecondary" id="btnURL">
+                  <span>Copiar Enlace Guifo</span>
+                </button>
+                <button class="btnSecondary" id="btnDownload">
+                  <span>Descargar Guifo</span>
+                </button>
+              </div>
+            </div>
+            <button class="btn" id="btnToStart">Listo</button>
+          </div>
+        </div>
+      </section>
+      <section class="misGuifos">
+        <h2>Mis guifos</h2>
+        <div id="ctnMisGuifos"></div>
+      </section>
     </main>
     <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
     <script src="function/recording.js"></script>
-</body>
+  </body>
 </html>

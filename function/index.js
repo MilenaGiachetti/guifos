@@ -402,9 +402,7 @@ function loadContent(response) {
     if (response.data[i].images.fixed_height.width >= "360") {
       if (
         (i === firstIndexSearch[currentPage] - 1 &&
-        lastImgBig[currentPage - 1] === true) || 
-        (i === firstIndexSearch[currentPage] - 1 &&
-        currentPage === biggerPage) 
+        lastImgBig[currentPage - 1] === true)
       ){
 
       }else {
@@ -748,8 +746,6 @@ function loadTrendingPage(response) {
       if (
         (i === firstIndex[currentTrendingPage] - 1 &&
         lastImgBigTrend[currentTrendingPage - 1] === true)
-        (i === firstIndexSearch[currentPage] - 1 &&
-          currentPage === biggerPage) 
       ) {
       } else {
         ctnTotal.classList.add("largeTotal");
