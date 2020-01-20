@@ -84,7 +84,6 @@ function recordGuifo() {
     .then(stream => {
       video.srcObject = stream;
       video.play();
-      console.log("Got stream");
       recorder = new GifRecorder(stream, {
         type: "gif",
         frameRate: 1,
@@ -92,9 +91,6 @@ function recordGuifo() {
         width: 360,
         hidden: 240,
         timeSlice: 1000,
-        onGifRecordingStarted: () => {
-          console.log("started");
-        }
       });
       //funcion x, cerrar ventana
       videoWindowClose.addEventListener("click", () => {
@@ -146,7 +142,6 @@ ctnBtnCapture.addEventListener("click", () => {
   ctnBtnLastPreview.classList.remove("hidden");
   recorder.stop(blob => {
     blob = blob;
-    console.log(blob);
     heading.textContent = "Vista Previa";
     video.srcObject = null;
     video.classList.add("hidden");
