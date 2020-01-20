@@ -595,7 +595,7 @@ body main .misGuifos #ctnMisGuifos .ctnTotal:hover .ctnImg .img {
     grid-column-end: span 1;
     grid-row-end: span 1;
   }
-  #ctnBtnPrincipal {
+  body main .createGuifos #ctnBtnPrincipal {
     padding-right: 0;
     text-align: center;
   }

@@ -11,10 +11,12 @@ function setTheme(themeName) {
   localStorage.setItem("theme", themeName);
   document.documentElement.className = themeName;
   if (themeName === "theme-light") {
+    document.querySelector("link[rel='shortcut icon']").href = "assets/img/favicon.ico";
     logo.setAttribute("src", "assets/img/logo.png");
     caret.classList.remove("whiteCaret");
     caretMenu.classList.remove("whiteCaret");
   } else {
+    document.querySelector("link[rel='shortcut icon']").href = "assets/img/favicondark.ico";
     logo.setAttribute("src", "assets/img/logodark.png");
     caret.classList.add("whiteCaret");
     caretMenu.classList.add("whiteCaret");

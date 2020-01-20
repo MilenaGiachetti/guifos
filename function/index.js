@@ -27,10 +27,12 @@ let goToTopSearch = document.getElementById("goToTopSearch");
 /*----------Guardar Pagina Actual----------*/
 localStorage.setItem("latestPage", "index");
 /*----------Temas----------*/
+
 function setTheme(themeName) {
   localStorage.setItem("theme", themeName);
   document.documentElement.className = themeName;
   if (themeName === "theme-dark") {
+    document.querySelector("link[rel='shortcut icon']").href = "assets/img/favicondark.ico";
     logo.setAttribute("src", "assets/img/logodark.png");
     imgLens.setAttribute("src", "assets/img/lensmiddlegray.svg");
     caret.classList.add("whiteCaret");
@@ -47,6 +49,7 @@ function setTheme(themeName) {
       imgLens.setAttribute("src", "assets/img/lenslight.svg");
     }
   } else {
+    document.querySelector("link[rel='shortcut icon']").href = "assets/img/favicon.ico";
     logo.setAttribute("src", "assets/img/logo.png");
     caret.classList.remove("whiteCaret");
     caretMenu.classList.remove("whiteCaret");
