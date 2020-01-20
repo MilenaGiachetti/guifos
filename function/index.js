@@ -667,13 +667,14 @@ trendingData.then(response => {
         maxPageTrending++;
       } else if (j > 23) {
         j = 0;
-        lastImgBigTrend.push(true);
+        lastImgBigTrend.push(false);
         firstIndex.push(i);
         maxPageTrending++;
       }
     }
     j++;
     if (i === response.data.length - 1) {
+      lastImgBigTrend.push(true);
       firstIndex.push(i);
     }
   }

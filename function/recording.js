@@ -118,7 +118,7 @@ function recordGuifo() {
           let time = calculateTimeDuration(
             (new Date().getTime() - dateStarted) / 1000
           );
-          setTimeout(looper, 300);
+          setTimeout(looper, 500);
           captureTimer.textContent = time;
         })();
       });
@@ -136,6 +136,11 @@ function recordGuifo() {
     });
 }
 //funcion para boton de listo, se deja de grabar el gif y se muestra la vista previa
+let recordHr;
+let recordMin;
+let recordSec;
+let totalTime;
+let slotTime;
 ctnBtnCapture.addEventListener("click", () => {
   ctnBtnCapture.classList.add("hidden");
   ctnBtnLastPreview.classList.remove("hidden");
@@ -150,13 +155,16 @@ ctnBtnCapture.addEventListener("click", () => {
     imgGIF.src = blobURL;
     //se comienza timer de repeticion
     let newDateStarted = new Date().getTime();
-    let totalTime = +hr * 24 + min * 60 + sec;
-    let slotTime = (totalTime * 1000) / 15;
-    let recordHr = hr;
-    let recordMin = min;
-    let recordSec = sec;
+    totalTime = +hr * 3600 + min * 60 + sec;
+    recordHr = hr;
+    recordMin = min;
+    recordSec = sec;
+    hr = 0;
+    min = 0;
+    sec = 0;
+    slotTime = (totalTime * 1000) / 15;
     let slotNumber = -1;
-    previewTimer.textContent = "00:00:00,00";
+    previewTimer.textContent = "00:00:00:00";
     //funcion para el preview visual timer
     function fillOneSlot() {
       if (slotNumber === previewTimeSlots.length - 1) {
@@ -183,30 +191,30 @@ ctnBtnCapture.addEventListener("click", () => {
       setTimeout(fillSlots, slotTime);
     })();
     function calculateTimeDurationPreview(secs) {
-      hr = Math.floor(secs / 3600);
-      min = Math.floor((secs - hr * 3600) / 60);
-      sec = Math.floor(secs - hr * 3600 - min * 60);
-      if (hr < 10) {
-        hr = "0" + hr;
+      hrPrev = Math.floor(secs / 3600);
+      minPrev = Math.floor((secs - hrPrev * 3600) / 60);
+      secPrev = Math.floor(secs - hrPrev * 3600 - minPrev * 60);
+      if (hrPrev < 10) {
+        hrPrev = "0" + hrPrev;
       } 
-      if (min < 10) {
-        min = "0" + min;
+      if (minPrev < 10) {
+        minPrev = "0" + minPrev;
       }
-      if (sec < 10) {
-        sec = "0" + sec;
+      if (secPrev < 10) {
+        secPrev = "0" + secPrev;
       }
       if (
-        hr * 3600 + min * 60 + sec >
-        recordHr * 3600 + recordMin * 60 + recordSec
+        hrPrev * 3600 + minPrev * 60 + secPrev >=
+        totalTime
       ) {
         previewTimer.textContent =
         "00:" + recordHr + ":" + recordMin + ":" + recordSec;
-        hr = 0;
-        min = 0;
-        sec = 0;
+        hrPrev = 0;
+        minPrev = 0;
+        secPrev = 0;
         newDateStarted = new Date().getTime();
       } else {
-        previewTimer.textContent = "00:" + hr + ":" + min + ":" + sec;
+        previewTimer.textContent = "00:" + hrPrev + ":" + minPrev + ":" + secPrev;
       }
     }
     (function previewLooper() {
@@ -216,7 +224,7 @@ ctnBtnCapture.addEventListener("click", () => {
       calculateTimeDurationPreview(
         (new Date().getTime() - newDateStarted) / 1000
       );
-      setTimeout(previewLooper, 300);
+      setTimeout(previewLooper, 500);
     })();
     //subir gif a giphy
     btnUpload.addEventListener("click", () => {
