@@ -700,7 +700,7 @@ body main .misGuifos #ctnMisGuifos .ctnTotal:hover .ctnImg .img {
     margin: 0;
   }
   body main .createGuifos .startingPage img {
-    display: hidden;
+    display: none;
   }
   body main .createGuifos .startingPage .startingPageText {
     width: calc(100%);
@@ -721,6 +721,7 @@ body main .misGuifos #ctnMisGuifos .ctnTotal:hover .ctnImg .img {
     align-items: center;
     width: 100%;
     margin: 1rem 0 2rem 0;
+    padding: 0;
     font-size: 13px;
   }
   body main .createGuifos #ctnBtnPrincipal a {
