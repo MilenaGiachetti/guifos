@@ -321,7 +321,7 @@ function search() {
         }
         j++;
         if (i === response.data.length - 1) {
-          lastImgBig.push(false);
+          lastImgBig.push(true);
           firstIndexSearch.push(i);
         }
       }
@@ -667,7 +667,7 @@ trendingData.then(response => {
         maxPageTrending++;
       } else if (j > 23) {
         j = 0;
-        lastImgBigTrend.push(false);
+        lastImgBigTrend.push(true);
         firstIndex.push(i);
         maxPageTrending++;
       }
